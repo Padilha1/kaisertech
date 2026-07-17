@@ -1,4 +1,4 @@
-import { ArrowRight, Check, GitBranch, Globe2, Maximize2, Menu, Server, ShieldCheck, TrendingUp, X } from "lucide-react";
+import { ArrowRight, Check, GitBranch, Globe2, Instagram, Linkedin, Maximize2, Menu, Server, ShieldCheck, TrendingUp, X } from "lucide-react";
 import type { CSSProperties } from "react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import gsap from "gsap";
@@ -17,6 +17,7 @@ export function App() {
   const appRef = useRef<HTMLDivElement>(null);
   const t = dictionary[locale];
   const painIcons = [TrendingUp, Server, GitBranch] as const;
+  const currentYear = new Date().getFullYear();
 
   useEffect(() => {
     const updateHeaderState = () => setIsScrolled(window.scrollY > 18);
@@ -360,9 +361,51 @@ export function App() {
       </section>
       </main>
 
-      <footer>
-        <span>{t.footer}</span>
-        <span>kaisertec.com</span>
+      <footer className="site-footer">
+        <div className="footer-main">
+          <div className="footer-brand">
+            <a className="brand" href="#top" aria-label="Kaiser Tech home">
+              <span>
+                <img src="/logo_branco.png" alt="" />
+              </span>
+              Kaiser Tech
+            </a>
+            <p>Software sob medida para operações que precisam sair do improviso e escalar com rastreabilidade.</p>
+            <a className="footer-domain" href="https://kaisertec.com.br" target="_blank" rel="noreferrer noopener">
+              kaisertec.com.br
+            </a>
+          </div>
+
+          <nav className="footer-nav" aria-label="Footer navigation">
+            <strong>Navegação</strong>
+            <a href="#solutions">{t.nav.services}</a>
+            <a href="#cases">{t.nav.cases}</a>
+            <a href="#method">{t.nav.method}</a>
+            <a href="#proof">{t.nav.proof}</a>
+            <a href="#contact">{t.nav.contact}</a>
+          </nav>
+
+          <div className="footer-legal">
+            <strong>Kaiser Labs Tecnologia LTDA</strong>
+            <div>
+              <span>CNPJ 66.557.573/0001-66</span>
+              <span>Brazil</span>
+            </div>
+            <div className="footer-socials" aria-label="Social links">
+              <a href="https://www.instagram.com/matheus.padilha" target="_blank" rel="noreferrer noopener" aria-label="Instagram de Matheus Padilha">
+                <Instagram size={18} />
+              </a>
+              <a href="https://www.linkedin.com/in/padilha--matheus/" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn de Matheus Padilha">
+                <Linkedin size={18} />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="footer-bottom">
+          <span>Direitos reservados @ {currentYear} Kaiser Labs Tecnologia LTDA</span>
+          <span>Desenvolvido por Matheus Padilha</span>
+        </div>
       </footer>
       <CaseModal caseItem={selectedCase} closeLabel={t.caseModalClose} siteLabel={t.caseSiteLabel} onClose={() => setSelectedCase(null)} />
     </div>
