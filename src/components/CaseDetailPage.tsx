@@ -5,10 +5,11 @@ import type { LocaleCopy } from "../lib/i18n";
 type CaseDetailPageProps = {
   caseIndex: number;
   homePath: string;
+  navigate: (path: string) => void;
   t: LocaleCopy;
 };
 
-export function CaseDetailPage({ caseIndex, homePath, t }: CaseDetailPageProps) {
+export function CaseDetailPage({ caseIndex, homePath, navigate, t }: CaseDetailPageProps) {
   const casePage = t.cases[caseIndex];
   const deliverables =
     "deliverables" in casePage && casePage.deliverables
@@ -25,7 +26,14 @@ export function CaseDetailPage({ caseIndex, homePath, t }: CaseDetailPageProps) 
         <h1>{casePage.title}</h1>
         <p>{casePage.subtitle}</p>
         <div className="detail-actions">
-          <a className="primary-button" href={`${homePath}#contact`}>
+          <a
+            className="primary-button"
+            href={`${homePath}#contact`}
+            onClick={(event) => {
+              event.preventDefault();
+              navigate(`${homePath}#contact`);
+            }}
+          >
             {t.detail.talkAboutThis}
             <ArrowRight size={18} />
           </a>

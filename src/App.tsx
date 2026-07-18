@@ -39,6 +39,15 @@ export function App() {
     window.history.pushState(null, "", path);
     setRoute(parseRoute(window.location.pathname));
     setMenuOpen(false);
+    const targetId = window.location.hash.slice(1);
+
+    if (targetId) {
+      window.requestAnimationFrame(() => {
+        document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+      return;
+    }
+
     window.scrollTo({ top: 0, behavior: "auto" });
   };
 
@@ -190,9 +199,9 @@ export function App() {
 
   const mainContent =
     route.kind === "service" && typeof route.index === "number" ? (
-      <ServiceDetailPage homePath={homePath} locale={locale} serviceIndex={route.index} t={t} />
+      <ServiceDetailPage homePath={homePath} locale={locale} navigate={navigate} serviceIndex={route.index} t={t} />
     ) : route.kind === "case" && typeof route.index === "number" ? (
-      <CaseDetailPage caseIndex={route.index} homePath={homePath} t={t} />
+      <CaseDetailPage caseIndex={route.index} homePath={homePath} navigate={navigate} t={t} />
     ) : (
       <HomePage
         formStatus={formStatus}

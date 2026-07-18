@@ -6,11 +6,12 @@ import { FaqSection } from "./FaqSection";
 type ServiceDetailPageProps = {
   homePath: string;
   locale: Locale;
+  navigate: (path: string) => void;
   serviceIndex: number;
   t: LocaleCopy;
 };
 
-export function ServiceDetailPage({ homePath, locale, serviceIndex, t }: ServiceDetailPageProps) {
+export function ServiceDetailPage({ homePath, locale, navigate, serviceIndex, t }: ServiceDetailPageProps) {
   const servicePage = t.services[serviceIndex];
   const serviceCopy = t.servicePages[serviceIndex];
 
@@ -24,7 +25,14 @@ export function ServiceDetailPage({ homePath, locale, serviceIndex, t }: Service
         <h1>{servicePage.title}</h1>
         <p>{serviceCopy.lead}</p>
         <div className="detail-actions">
-          <a className="primary-button" href={`${homePath}#contact`}>
+          <a
+            className="primary-button"
+            href={`${homePath}#contact`}
+            onClick={(event) => {
+              event.preventDefault();
+              navigate(`${homePath}#contact`);
+            }}
+          >
             {t.detail.talkAboutThis}
             <ArrowRight size={18} />
           </a>
