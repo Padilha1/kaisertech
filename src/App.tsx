@@ -1,26 +1,57 @@
-import { ArrowRight, Check, GitBranch, Globe2, Instagram, Linkedin, Maximize2, Menu, Server, ShieldCheck, TrendingUp, X } from "lucide-react";
-import type { CSSProperties, FormEvent } from "react";
+import type { FormEvent } from "react";
 import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { CaseDetailPage } from "./components/CaseDetailPage";
 import { CaseModal, type CaseModalContent } from "./components/CaseModal";
-import { ShaderAnimation } from "./components/ui/shader-animation";
+import { Footer } from "./components/Footer";
+import { Header } from "./components/Header";
+import { HomePage } from "./components/HomePage";
+import { ServiceDetailPage } from "./components/ServiceDetailPage";
 import { dictionary, type Locale } from "./lib/i18n";
+import { getHomePath, getRoutePath, parseRoute, siteUrl, type AppRoute } from "./lib/routing";
+import { syncSeo } from "./lib/seo";
 
 gsap.registerPlugin(ScrollTrigger);
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
+const availableLocales: Locale[] = ["pt", "en", "de"];
 
 export function App() {
-  const [locale, setLocale] = useState<Locale>("pt");
+  const [route, setRoute] = useState<AppRoute>(() => parseRoute(window.location.pathname));
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [selectedCase, setSelectedCase] = useState<CaseModalContent | null>(null);
   const [formStatus, setFormStatus] = useState<FormStatus>("idle");
   const appRef = useRef<HTMLDivElement>(null);
+
+  const locale = route.locale;
   const t = dictionary[locale];
-  const painIcons = [TrendingUp, Server, GitBranch] as const;
   const currentYear = new Date().getFullYear();
+  const homePath = getHomePath(locale);
+  const canonicalPath = getRoutePath(route);
+  const canonicalUrl = `${siteUrl}${canonicalPath}`;
+  const servicePage = route.kind === "service" && typeof route.index === "number" ? t.services[route.index] : null;
+  const serviceCopy = route.kind === "service" && typeof route.index === "number" ? t.servicePages[route.index] : null;
+  const casePage = route.kind === "case" && typeof route.index === "number" ? t.cases[route.index] : null;
+
+  const navigate = (path: string) => {
+    window.history.pushState(null, "", path);
+    setRoute(parseRoute(window.location.pathname));
+    setMenuOpen(false);
+    window.scrollTo({ top: 0, behavior: "auto" });
+  };
+
+  useEffect(() => {
+    syncSeo({ canonicalUrl, casePage, route, serviceCopy, servicePage, t });
+  }, [canonicalUrl, casePage, route, serviceCopy, servicePage, t]);
+
+  useEffect(() => {
+    const handlePopState = () => setRoute(parseRoute(window.location.pathname));
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
 
   useEffect(() => {
     const updateHeaderState = () => setIsScrolled(window.scrollY > 18);
@@ -125,8 +156,9 @@ export function App() {
       });
     }, root);
 
+    ScrollTrigger.refresh();
     return () => context.revert();
-  }, []);
+  }, [canonicalPath]);
 
   const handleContactSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -156,287 +188,42 @@ export function App() {
     }
   };
 
+  const mainContent =
+    route.kind === "service" && typeof route.index === "number" ? (
+      <ServiceDetailPage homePath={homePath} locale={locale} serviceIndex={route.index} t={t} />
+    ) : route.kind === "case" && typeof route.index === "number" ? (
+      <CaseDetailPage caseIndex={route.index} homePath={homePath} t={t} />
+    ) : (
+      <HomePage
+        formStatus={formStatus}
+        handleContactSubmit={handleContactSubmit}
+        locale={locale}
+        setSelectedCase={(caseItem) => setSelectedCase(caseItem)}
+        t={t}
+      />
+    );
+
   return (
     <div className="app-shell" ref={appRef}>
-      <header className={isScrolled ? "site-header site-header--scrolled" : "site-header"}>
-        <a className="brand" href="#top" aria-label="Kaiser Tech home">
-          <span>
-            <img src="/logo_branco.png" alt="" />
-          </span>
-          Kaiser Tech
-        </a>
-
-        <nav className="desktop-nav" aria-label="Primary navigation">
-          <a href="#solutions">{t.nav.services}</a>
-          <a href="#cases">{t.nav.cases}</a>
-          <a href="#method">{t.nav.method}</a>
-          <a href="#proof">{t.nav.proof}</a>
-          <a href="#contact">{t.nav.contact}</a>
-        </nav>
-
-        <div className="header-actions">
-          <button className="language-toggle" type="button" onClick={() => setLocale(locale === "pt" ? "en" : "pt")}>
-            <Globe2 size={16} />
-            {locale === "pt" ? "EN" : "PT"}
-          </button>
-          <a className="header-cta" href="#contact">
-            {t.hero.cta}
-          </a>
-          <button className="menu-button" type="button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle navigation">
-            {menuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
-        </div>
-      </header>
-
-      {menuOpen ? (
-        <nav className="mobile-nav" aria-label="Mobile navigation">
-          <a href="#solutions" onClick={() => setMenuOpen(false)}>
-            {t.nav.services}
-          </a>
-          <a href="#cases" onClick={() => setMenuOpen(false)}>
-            {t.nav.cases}
-          </a>
-          <a href="#method" onClick={() => setMenuOpen(false)}>
-            {t.nav.method}
-          </a>
-          <a href="#proof" onClick={() => setMenuOpen(false)}>
-            {t.nav.proof}
-          </a>
-          <a href="#contact" onClick={() => setMenuOpen(false)}>
-            {t.nav.contact}
-          </a>
-        </nav>
-      ) : null}
-
-      <main>
-      <section className="hero-section" id="top">
-        <div className="hero-shader" aria-hidden="true">
-          <ShaderAnimation />
-        </div>
-        <div className="hero-overlay" aria-hidden="true" />
-        <div className="hero-copy">
-          <div className="eyebrow">
-            {t.hero.eyebrow}
-          </div>
-          <h1>{t.hero.title}</h1>
-          <p>{t.hero.subtitle}</p>
-          <div className="hero-actions">
-            <a className="primary-button" href="#contact">
-              {t.hero.cta}
-              <ArrowRight size={18} />
-            </a>
-            <a className="secondary-button" href="#solutions">
-              {t.hero.secondary}
-            </a>
-          </div>
-          <p className="trust-line">{t.hero.trust}</p>
-        </div>
-      </section>
-
-      <section className="metrics-strip" aria-label="Kaiser Tech metrics" data-animate>
-        {t.hero.metrics.map(([value, label]) => (
-          <div className="metric" key={value}>
-            <strong>{value}</strong>
-            <span>{label}</span>
-          </div>
-        ))}
-      </section>
-
-      <section className="pain-section">
-        <div className="section-heading compact" data-animate>
-          <h2>{t.pain.title}</h2>
-        </div>
-        <div className="pain-grid">
-          {t.pain.items.map((item, index) => {
-            const PainIcon = painIcons[index] ?? TrendingUp;
-
-            return (
-              <article className="pain-card" key={item.title} data-animate>
-                <PainIcon size={20} />
-                <h3>{item.title}</h3>
-                <p>{item.body}</p>
-              </article>
-            );
-          })}
-        </div>
-      </section>
-
-      <section className="solutions-section" id="solutions">
-        <div className="section-heading" data-animate>
-          <h2 className="solutions-title">
-            <span>{t.servicesTitle[0]}</span>
-            <span>{t.servicesTitle[1]}</span>
-          </h2>
-          <p>{t.servicesIntro}</p>
-        </div>
-        <div className="solutions-grid">
-          {t.services.map((service, index) => (
-            <article className={index === 0 ? "solution-card featured" : "solution-card"} key={service.title} data-animate>
-              <div className="solution-index">{String(index + 1).padStart(2, "0")}</div>
-              <h3>{service.title}</h3>
-              <p>{service.body}</p>
-              <span>{service.stack}</span>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="cases-section" id="cases">
-        <div className="section-heading" data-animate>
-          <h2>{t.casesTitle}</h2>
-          <p>{t.casesIntro}</p>
-        </div>
-        <div className="cases-grid">
-          {t.cases.map((caseItem, index) => (
-            <button
-              className={`case-card case-card--${index + 1}`}
-              type="button"
-              key={caseItem.title}
-              onClick={() => setSelectedCase(caseItem)}
-              aria-label={`${caseItem.title}: ${caseItem.subtitle}`}
-              data-animate
-            >
-              <div className="case-card__image" style={{ "--case-accent": caseItem.accent } as CSSProperties}>
-                {caseItem.imageSrc ? <img src={caseItem.imageSrc} alt="" /> : null}
-                <span>{caseItem.imageLabel}</span>
-              </div>
-              <div className="case-card__content">
-                <span>{caseItem.subtitle}</span>
-                <h3>{caseItem.title}</h3>
-              </div>
-              <Maximize2 size={18} />
-            </button>
-          ))}
-        </div>
-      </section>
-
-      <section className="method-section" id="method">
-        <div className="section-heading" data-animate>
-          <h2>{t.method.title}</h2>
-        </div>
-        <div className="method-grid">
-          {t.method.steps.map(([number, title, body]) => (
-            <article className="method-step" key={number} data-animate>
-              <strong>{number}</strong>
-              <h3>{title}</h3>
-              <p>{body}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="proof-section" id="proof">
-        <div data-animate>
-          <div className="eyebrow">
-            <ShieldCheck size={16} />
-            {t.nav.proof}
-          </div>
-          <h2>{t.proof.title}</h2>
-          <p>{t.proof.copy}</p>
-        </div>
-        <div className="proof-list" data-animate>
-          {t.proof.bullets.map((bullet) => (
-            <div key={bullet}>
-              <Check size={18} />
-              {bullet}
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="contact-section" id="contact">
-        <div className="contact-copy" data-animate>
-          <h2>{t.form.title}</h2>
-          <p>{t.form.subtitle}</p>
-        </div>
-        <form className="contact-form" onSubmit={handleContactSubmit} data-animate>
-          <input className="form-honeypot" name="website" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" />
-          <label>
-            {t.form.name}
-            <input name="name" type="text" autoComplete="name" required />
-          </label>
-          <label>
-            {t.form.email}
-            <input name="email" type="email" autoComplete="email" required />
-          </label>
-          <label>
-            {t.form.company}
-            <input name="company" type="text" autoComplete="organization" />
-          </label>
-          <label>
-            {t.form.painType}
-            <select name="painType" defaultValue="">
-              <option value="" disabled>
-                {t.form.painTypePlaceholder}
-              </option>
-              {t.form.painTypes.map((painType) => (
-                <option value={painType} key={painType}>
-                  {painType}
-                </option>
-              ))}
-            </select>
-          </label>
-          <label className="full">
-            {t.form.pain}
-            <textarea name="pain" rows={6} required />
-          </label>
-          <button className="primary-button" type="submit" disabled={formStatus === "submitting"}>
-            {formStatus === "submitting" ? t.form.submitting : t.form.submit}
-            <ArrowRight size={18} />
-          </button>
-          {formStatus === "success" ? <p className="form-status form-status--success">{t.form.success}</p> : null}
-          {formStatus === "error" ? <p className="form-status form-status--error">{t.form.error}</p> : null}
-        </form>
-      </section>
-      </main>
-
-      <footer className="site-footer">
-        <div className="footer-main">
-          <div className="footer-brand">
-            <a className="brand" href="#top" aria-label="Kaiser Tech home">
-              <span>
-                <img src="/logo_branco.png" alt="" />
-              </span>
-              Kaiser Tech
-            </a>
-            <p>Software sob medida para operações que precisam sair do improviso e escalar com rastreabilidade.</p>
-            <a className="footer-domain" href="https://kaisertec.com.br" target="_blank" rel="noreferrer noopener">
-              kaisertec.com.br
-            </a>
-          </div>
-
-          <nav className="footer-nav" aria-label="Footer navigation">
-            <strong>Navegação</strong>
-            <a href="#solutions">{t.nav.services}</a>
-            <a href="#cases">{t.nav.cases}</a>
-            <a href="#method">{t.nav.method}</a>
-            <a href="#proof">{t.nav.proof}</a>
-            <a href="#contact">{t.nav.contact}</a>
-          </nav>
-
-          <div className="footer-legal">
-            <strong>Kaiser Labs Tecnologia LTDA</strong>
-            <div>
-              <span>CNPJ 66.557.573/0001-66</span>
-              <span>Brazil</span>
-            </div>
-            <div className="footer-socials" aria-label="Social links">
-              <a href="https://www.instagram.com/matheus.padilha" target="_blank" rel="noreferrer noopener" aria-label="Instagram de Matheus Padilha">
-                <Instagram size={18} />
-              </a>
-              <a href="https://www.linkedin.com/in/padilha--matheus/" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn de Matheus Padilha">
-                <Linkedin size={18} />
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div className="footer-bottom">
-          <span>Direitos reservados @ {currentYear} Kaiser Labs Tecnologia LTDA</span>
-          <span>Desenvolvido por Matheus Padilha</span>
-        </div>
-      </footer>
-      <CaseModal caseItem={selectedCase} closeLabel={t.caseModalClose} siteLabel={t.caseSiteLabel} onClose={() => setSelectedCase(null)} />
+      <Header
+        availableLocales={availableLocales}
+        homePath={homePath}
+        isScrolled={isScrolled}
+        menuOpen={menuOpen}
+        navigate={navigate}
+        route={route}
+        setMenuOpen={setMenuOpen}
+        t={t}
+      />
+      {mainContent}
+      <Footer currentYear={currentYear} homePath={homePath} t={t} />
+      <CaseModal
+        caseItem={selectedCase}
+        closeLabel={t.caseModalClose}
+        detailLabel={t.detail.viewCase}
+        siteLabel={t.caseSiteLabel}
+        onClose={() => setSelectedCase(null)}
+      />
     </div>
   );
 }

@@ -10,6 +10,21 @@
   node_bundler = "esbuild"
 
 [[redirects]]
+  from = "/"
+  to = "/pt-BR/"
+  status = 301
+
+[[redirects]]
+  from = "/pt"
+  to = "/pt-BR/"
+  status = 301
+
+[[redirects]]
+  from = "/de"
+  to = "/de-DE/"
+  status = 301
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200

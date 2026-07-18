@@ -9,17 +9,19 @@ export type CaseModalContent = {
   imageLabel: string;
   imageSrc?: string;
   siteUrl?: string;
+  detailUrl?: string;
   accent: string;
 };
 
 type CaseModalProps = {
   caseItem: CaseModalContent | null;
   closeLabel: string;
+  detailLabel: string;
   siteLabel: string;
   onClose: () => void;
 };
 
-export function CaseModal({ caseItem, closeLabel, siteLabel, onClose }: CaseModalProps) {
+export function CaseModal({ caseItem, closeLabel, detailLabel, siteLabel, onClose }: CaseModalProps) {
   const [isClosing, setIsClosing] = useState(false);
   const panelRef = useRef<HTMLElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
@@ -114,11 +116,18 @@ export function CaseModal({ caseItem, closeLabel, siteLabel, onClose }: CaseModa
           <p>{caseItem.subtitle}</p>
           <h2 id="case-modal-title">{caseItem.title}</h2>
           <div>{caseItem.description}</div>
-          {caseItem.siteUrl ? (
-            <a className="case-modal__link" href={caseItem.siteUrl} target="_blank" rel="noreferrer noopener">
-              {siteLabel}
-            </a>
-          ) : null}
+          <div className="case-modal__actions">
+            {caseItem.detailUrl ? (
+              <a className="case-modal__link" href={caseItem.detailUrl}>
+                {detailLabel}: {caseItem.title}
+              </a>
+            ) : null}
+            {caseItem.siteUrl ? (
+              <a className="case-modal__link case-modal__link--secondary" href={caseItem.siteUrl} target="_blank" rel="noreferrer noopener">
+                {siteLabel}
+              </a>
+            ) : null}
+          </div>
         </div>
       </article>
     </div>
