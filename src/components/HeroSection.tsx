@@ -1,5 +1,6 @@
 import { ArrowRight } from "lucide-react";
 import type { LocaleCopy } from "../lib/i18n";
+import { HeroRotatingTitle } from "./HeroRotatingTitle";
 import { ShaderAnimation } from "./ui/shader-animation";
 
 type HeroSectionProps = {
@@ -15,7 +16,7 @@ export function HeroSection({ t }: HeroSectionProps) {
       <div className="hero-overlay" aria-hidden="true" />
       <div className="hero-copy">
         <div className="eyebrow">{t.hero.eyebrow}</div>
-        <h1>{t.hero.title}</h1>
+        <HeroRotatingTitle lang={t.seo.lang} />
         <p>{t.hero.subtitle}</p>
         <div className="hero-actions">
           <a className="primary-button" href="#contact">

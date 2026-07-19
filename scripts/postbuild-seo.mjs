@@ -5,6 +5,9 @@ import { fileURLToPath } from "node:url";
 const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const dist = join(root, "dist");
 const siteUrl = "https://kaisertec.com.br";
+const socialImageUrl = `${siteUrl}/social-preview-og-whatsapp.webp`;
+const socialImageAlt = "Kaiser Tech - Tire sua operação do improviso";
+const maxSocialDescriptionLength = 125;
 
 const locales = {
   pt: {
@@ -17,6 +20,8 @@ const locales = {
       title: "Kaiser Tech | Software sob medida para operações B2B",
       description:
         "Kaiser Tech desenvolve software sob medida, integra processos e transforma gargalos operacionais em sistemas rastreáveis, mantíveis e prontos para escalar.",
+      socialDescription:
+        "Consultoria de tecnologia para empresas que precisam sair do improviso, integrar processos e escalar com engenharia forte.",
     },
     services: [
       [
@@ -88,6 +93,8 @@ const locales = {
       title: "Kaiser Tech | Custom software for B2B operations",
       description:
         "Kaiser Tech builds custom software, integrates processes and turns operational bottlenecks into traceable, maintainable systems ready to scale.",
+      socialDescription:
+        "Technology consulting for companies that need to leave improvisation behind and scale with strong engineering.",
     },
     services: [
       [
@@ -159,6 +166,8 @@ const locales = {
       title: "Kaiser Tech | Individuelle Software fuer B2B-Operationen",
       description:
         "Kaiser Tech entwickelt individuelle Software, integriert Prozesse und verwandelt operative Engpaesse in nachvollziehbare, wartbare und skalierbare Systeme.",
+      socialDescription:
+        "Technologieberatung fuer Unternehmen, die Prozesse integrieren und mit starker Softwaretechnik skalieren wollen.",
     },
     services: [
       [
@@ -277,8 +286,19 @@ const replaceLink = (html, relSelector, href) => {
   );
 };
 
+const clampSocialDescription = (description) => {
+  if (description.length <= maxSocialDescriptionLength) return description;
+
+  const clipped = description.slice(0, maxSocialDescriptionLength - 1);
+  const lastSpace = clipped.lastIndexOf(" ");
+  const trimmed = clipped.slice(0, lastSpace > 80 ? lastSpace : clipped.length).trim();
+
+  return `${trimmed}…`;
+};
+
 const buildHtml = (template, route) => {
   const canonical = `${siteUrl}${route.path}`;
+  const socialDescription = route.socialDescription ?? clampSocialDescription(route.description);
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -322,11 +342,21 @@ const buildHtml = (template, route) => {
 
   html = replaceMeta(html, 'name="description"', route.description);
   html = replaceMeta(html, 'property="og:title"', route.title);
-  html = replaceMeta(html, 'property="og:description"', route.description);
+  html = replaceMeta(html, 'property="og:description"', socialDescription);
   html = replaceMeta(html, 'property="og:url"', canonical);
+  html = replaceMeta(html, 'property="og:site_name"', "Kaiser Tech");
   html = replaceMeta(html, 'property="og:locale"', route.ogLocale);
+  html = replaceMeta(html, 'property="og:image"', socialImageUrl);
+  html = replaceMeta(html, 'property="og:image:secure_url"', socialImageUrl);
+  html = replaceMeta(html, 'property="og:image:alt"', socialImageAlt);
+  html = replaceMeta(html, 'property="og:image:type"', "image/webp");
+  html = replaceMeta(html, 'property="og:image:width"', "1200");
+  html = replaceMeta(html, 'property="og:image:height"', "630");
+  html = replaceMeta(html, 'name="twitter:card"', "summary_large_image");
   html = replaceMeta(html, 'name="twitter:title"', route.title);
-  html = replaceMeta(html, 'name="twitter:description"', route.description);
+  html = replaceMeta(html, 'name="twitter:description"', socialDescription);
+  html = replaceMeta(html, 'name="twitter:image"', socialImageUrl);
+  html = replaceMeta(html, 'name="twitter:image:alt"', socialImageAlt);
   html = replaceLink(html, 'rel="canonical"', canonical);
   for (const [localeKey, hreflang] of Object.entries(localeHreflangs)) {
     html = replaceLink(
@@ -364,6 +394,7 @@ for (const localeKey of Object.keys(locales)) {
     ogLocale: locale.ogLocale,
     title: locale.home.title,
     description: locale.home.description,
+    socialDescription: locale.home.socialDescription,
     structuredData: {
       "@type": "WebSite",
       "@id": `${siteUrl}/#website`,

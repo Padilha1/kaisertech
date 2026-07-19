@@ -15,6 +15,17 @@ const setMetaContent = (selector: string, content: string) => {
   document.head.querySelector<HTMLMetaElement>(selector)?.setAttribute("content", content);
 };
 
+const ensureMeta = (selector: string, attributes: Record<string, string>) => {
+  let meta = document.head.querySelector<HTMLMetaElement>(selector);
+
+  if (!meta) {
+    meta = document.createElement("meta");
+    document.head.appendChild(meta);
+  }
+
+  Object.entries(attributes).forEach(([key, value]) => meta?.setAttribute(key, value));
+};
+
 const ensureLink = (selector: string, attributes: Record<string, string>) => {
   let link = document.head.querySelector<HTMLLinkElement>(selector);
 
@@ -46,19 +57,35 @@ const locales: Array<{ locale: Locale; hreflang: string }> = [
 ];
 
 const areaServed = ["Brazil", "Germany", "DACH", "International"];
+const socialImageUrl = `${siteUrl}/social-preview-og-whatsapp.webp`;
+const socialImageAlt = "Kaiser Tech - Tire sua operação do improviso";
+const maxSocialDescriptionLength = 125;
+
+const clampSocialDescription = (description: string) => {
+  if (description.length <= maxSocialDescriptionLength) return description;
+
+  const clipped = description.slice(0, maxSocialDescriptionLength - 1);
+  const lastSpace = clipped.lastIndexOf(" ");
+  const trimmed = clipped.slice(0, lastSpace > 80 ? lastSpace : clipped.length).trim();
+
+  return `${trimmed}…`;
+};
 
 export const syncSeo = ({ canonicalUrl, route, t, servicePage, serviceCopy, casePage }: SeoArgs) => {
   let pageTitle: string = t.seo.title;
   let pageDescription: string = t.seo.description;
+  let socialDescription: string = t.seo.ogDescription;
 
   if (servicePage) {
     pageTitle = `${servicePage.title} | Kaiser Tech`;
     pageDescription = serviceCopy?.lead ?? servicePage.body;
+    socialDescription = clampSocialDescription(servicePage.body);
   }
 
   if (casePage) {
     pageTitle = `${casePage.title} | Case Kaiser Tech`;
     pageDescription = casePage.description;
+    socialDescription = clampSocialDescription(casePage.description);
   }
 
   const organization = {
@@ -113,11 +140,24 @@ export const syncSeo = ({ canonicalUrl, route, t, servicePage, serviceCopy, case
   document.title = pageTitle;
   setMetaContent('meta[name="description"]', pageDescription);
   setMetaContent('meta[property="og:title"]', pageTitle);
-  setMetaContent('meta[property="og:description"]', pageDescription);
+  setMetaContent('meta[property="og:description"]', socialDescription);
   setMetaContent('meta[property="og:url"]', canonicalUrl);
   setMetaContent('meta[property="og:locale"]', t.seo.ogLocale);
   setMetaContent('meta[name="twitter:title"]', pageTitle);
-  setMetaContent('meta[name="twitter:description"]', pageDescription);
+  setMetaContent('meta[name="twitter:description"]', socialDescription);
+  ensureMeta('meta[property="og:site_name"]', { property: "og:site_name", content: "Kaiser Tech" });
+  ensureMeta('meta[property="og:image"]', { property: "og:image", content: socialImageUrl });
+  ensureMeta('meta[property="og:image:secure_url"]', {
+    property: "og:image:secure_url",
+    content: socialImageUrl,
+  });
+  ensureMeta('meta[property="og:image:alt"]', { property: "og:image:alt", content: socialImageAlt });
+  ensureMeta('meta[property="og:image:type"]', { property: "og:image:type", content: "image/webp" });
+  ensureMeta('meta[property="og:image:width"]', { property: "og:image:width", content: "1200" });
+  ensureMeta('meta[property="og:image:height"]', { property: "og:image:height", content: "630" });
+  ensureMeta('meta[name="twitter:card"]', { name: "twitter:card", content: "summary_large_image" });
+  ensureMeta('meta[name="twitter:image"]', { name: "twitter:image", content: socialImageUrl });
+  ensureMeta('meta[name="twitter:image:alt"]', { name: "twitter:image:alt", content: socialImageAlt });
   ensureLink('link[rel="canonical"]', { rel: "canonical", href: canonicalUrl });
   locales.forEach(({ locale, hreflang }) => {
     ensureLink(`link[rel="alternate"][hreflang="${hreflang}"]`, {

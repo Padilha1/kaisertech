@@ -389,6 +389,64 @@ main {
   letter-spacing: 0;
 }
 
+.hero-rotating-title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.hero-rotating-word {
+  display: inline-flex;
+  min-width: 10.8ch;
+  min-height: 0.96em;
+  overflow: hidden;
+  color: var(--paper);
+  white-space: nowrap;
+}
+
+.hero-rotating-word-split {
+  display: inline-flex;
+  overflow: hidden;
+  padding-bottom: 0.08em;
+}
+
+.text-rotate {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  white-space: pre-wrap;
+}
+
+.text-rotate-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+  white-space: nowrap;
+}
+
+.text-rotate-word {
+  display: inline-flex;
+}
+
+.text-rotate-lines {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.text-rotate-element {
+  display: inline-block;
+}
+
+.text-rotate-space {
+  white-space: pre;
+}
+
 .hero-copy {
   position: relative;
   z-index: 2;
@@ -1830,9 +1888,16 @@ main {
   }
 
   .hero-copy h1 {
-    max-width: 10ch;
+    max-width: 100%;
     font-size: clamp(2.65rem, 12.5vw, 3.65rem);
     line-height: 0.94;
+  }
+
+  .hero-rotating-word {
+    min-width: 0;
+    min-height: 1.88em;
+    max-width: 100%;
+    white-space: normal;
   }
 
   .solutions-title span {
