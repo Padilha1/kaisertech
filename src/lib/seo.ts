@@ -58,6 +58,7 @@ const locales: Array<{ locale: Locale; hreflang: string }> = [
 
 const areaServed = ["Brazil", "Germany", "DACH", "International"];
 const socialImageUrl = `${siteUrl}/social-preview-og-whatsapp.webp`;
+const twitterImageUrl = `${siteUrl}/social-preview-twitter.png`;
 const socialImageAlt = "Kaiser Tech - Tire sua operação do improviso";
 const maxSocialDescriptionLength = 125;
 
@@ -156,7 +157,7 @@ export const syncSeo = ({ canonicalUrl, route, t, servicePage, serviceCopy, case
   ensureMeta('meta[property="og:image:width"]', { property: "og:image:width", content: "1200" });
   ensureMeta('meta[property="og:image:height"]', { property: "og:image:height", content: "630" });
   ensureMeta('meta[name="twitter:card"]', { name: "twitter:card", content: "summary_large_image" });
-  ensureMeta('meta[name="twitter:image"]', { name: "twitter:image", content: socialImageUrl });
+  ensureMeta('meta[name="twitter:image"]', { name: "twitter:image", content: twitterImageUrl });
   ensureMeta('meta[name="twitter:image:alt"]', { name: "twitter:image:alt", content: socialImageAlt });
   ensureLink('link[rel="canonical"]', { rel: "canonical", href: canonicalUrl });
   locales.forEach(({ locale, hreflang }) => {

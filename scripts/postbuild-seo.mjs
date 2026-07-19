@@ -6,6 +6,7 @@ const root = dirname(dirname(fileURLToPath(import.meta.url)));
 const dist = join(root, "dist");
 const siteUrl = "https://kaisertec.com.br";
 const socialImageUrl = `${siteUrl}/social-preview-og-whatsapp.webp`;
+const twitterImageUrl = `${siteUrl}/social-preview-twitter.png`;
 const socialImageAlt = "Kaiser Tech - Tire sua operação do improviso";
 const maxSocialDescriptionLength = 125;
 
@@ -355,7 +356,7 @@ const buildHtml = (template, route) => {
   html = replaceMeta(html, 'name="twitter:card"', "summary_large_image");
   html = replaceMeta(html, 'name="twitter:title"', route.title);
   html = replaceMeta(html, 'name="twitter:description"', socialDescription);
-  html = replaceMeta(html, 'name="twitter:image"', socialImageUrl);
+  html = replaceMeta(html, 'name="twitter:image"', twitterImageUrl);
   html = replaceMeta(html, 'name="twitter:image:alt"', socialImageAlt);
   html = replaceLink(html, 'rel="canonical"', canonical);
   for (const [localeKey, hreflang] of Object.entries(localeHreflangs)) {
