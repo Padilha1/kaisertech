@@ -43,7 +43,9 @@ export function App() {
 
     if (targetId) {
       window.requestAnimationFrame(() => {
-        document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth", block: "start" });
+        window.requestAnimationFrame(() => {
+          document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
       });
       return;
     }
@@ -225,7 +227,7 @@ export function App() {
         t={t}
       />
       {mainContent}
-      <Footer currentYear={currentYear} homePath={homePath} t={t} />
+      <Footer currentYear={currentYear} homePath={homePath} navigate={navigate} t={t} />
       <CaseModal
         caseItem={selectedCase}
         closeLabel={t.caseModalClose}

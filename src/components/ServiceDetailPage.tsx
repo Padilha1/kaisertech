@@ -18,7 +18,14 @@ export function ServiceDetailPage({ homePath, locale, navigate, serviceIndex, t 
   return (
     <main className="detail-page">
       <section className="detail-hero" data-animate>
-        <a className="detail-back" href={homePath}>
+        <a
+          className="detail-back"
+          href={homePath}
+          onClick={(event) => {
+            event.preventDefault();
+            navigate(homePath);
+          }}
+        >
           {t.detail.backHome}
         </a>
         <div className="eyebrow">{t.detail.serviceEyebrow}</div>

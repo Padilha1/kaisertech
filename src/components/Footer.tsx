@@ -1,18 +1,33 @@
 import { Instagram, Linkedin } from "lucide-react";
+import type { MouseEvent } from "react";
 import type { LocaleCopy } from "../lib/i18n";
 
 type FooterProps = {
   currentYear: number;
   homePath: string;
+  navigate: (path: string) => void;
   t: LocaleCopy;
 };
 
-export function Footer({ currentYear, homePath, t }: FooterProps) {
+const sectionLinks = [
+  ["solutions", "services"],
+  ["cases", "cases"],
+  ["method", "method"],
+  ["proof", "proof"],
+  ["contact", "contact"],
+] as const;
+
+export function Footer({ currentYear, homePath, navigate, t }: FooterProps) {
+  const handleInternalLink = (path: string) => (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    navigate(path);
+  };
+
   return (
     <footer className="site-footer">
       <div className="footer-main">
         <div className="footer-brand">
-          <a className="brand" href={homePath} aria-label="Kaiser Tech home">
+          <a className="brand" href={homePath} aria-label="Kaiser Tech home" onClick={handleInternalLink(homePath)}>
             <span>
               <img src="/logo_branco.png" alt="" />
             </span>
@@ -26,11 +41,15 @@ export function Footer({ currentYear, homePath, t }: FooterProps) {
 
         <nav className="footer-nav" aria-label={t.footer.navLabel}>
           <strong>{t.footer.navTitle}</strong>
-          <a href={`${homePath}#solutions`}>{t.nav.services}</a>
-          <a href={`${homePath}#cases`}>{t.nav.cases}</a>
-          <a href={`${homePath}#method`}>{t.nav.method}</a>
-          <a href={`${homePath}#proof`}>{t.nav.proof}</a>
-          <a href={`${homePath}#contact`}>{t.nav.contact}</a>
+          {sectionLinks.map(([sectionId, label]) => {
+            const path = `${homePath}#${sectionId}`;
+
+            return (
+              <a href={path} key={sectionId} onClick={handleInternalLink(path)}>
+                {t.nav[label]}
+              </a>
+            );
+          })}
         </nav>
 
         <div className="footer-legal">

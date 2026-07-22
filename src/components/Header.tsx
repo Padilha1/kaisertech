@@ -1,4 +1,5 @@
 import { ChevronDown, Globe2, Menu, X } from "lucide-react";
+import type { MouseEvent } from "react";
 import type { Locale, LocaleCopy } from "../lib/i18n";
 import type { AppRoute } from "../lib/routing";
 import { getRoutePath } from "../lib/routing";
@@ -20,6 +21,14 @@ const localeLabels: Record<Locale, string> = {
   de: "DE",
 };
 
+const sectionLinks = [
+  ["solutions", "services"],
+  ["cases", "cases"],
+  ["method", "method"],
+  ["proof", "proof"],
+  ["contact", "contact"],
+] as const;
+
 export function Header({ availableLocales, homePath, isScrolled, menuOpen, navigate, route, setMenuOpen, t }: HeaderProps) {
   const languageToggleClass = [
     "relative inline-flex items-center justify-center gap-2 border border-[var(--line)] bg-[rgba(247,245,242,0.05)] text-[var(--paper)] transition-[border-radius,min-height,background-color,border-color,box-shadow,transform] duration-200 hover:-translate-y-px hover:border-[rgba(247,245,242,0.3)] hover:bg-[rgba(247,245,242,0.09)] hover:shadow-[0_12px_34px_rgba(0,0,0,0.18)]",
@@ -27,11 +36,15 @@ export function Header({ availableLocales, homePath, isScrolled, menuOpen, navig
   ].join(" ");
 
   const goToLocale = (locale: Locale) => navigate(getRoutePath(route, locale));
+  const handleInternalLink = (path: string) => (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    navigate(path);
+  };
 
   return (
     <>
       <header className={isScrolled ? "site-header site-header--scrolled" : "site-header"}>
-        <a className="brand" href={homePath} aria-label="Kaiser Tech home">
+        <a className="brand" href={homePath} aria-label="Kaiser Tech home" onClick={handleInternalLink(homePath)}>
           <span>
             <img src="/logo_branco.png" alt="" />
           </span>
@@ -39,11 +52,15 @@ export function Header({ availableLocales, homePath, isScrolled, menuOpen, navig
         </a>
 
         <nav className="desktop-nav" aria-label="Primary navigation">
-          <a href={`${homePath}#solutions`}>{t.nav.services}</a>
-          <a href={`${homePath}#cases`}>{t.nav.cases}</a>
-          <a href={`${homePath}#method`}>{t.nav.method}</a>
-          <a href={`${homePath}#proof`}>{t.nav.proof}</a>
-          <a href={`${homePath}#contact`}>{t.nav.contact}</a>
+          {sectionLinks.map(([sectionId, label]) => {
+            const path = `${homePath}#${sectionId}`;
+
+            return (
+              <a href={path} key={sectionId} onClick={handleInternalLink(path)}>
+                {t.nav[label]}
+              </a>
+            );
+          })}
         </nav>
 
         <div className="header-actions">
@@ -85,7 +102,7 @@ export function Header({ availableLocales, homePath, isScrolled, menuOpen, navig
               </div>
             </details>
           </div>
-          <a className="header-cta" href={`${homePath}#contact`}>
+          <a className="header-cta" href={`${homePath}#contact`} onClick={handleInternalLink(`${homePath}#contact`)}>
             {t.hero.cta}
           </a>
           <button className="menu-button" type="button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle navigation">
@@ -96,21 +113,15 @@ export function Header({ availableLocales, homePath, isScrolled, menuOpen, navig
 
       {menuOpen ? (
         <nav className="mobile-nav" aria-label="Mobile navigation">
-          <a href={`${homePath}#solutions`} onClick={() => setMenuOpen(false)}>
-            {t.nav.services}
-          </a>
-          <a href={`${homePath}#cases`} onClick={() => setMenuOpen(false)}>
-            {t.nav.cases}
-          </a>
-          <a href={`${homePath}#method`} onClick={() => setMenuOpen(false)}>
-            {t.nav.method}
-          </a>
-          <a href={`${homePath}#proof`} onClick={() => setMenuOpen(false)}>
-            {t.nav.proof}
-          </a>
-          <a href={`${homePath}#contact`} onClick={() => setMenuOpen(false)}>
-            {t.nav.contact}
-          </a>
+          {sectionLinks.map(([sectionId, label]) => {
+            const path = `${homePath}#${sectionId}`;
+
+            return (
+              <a href={path} key={sectionId} onClick={handleInternalLink(path)}>
+                {t.nav[label]}
+              </a>
+            );
+          })}
         </nav>
       ) : null}
     </>
