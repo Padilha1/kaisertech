@@ -51,7 +51,7 @@ export async function handler(event) {
     return json(400, { error: "Missing required fields" });
   }
 
-  const to = process.env.CONTACT_TO_EMAIL || "contato@kaisertec.com.br";
+  const to = process.env.CONTACT_TO_EMAIL || "padilha.matheus@hotmail.com";
   const from = process.env.RESEND_FROM_EMAIL || "Kaiser Tech <onboarding@resend.dev>";
   const subject = `Nova dor enviada pelo site${company ? ` - ${company}` : ""}`;
   const text = [

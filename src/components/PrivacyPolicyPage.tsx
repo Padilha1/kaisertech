@@ -38,7 +38,7 @@ const policyCopy: Record<Locale, PolicyCopy> = {
     controllerRows: [
       ["Controlador", "Kaiser Labs Tecnologia LTDA"],
       ["CNPJ", "66.557.573/0001-66"],
-      ["Canal de privacidade", "contato@kaisertec.com.br"],
+      ["Canal de privacidade", "padilha.matheus@hotmail.com"],
       ["Site", "https://kaisertec.com.br"],
     ],
     dataTableTitle: "Dados que podemos tratar",
@@ -70,8 +70,8 @@ const policyCopy: Record<Locale, PolicyCopy> = {
       {
         title: "Cookies, Google Analytics e eventos",
         body: [
-          "Usamos Google Analytics para entender visitas, páginas visualizadas e interações relevantes, como cliques em chamadas para contato e envio bem-sucedido do formulário. Essas informações ajudam a melhorar a experiência e medir a efetividade do site.",
-          "Você pode bloquear cookies pelo navegador ou usar ferramentas de opt-out disponibilizadas por provedores de analytics. O bloqueio pode reduzir a precisão das métricas, mas não impede o uso essencial do site.",
+          "Usamos Google Analytics, mediante consentimento quando aplicável, para entender visitas, páginas visualizadas e interações relevantes, como cliques em chamadas para contato e envio bem-sucedido do formulário. Essas informações ajudam a melhorar a experiência e medir a efetividade do site.",
+          "Você pode aceitar ou recusar analytics pelo banner de cookies exibido no primeiro acesso. Também pode bloquear cookies pelo navegador ou usar ferramentas de opt-out disponibilizadas por provedores de analytics. A recusa ou bloqueio pode reduzir a precisão das métricas, mas não impede o uso essencial do site.",
         ],
       },
       {
@@ -139,7 +139,7 @@ const policyCopy: Record<Locale, PolicyCopy> = {
     controllerRows: [
       ["Controller", "Kaiser Labs Tecnologia LTDA"],
       ["Brazilian company ID", "CNPJ 66.557.573/0001-66"],
-      ["Privacy contact", "contato@kaisertec.com.br"],
+      ["Privacy contact", "padilha.matheus@hotmail.com"],
       ["Website", "https://kaisertec.com.br"],
     ],
     dataTableTitle: "Data we may process",
@@ -171,8 +171,8 @@ const policyCopy: Record<Locale, PolicyCopy> = {
       {
         title: "Cookies, Google Analytics and events",
         body: [
-          "We use Google Analytics to understand visits, page views and relevant interactions, such as contact CTA clicks and successful form submissions. This helps us improve the experience and measure site effectiveness.",
-          "You may block cookies in your browser or use opt-out tools offered by analytics providers. Blocking cookies may reduce measurement accuracy but does not prevent essential use of the site.",
+          "We use Google Analytics, subject to consent where applicable, to understand visits, page views and relevant interactions, such as contact CTA clicks and successful form submissions. This helps us improve the experience and measure site effectiveness.",
+          "You may accept or reject analytics through the cookie banner shown on your first visit. You may also block cookies in your browser or use opt-out tools offered by analytics providers. Rejecting or blocking cookies may reduce measurement accuracy but does not prevent essential use of the site.",
         ],
       },
       {
@@ -240,7 +240,7 @@ const policyCopy: Record<Locale, PolicyCopy> = {
     controllerRows: [
       ["Verantwortlicher", "Kaiser Labs Tecnologia LTDA"],
       ["Brasilianische Unternehmensnummer", "CNPJ 66.557.573/0001-66"],
-      ["Datenschutzkontakt", "contato@kaisertec.com.br"],
+      ["Datenschutzkontakt", "padilha.matheus@hotmail.com"],
       ["Website", "https://kaisertec.com.br"],
     ],
     dataTableTitle: "Daten, die wir verarbeiten koennen",
@@ -272,8 +272,8 @@ const policyCopy: Record<Locale, PolicyCopy> = {
       {
         title: "Cookies, Google Analytics und Ereignisse",
         body: [
-          "Wir nutzen Google Analytics, um Besuche, Seitenaufrufe und relevante Interaktionen zu verstehen, etwa Klicks auf Kontakt-CTAs und erfolgreiche Formularsendungen.",
-          "Sie koennen Cookies im Browser blockieren oder Opt-out-Werkzeuge von Analytics-Anbietern nutzen. Das kann die Messgenauigkeit verringern, verhindert aber nicht die wesentliche Nutzung der Website.",
+          "Wir nutzen Google Analytics, soweit erforderlich mit Einwilligung, um Besuche, Seitenaufrufe und relevante Interaktionen zu verstehen, etwa Klicks auf Kontakt-CTAs und erfolgreiche Formularsendungen.",
+          "Sie koennen Analytics ueber das Cookie-Banner beim ersten Besuch akzeptieren oder ablehnen. Sie koennen Cookies auch im Browser blockieren oder Opt-out-Werkzeuge von Analytics-Anbietern nutzen. Ablehnung oder Blockierung kann die Messgenauigkeit verringern, verhindert aber nicht die wesentliche Nutzung der Website.",
         ],
       },
       {

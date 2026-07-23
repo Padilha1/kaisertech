@@ -4,6 +4,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CaseDetailPage } from "./components/CaseDetailPage";
 import { CaseModal, type CaseModalContent } from "./components/CaseModal";
+import { CookieConsentBanner } from "./components/CookieConsentBanner";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { HomePage } from "./components/HomePage";
@@ -11,7 +12,7 @@ import { PrivacyPolicyPage } from "./components/PrivacyPolicyPage";
 import { ServiceDetailPage } from "./components/ServiceDetailPage";
 import { trackContactFormSubmit, trackPageView } from "./lib/analytics";
 import { dictionary, type Locale } from "./lib/i18n";
-import { getHomePath, getRoutePath, parseRoute, siteUrl, type AppRoute } from "./lib/routing";
+import { getHomePath, getPrivacyPath, getRoutePath, parseRoute, siteUrl, type AppRoute } from "./lib/routing";
 import { syncSeo } from "./lib/seo";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -31,6 +32,7 @@ export function App() {
   const t = dictionary[locale];
   const currentYear = new Date().getFullYear();
   const homePath = getHomePath(locale);
+  const privacyPath = getPrivacyPath(locale);
   const canonicalPath = getRoutePath(route);
   const canonicalUrl = `${siteUrl}${canonicalPath}`;
   const servicePage = route.kind === "service" && typeof route.index === "number" ? t.services[route.index] : null;
@@ -237,6 +239,12 @@ export function App() {
       />
       {mainContent}
       <Footer currentYear={currentYear} homePath={homePath} locale={locale} navigate={navigate} t={t} />
+      <CookieConsentBanner
+        canonicalPath={canonicalPath}
+        locale={locale}
+        navigate={navigate}
+        privacyPath={privacyPath}
+      />
       <CaseModal
         caseItem={selectedCase}
         closeLabel={t.caseModalClose}

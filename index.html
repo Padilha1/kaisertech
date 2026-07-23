@@ -11,6 +11,19 @@
       function gtag() {
         dataLayer.push(arguments);
       }
+      let analyticsConsent = "denied";
+      try {
+        analyticsConsent =
+          window.localStorage.getItem("kaisertech_cookie_consent") === "accepted" ? "granted" : "denied";
+      } catch {
+        analyticsConsent = "denied";
+      }
+      gtag("consent", "default", {
+        analytics_storage: analyticsConsent,
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        ad_personalization: "denied",
+      });
       gtag("js", new Date());
 
       gtag("config", "G-03W3XYP6D1", { send_page_view: false });
