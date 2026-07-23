@@ -5,6 +5,7 @@ type PageViewPayload = {
 };
 
 type AnalyticsEventPayload = Record<string, string | number | boolean | undefined>;
+type DataLayerEventPayload = AnalyticsEventPayload & { event: string };
 type ConsentModeValue = "granted" | "denied";
 type ConsentModePayload = {
   analytics_storage: ConsentModeValue;
@@ -16,8 +17,8 @@ export type CookieConsent = "accepted" | "rejected";
 
 declare global {
   interface Window {
+    dataLayer?: Array<IArguments | DataLayerEventPayload>;
     gtag?: {
-      (command: "event", eventName: string, payload: AnalyticsEventPayload): void;
       (command: "consent", action: "default" | "update", payload: ConsentModePayload): void;
     };
   }
@@ -64,10 +65,14 @@ export const updateAnalyticsConsent = (consent: CookieConsent) => {
 };
 
 const trackEvent = (eventName: string, payload: AnalyticsEventPayload = {}) => {
-  if (typeof window === "undefined" || typeof window.gtag !== "function") return;
+  if (typeof window === "undefined") return;
   if (!hasAnalyticsConsent()) return;
 
-  window.gtag("event", eventName, payload);
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    event: eventName,
+    ...payload,
+  });
 };
 
 export const trackPageView = (path: string) => {

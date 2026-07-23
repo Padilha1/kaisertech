@@ -1,24 +1,27 @@
 import type { FormEvent } from "react";
-import { useEffect, useRef, useState } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { CaseDetailPage } from "./components/CaseDetailPage";
-import { CaseModal, type CaseModalContent } from "./components/CaseModal";
+import { lazy, Suspense, useEffect, useRef, useState } from "react";
+import type { CaseModalContent } from "./components/CaseModal";
 import { CookieConsentBanner } from "./components/CookieConsentBanner";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { HomePage } from "./components/HomePage";
-import { PrivacyPolicyPage } from "./components/PrivacyPolicyPage";
-import { ServiceDetailPage } from "./components/ServiceDetailPage";
 import { trackContactFormSubmit, trackPageView } from "./lib/analytics";
 import { dictionary, type Locale } from "./lib/i18n";
 import { getHomePath, getPrivacyPath, getRoutePath, parseRoute, siteUrl, type AppRoute } from "./lib/routing";
 import { syncSeo } from "./lib/seo";
 
-gsap.registerPlugin(ScrollTrigger);
-
 type FormStatus = "idle" | "submitting" | "success" | "error";
 const availableLocales: Locale[] = ["pt", "en", "de"];
+const CaseDetailPage = lazy(() =>
+  import("./components/CaseDetailPage").then((module) => ({ default: module.CaseDetailPage })),
+);
+const CaseModal = lazy(() => import("./components/CaseModal").then((module) => ({ default: module.CaseModal })));
+const PrivacyPolicyPage = lazy(() =>
+  import("./components/PrivacyPolicyPage").then((module) => ({ default: module.PrivacyPolicyPage })),
+);
+const ServiceDetailPage = lazy(() =>
+  import("./components/ServiceDetailPage").then((module) => ({ default: module.ServiceDetailPage })),
+);
 
 export function App() {
   const [route, setRoute] = useState<AppRoute>(() => parseRoute(window.location.pathname));
@@ -85,98 +88,127 @@ export function App() {
     const root = appRef.current;
     if (!root || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    const context = gsap.context(() => {
-      gsap.fromTo(
-        ".hero-copy > *",
-        { autoAlpha: 0, y: 24 },
-        {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.9,
-          ease: "power3.out",
-          stagger: 0.1,
-          delay: 0.15,
-        },
-      );
+    let isActive = true;
+    let context: { revert: () => void } | null = null;
 
-      gsap.utils.toArray<HTMLElement>("[data-animate]:not(.solution-card):not(.case-card)").forEach((element) => {
+    const setupAnimations = async () => {
+      const [{ default: gsap }, { ScrollTrigger }] = await Promise.all([import("gsap"), import("gsap/ScrollTrigger")]);
+
+      if (!isActive || !root.isConnected) return;
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      context = gsap.context(() => {
         gsap.fromTo(
-          element,
-          { autoAlpha: 0, y: 42 },
+          ".hero-copy > *",
+          { autoAlpha: 0, y: 24 },
           {
             autoAlpha: 1,
             y: 0,
-            duration: 0.75,
+            duration: 0.9,
             ease: "power3.out",
-            scrollTrigger: {
-              trigger: element,
-              start: "top 92%",
-              end: "top 62%",
-              scrub: 0.45,
-            },
+            stagger: 0.1,
+            delay: 0.15,
           },
         );
-      });
 
-      gsap.utils.toArray<HTMLElement>(".solution-card").forEach((card) => {
-        gsap.fromTo(
-          card,
-          { autoAlpha: 0, y: 64, rotateX: 6 },
-          {
-            autoAlpha: 1,
-            y: 0,
-            rotateX: 0,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: card,
-              start: "top 90%",
-              end: "top 58%",
-              scrub: 0.55,
+        gsap.utils.toArray<HTMLElement>("[data-animate]:not(.solution-card):not(.case-card)").forEach((element) => {
+          gsap.fromTo(
+            element,
+            { autoAlpha: 0, y: 42 },
+            {
+              autoAlpha: 1,
+              y: 0,
+              duration: 0.75,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: element,
+                start: "top 92%",
+                end: "top 62%",
+                scrub: 0.45,
+              },
             },
-          },
-        );
-      });
+          );
+        });
 
-      gsap.utils.toArray<HTMLElement>(".case-card").forEach((card) => {
-        gsap.fromTo(
-          card,
-          { autoAlpha: 0, y: 72, scale: 0.96 },
-          {
-            autoAlpha: 1,
-            y: 0,
-            scale: 1,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: card,
-              start: "top 92%",
-              end: "top 54%",
-              scrub: 0.65,
+        gsap.utils.toArray<HTMLElement>(".solution-card").forEach((card) => {
+          gsap.fromTo(
+            card,
+            { autoAlpha: 0, y: 64, rotateX: 6 },
+            {
+              autoAlpha: 1,
+              y: 0,
+              rotateX: 0,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: card,
+                start: "top 90%",
+                end: "top 58%",
+                scrub: 0.55,
+              },
             },
-          },
-        );
-      });
+          );
+        });
 
-      gsap.utils.toArray<HTMLElement>(".case-card__image").forEach((image) => {
-        gsap.fromTo(
-          image,
-          { scale: 0.88, filter: "brightness(0.72)" },
-          {
-            scale: 1,
-            filter: "brightness(1)",
-            ease: "none",
-            scrollTrigger: {
-              trigger: image.closest(".case-card") ?? image,
-              start: "top 92%",
-              end: "bottom 58%",
-              scrub: 0.8,
+        gsap.utils.toArray<HTMLElement>(".case-card").forEach((card) => {
+          gsap.fromTo(
+            card,
+            { autoAlpha: 0, y: 72, scale: 0.96 },
+            {
+              autoAlpha: 1,
+              y: 0,
+              scale: 1,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: card,
+                start: "top 92%",
+                end: "top 54%",
+                scrub: 0.65,
+              },
             },
-          },
-        );
-      });
-    }, root);
+          );
+        });
 
-    ScrollTrigger.refresh();
-    return () => context.revert();
+        gsap.utils.toArray<HTMLElement>(".case-card__image").forEach((image) => {
+          gsap.fromTo(
+            image,
+            { scale: 0.88, filter: "brightness(0.72)" },
+            {
+              scale: 1,
+              filter: "brightness(1)",
+              ease: "none",
+              scrollTrigger: {
+                trigger: image.closest(".case-card") ?? image,
+                start: "top 92%",
+                end: "bottom 58%",
+                scrub: 0.8,
+              },
+            },
+          );
+        });
+      }, root);
+
+      ScrollTrigger.refresh();
+    };
+
+    let idleId: number | null = null;
+    let timeoutId: number | null = null;
+    const startAnimations = () => {
+      void setupAnimations();
+    };
+
+    if ("requestIdleCallback" in window) {
+      idleId = window.requestIdleCallback(startAnimations, { timeout: 1200 });
+    } else {
+      timeoutId = globalThis.setTimeout(startAnimations, 350);
+    }
+
+    return () => {
+      isActive = false;
+      if (idleId !== null) window.cancelIdleCallback(idleId);
+      if (timeoutId !== null) window.clearTimeout(timeoutId);
+      context?.revert();
+    };
   }, [canonicalPath]);
 
   const handleContactSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -237,7 +269,7 @@ export function App() {
         setMenuOpen={setMenuOpen}
         t={t}
       />
-      {mainContent}
+      <Suspense fallback={null}>{mainContent}</Suspense>
       <Footer currentYear={currentYear} homePath={homePath} locale={locale} navigate={navigate} t={t} />
       <CookieConsentBanner
         canonicalPath={canonicalPath}
@@ -245,13 +277,17 @@ export function App() {
         navigate={navigate}
         privacyPath={privacyPath}
       />
-      <CaseModal
-        caseItem={selectedCase}
-        closeLabel={t.caseModalClose}
-        detailLabel={t.detail.viewCase}
-        siteLabel={t.caseSiteLabel}
-        onClose={() => setSelectedCase(null)}
-      />
+      {selectedCase ? (
+        <Suspense fallback={null}>
+          <CaseModal
+            caseItem={selectedCase}
+            closeLabel={t.caseModalClose}
+            detailLabel={t.detail.viewCase}
+            siteLabel={t.caseSiteLabel}
+            onClose={() => setSelectedCase(null)}
+          />
+        </Suspense>
+      ) : null}
     </div>
   );
 }

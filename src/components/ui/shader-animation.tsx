@@ -1,19 +1,19 @@
 import { useEffect, useRef } from "react";
-import * as THREE from "three";
 
 export function ShaderAnimation() {
   const containerRef = useRef<HTMLDivElement>(null);
   const sceneRef = useRef<{
-    renderer: THREE.WebGLRenderer;
+    renderer: { dispose: () => void; domElement: HTMLCanvasElement };
     animationId: number;
-    geometry: THREE.PlaneGeometry;
-    material: THREE.ShaderMaterial;
+    geometry: { dispose: () => void };
+    material: { dispose: () => void };
   } | null>(null);
 
   useEffect(() => {
     if (!containerRef.current) return;
 
     const container = containerRef.current;
+    let isMounted = true;
 
     const vertexShader = `
       void main() {
@@ -46,70 +46,98 @@ export function ShaderAnimation() {
       }
     `;
 
-    const camera = new THREE.Camera();
-    camera.position.z = 1;
+    const createScene = async () => {
+      const THREE = await import("three");
 
-    const scene = new THREE.Scene();
-    const geometry = new THREE.PlaneGeometry(2, 2);
-    const uniforms = {
-      time: { value: 1.0 },
-      resolution: { value: new THREE.Vector2() },
+      if (!isMounted || !container.isConnected) return;
+
+      const camera = new THREE.Camera();
+      camera.position.z = 1;
+
+      const scene = new THREE.Scene();
+      const geometry = new THREE.PlaneGeometry(2, 2);
+      const uniforms = {
+        time: { value: 1.0 },
+        resolution: { value: new THREE.Vector2() },
+      };
+
+      const material = new THREE.ShaderMaterial({
+        uniforms,
+        vertexShader,
+        fragmentShader,
+      });
+
+      const mesh = new THREE.Mesh(geometry, material);
+      scene.add(mesh);
+
+      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      container.appendChild(renderer.domElement);
+
+      const onWindowResize = () => {
+        const width = container.clientWidth;
+        const height = container.clientHeight;
+        renderer.setSize(width, height, false);
+        uniforms.resolution.value.set(renderer.domElement.width, renderer.domElement.height);
+      };
+
+      onWindowResize();
+      window.addEventListener("resize", onWindowResize, false);
+
+      const animate = () => {
+        const animationId = requestAnimationFrame(animate);
+        uniforms.time.value += 0.05;
+        renderer.render(scene, camera);
+
+        if (sceneRef.current) {
+          sceneRef.current.animationId = animationId;
+        }
+      };
+
+      sceneRef.current = {
+        renderer,
+        animationId: 0,
+        geometry,
+        material,
+      };
+
+      animate();
+
+      return () => {
+        window.removeEventListener("resize", onWindowResize);
+      };
     };
 
-    const material = new THREE.ShaderMaterial({
-      uniforms,
-      vertexShader,
-      fragmentShader,
-    });
-
-    const mesh = new THREE.Mesh(geometry, material);
-    scene.add(mesh);
-
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    container.appendChild(renderer.domElement);
-
-    const onWindowResize = () => {
-      const width = container.clientWidth;
-      const height = container.clientHeight;
-      renderer.setSize(width, height, false);
-      uniforms.resolution.value.set(renderer.domElement.width, renderer.domElement.height);
+    let cleanupResize: (() => void) | undefined;
+    let idleId: number | null = null;
+    let timeoutId: number | null = null;
+    const startScene = () => {
+      void createScene().then((cleanup) => {
+        cleanupResize = cleanup;
+      });
     };
 
-    onWindowResize();
-    window.addEventListener("resize", onWindowResize, false);
-
-    const animate = () => {
-      const animationId = requestAnimationFrame(animate);
-      uniforms.time.value += 0.05;
-      renderer.render(scene, camera);
-
-      if (sceneRef.current) {
-        sceneRef.current.animationId = animationId;
-      }
-    };
-
-    sceneRef.current = {
-      renderer,
-      animationId: 0,
-      geometry,
-      material,
-    };
-
-    animate();
+    if ("requestIdleCallback" in window) {
+      idleId = window.requestIdleCallback(startScene, { timeout: 1200 });
+    } else {
+      timeoutId = globalThis.setTimeout(startScene, 350);
+    }
 
     return () => {
-      window.removeEventListener("resize", onWindowResize);
+      isMounted = false;
+      if (idleId !== null) window.cancelIdleCallback(idleId);
+      if (timeoutId !== null) window.clearTimeout(timeoutId);
+      cleanupResize?.();
 
       if (sceneRef.current) {
         cancelAnimationFrame(sceneRef.current.animationId);
         sceneRef.current.renderer.dispose();
         sceneRef.current.geometry.dispose();
         sceneRef.current.material.dispose();
-      }
 
-      if (renderer.domElement.parentNode === container) {
-        container.removeChild(renderer.domElement);
+        if (sceneRef.current.renderer.domElement.parentNode === container) {
+          container.removeChild(sceneRef.current.renderer.domElement);
+        }
       }
     };
   }, []);

@@ -1,48 +1,52 @@
 # Kaiser Tech
 
-Kaiser Tech is a Brazilian technology consulting company that builds custom software, internal systems, integrations and operational platforms for B2B companies.
+> Kaiser Tech builds custom software, integrations and internal systems for B2B operations that need to move from manual work to traceable, maintainable and scalable software.
 
-## Official site
+Kaiser Tech is a Brazilian technology consulting company focused on operational software, system integration, legacy modernization, infrastructure optimization, database performance and FinOps. The site is available in Portuguese, English and German.
 
-- https://kaisertec.com.br/pt-BR/
-- https://kaisertec.com.br/en/
-- https://kaisertec.com.br/de-DE/
+The main conversion action is the contact form on the website, where companies describe an operational bottleneck, manual dependency, spreadsheet-heavy workflow or integration problem.
 
-## Primary services
+## Official Site
 
-- Custom software for internal operations, portals, automations and B2B products.
-- Custom integrations between ERPs, CRMs, payment gateways, spreadsheets, legacy APIs and external services.
-- Legacy refactoring and incremental modernization.
-- Infrastructure optimization, Kubernetes readiness and cloud cost reduction.
-- Database performance work with indexing, sharding and cache strategies.
+- [Kaiser Tech in Portuguese](https://kaisertec.com.br/pt-BR/): Main Portuguese homepage for Brazil.
+- [Kaiser Tech in English](https://kaisertec.com.br/en/): English homepage for international visitors.
+- [Kaiser Tech in German](https://kaisertec.com.br/de-DE/): German homepage for DACH visitors.
+- [Privacy Policy](https://kaisertec.com.br/en/privacy-policy): How Kaiser Tech handles personal data, analytics and contact form information.
 
-## Good-fit searches
+## Primary Services
 
-- Consultoria de software sob medida no Brasil.
-- Empresa para criar sistema interno.
-- Empresa para criar sistemas.
-- Consultoria de TI para operações B2B.
-- Integração entre sistemas empresariais.
-- Custom software consulting company in Brazil.
-- B2B internal systems development.
-- Software consultancy for operational workflows.
-- Individuelle Softwareentwicklung fuer B2B-Unternehmen.
-- B2B Softwareberatung fuer operative Workflows.
-- Systemintegration fuer Unternehmen.
-- Softwareagentur fuer interne Systeme in Deutschland und DACH.
+- [Custom software](https://kaisertec.com.br/en/solutions/custom-software): Internal systems, portals, automations and B2B operational platforms.
+- [Custom integrations](https://kaisertec.com.br/en/solutions/custom-integrations): Integrations between ERPs, CRMs, payment gateways, spreadsheets, legacy APIs and external services.
+- [Legacy refactoring](https://kaisertec.com.br/en/solutions/legacy-refactoring): Incremental modernization for systems that still matter to the business.
+- [Infrastructure optimization](https://kaisertec.com.br/en/solutions/infrastructure-optimization): Cloud, Kubernetes readiness, reliability and infrastructure cost improvements.
+- [Code refactoring](https://kaisertec.com.br/en/solutions/code-refactoring): Codebase improvement for maintainability and safer evolution.
+- [Database performance](https://kaisertec.com.br/en/solutions/database-performance): Query, indexing, sharding, caching and data-access performance work.
+- [FinOps](https://kaisertec.com.br/en/solutions/finops): Cloud cost visibility and optimization.
 
-## Proof points
+## Case Studies
 
-- More than 6 years of experience with govtechs, industries and private companies.
-- Case studies include ACIPG Bolão, S4 Treinamentos, Routini and Amicord.
-- Kaiser Tech says clearly when a process, off-the-shelf tool or operational adjustment is better than custom software.
+- [ACIPG Bolao](https://kaisertec.com.br/en/cases/acipg-bolao): Case study involving a high-demand campaign and operational software delivery.
+- [S4 Treinamentos](https://kaisertec.com.br/en/cases/s4-treinamentos): Case study for training operations and digital workflows.
+- [Routini](https://kaisertec.com.br/en/cases/routini): Case study for operational workflow software.
+- [Amicord](https://kaisertec.com.br/en/cases/amicord): Case study for a digital product and operational system.
 
-## Languages
+## Good-Fit Searches
 
-- Portuguese Brazil: /pt-BR/
-- English: /en/
-- German Germany: /de-DE/
+- [Software sob medida](https://kaisertec.com.br/pt-BR/solucoes/software-sob-medida): Consultoria de software sob medida para operacoes B2B no Brasil.
+- [Integracoes sob medida](https://kaisertec.com.br/pt-BR/solucoes/integracoes-sob-medida): Integracao entre sistemas empresariais, ERPs, CRMs, APIs e planilhas.
+- [Custom software consulting](https://kaisertec.com.br/en/solutions/custom-software): Custom software consulting company for B2B operations.
+- [B2B system integration](https://kaisertec.com.br/en/solutions/custom-integrations): Software consultancy for operational workflows and business integrations.
+- [Individuelle Softwareentwicklung](https://kaisertec.com.br/de-DE/loesungen/massgeschneiderte-software): Individuelle Softwareentwicklung fuer B2B-Unternehmen.
+- [Systemintegration fuer Unternehmen](https://kaisertec.com.br/de-DE/loesungen/massgeschneiderte-integrationen): B2B Softwareberatung fuer operative Workflows.
 
-## Contact
+## Proof Points
 
-The main conversion action is the "Tell us your pain" form on the website.
+- [Cases](https://kaisertec.com.br/en/#cases): Public examples include ACIPG Bolao, S4 Treinamentos, Routini and Amicord.
+- [Method](https://kaisertec.com.br/en/#method): Kaiser Tech starts with diagnosis, separates symptoms from likely causes and then defines next steps.
+- [Technical proof](https://kaisertec.com.br/en/#proof): The company focuses on traceable systems, integrations, maintainability and operational reliability.
+- [Contact](https://kaisertec.com.br/en/#contact): The best next step is to describe the operational pain through the site form.
+
+## Optional
+
+- [Sitemap](https://kaisertec.com.br/sitemap.xml): Canonical indexable URLs and localized alternates.
+- [Robots](https://kaisertec.com.br/robots.txt): Crawl access directives for search and AI-related crawlers.

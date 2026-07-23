@@ -32,7 +32,13 @@ export function Footer({ currentYear, homePath, locale, navigate, t }: FooterPro
         <div className="footer-brand">
           <a className="brand" href={homePath} aria-label="Kaiser Tech home" onClick={handleInternalLink(homePath)}>
             <span>
-              <img src="/logo_branco.png" alt="" />
+              <img
+                src="/logo_branco_header.png"
+                srcSet="/logo_branco_header.png 1x, /logo_branco_header@2x.png 2x"
+                width="84"
+                height="70"
+                alt=""
+              />
             </span>
             Kaiser Tech
           </a>

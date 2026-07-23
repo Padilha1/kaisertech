@@ -1,4 +1,4 @@
-import { RotatingText } from "./ui/RotatingText";
+import { useEffect, useState } from "react";
 
 type HeroRotatingTitleProps = {
   lang: "pt-BR" | "en" | "de-DE";
@@ -45,23 +45,24 @@ const heroRotatingCopy: Record<
 
 export function HeroRotatingTitle({ lang }: HeroRotatingTitleProps) {
   const copy = heroRotatingCopy[lang];
+  const [currentTextIndex, setCurrentTextIndex] = useState(0);
+
+  useEffect(() => {
+    const intervalId = window.setInterval(() => {
+      setCurrentTextIndex((index) => (index + 1) % copy.texts.length);
+    }, 2600);
+
+    return () => window.clearInterval(intervalId);
+  }, [copy.texts.length]);
 
   return (
     <h1 className="hero-rotating-title">
       <span>{copy.prefix}</span>
-      <RotatingText
-        texts={copy.texts}
-        mainClassName="hero-rotating-word"
-        splitBy="words"
-        staggerFrom="last"
-        initial={{ y: "105%", opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        exit={{ y: "-110%", opacity: 0 }}
-        staggerDuration={0.035}
-        splitLevelClassName="hero-rotating-word-split"
-        transition={{ type: "spring", damping: 32, stiffness: 420 }}
-        rotationInterval={2600}
-      />
+      <span className="hero-rotating-word" aria-live="polite">
+        <span className="hero-rotating-word-value" key={copy.texts[currentTextIndex]}>
+          {copy.texts[currentTextIndex]}
+        </span>
+      </span>
     </h1>
   );
 }
