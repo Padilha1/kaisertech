@@ -61,6 +61,23 @@ const socialImageUrl = `${siteUrl}/social-preview-og-whatsapp.webp`;
 const twitterImageUrl = `${siteUrl}/social-preview-twitter.png`;
 const socialImageAlt = "Kaiser Tech - Tire sua operação do improviso";
 const maxSocialDescriptionLength = 125;
+const privacySeo: Record<Locale, { title: string; description: string }> = {
+  pt: {
+    title: "Política de Privacidade | Kaiser Tech",
+    description:
+      "Como a Kaiser Tech coleta, usa, compartilha e protege dados pessoais no site, considerando LGPD no Brasil e práticas aplicáveis a visitantes dos EUA.",
+  },
+  en: {
+    title: "Privacy Policy | Kaiser Tech",
+    description:
+      "How Kaiser Tech collects, uses, shares and protects personal data on its website, considering Brazil's LGPD and visitors in the United States.",
+  },
+  de: {
+    title: "Datenschutzerklaerung | Kaiser Tech",
+    description:
+      "Wie Kaiser Tech personenbezogene Daten auf der Website erhebt, nutzt, weitergibt und schuetzt, mit Hinweisen zu Brasilien und den USA.",
+  },
+};
 
 const clampSocialDescription = (description: string) => {
   if (description.length <= maxSocialDescriptionLength) return description;
@@ -87,6 +104,12 @@ export const syncSeo = ({ canonicalUrl, route, t, servicePage, serviceCopy, case
     pageTitle = `${casePage.title} | Case Kaiser Tech`;
     pageDescription = casePage.description;
     socialDescription = clampSocialDescription(casePage.description);
+  }
+
+  if (route.kind === "privacy") {
+    pageTitle = privacySeo[route.locale].title;
+    pageDescription = privacySeo[route.locale].description;
+    socialDescription = clampSocialDescription(pageDescription);
   }
 
   const organization = {
@@ -118,18 +141,28 @@ export const syncSeo = ({ canonicalUrl, route, t, servicePage, serviceCopy, case
         serviceType: servicePage.title,
         areaServed,
       }
-    : casePage
-      ? {
-          "@type": "CreativeWork",
+      : casePage
+        ? {
+            "@type": "CreativeWork",
           "@id": `${canonicalUrl}#case`,
           name: casePage.title,
           headline: casePage.subtitle,
           description: casePage.description,
           creator: { "@id": `${siteUrl}/#organization` },
-          url: canonicalUrl,
-        }
-      : {
-          "@type": "WebSite",
+            url: canonicalUrl,
+          }
+        : route.kind === "privacy"
+          ? {
+              "@type": "WebPage",
+              "@id": `${canonicalUrl}#privacy-policy`,
+              name: pageTitle,
+              description: pageDescription,
+              url: canonicalUrl,
+              inLanguage: t.seo.lang,
+              publisher: { "@id": `${siteUrl}/#organization` },
+            }
+        : {
+            "@type": "WebSite",
           "@id": `${siteUrl}/#website`,
           name: "Kaiser Tech",
           url: canonicalUrl,

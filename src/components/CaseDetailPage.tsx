@@ -1,5 +1,6 @@
 import { ArrowRight, Check } from "lucide-react";
 import type { CSSProperties } from "react";
+import { trackCtaClick } from "../lib/analytics";
 import type { LocaleCopy } from "../lib/i18n";
 
 type CaseDetailPageProps = {
@@ -38,6 +39,7 @@ export function CaseDetailPage({ caseIndex, homePath, navigate, t }: CaseDetailP
             href={`${homePath}#contact`}
             onClick={(event) => {
               event.preventDefault();
+              trackCtaClick("case_detail_primary", `${homePath}#contact`);
               navigate(`${homePath}#contact`);
             }}
           >

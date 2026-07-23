@@ -17,6 +17,7 @@ const locales = {
     ogLocale: "pt_BR",
     servicesSegment: "solucoes",
     casesSegment: "cases",
+    privacySegment: "politica-de-privacidade",
     home: {
       title: "Kaiser Tech | Software sob medida para operações B2B",
       description:
@@ -83,6 +84,11 @@ const locales = {
         "Sistema de gestão de facilities com checklists, atividades, app mobile, GPS e QR Code.",
       ],
     ],
+    privacy: {
+      title: "Política de Privacidade | Kaiser Tech",
+      description:
+        "Como a Kaiser Tech coleta, usa, compartilha e protege dados pessoais no site, considerando LGPD no Brasil e práticas aplicáveis a visitantes dos EUA.",
+    },
   },
   en: {
     base: "/en",
@@ -90,6 +96,7 @@ const locales = {
     ogLocale: "en_US",
     servicesSegment: "solutions",
     casesSegment: "cases",
+    privacySegment: "privacy-policy",
     home: {
       title: "Kaiser Tech | Custom software for B2B operations",
       description:
@@ -156,6 +163,11 @@ const locales = {
         "Facilities management system with checklists, activities, mobile app, GPS and QR Code.",
       ],
     ],
+    privacy: {
+      title: "Privacy Policy | Kaiser Tech",
+      description:
+        "How Kaiser Tech collects, uses, shares and protects personal data on its website, considering Brazil's LGPD and visitors in the United States.",
+    },
   },
   de: {
     base: "/de-DE",
@@ -163,6 +175,7 @@ const locales = {
     ogLocale: "de_DE",
     servicesSegment: "loesungen",
     casesSegment: "cases",
+    privacySegment: "datenschutz",
     home: {
       title: "Kaiser Tech | Individuelle Software fuer B2B-Operationen",
       description:
@@ -229,6 +242,11 @@ const locales = {
         "Facilities-Management-System mit Checklisten, Aktivitaeten, mobiler Operation, GPS und QR Code.",
       ],
     ],
+    privacy: {
+      title: "Datenschutzerklaerung | Kaiser Tech",
+      description:
+        "Wie Kaiser Tech personenbezogene Daten auf der Website erhebt, nutzt, weitergibt und schuetzt, mit Hinweisen zu Brasilien und den USA.",
+    },
   },
 };
 
@@ -237,6 +255,7 @@ const routePath = (localeKey, kind = "home", slug = "") => {
   if (kind === "service")
     return `${locale.base}/${locale.servicesSegment}/${slug}`;
   if (kind === "case") return `${locale.base}/${locale.casesSegment}/${slug}`;
+  if (kind === "privacy") return `${locale.base}/${locale.privacySegment}`;
   return `${locale.base}/`;
 };
 
@@ -259,6 +278,8 @@ const buildAlternates = (kind = "home", index = 0) =>
           ? locales[localeKey].services[index][0]
           : kind === "case"
             ? locales[localeKey].cases[index][0]
+            : kind === "privacy"
+              ? locales[localeKey].privacySegment
             : "",
       ),
     ]),
@@ -405,6 +426,24 @@ for (const localeKey of Object.keys(locales)) {
       publisher: { "@id": `${siteUrl}/#organization` },
     },
     alternates: buildAlternates(),
+  });
+
+  routes.push({
+    path: routePath(localeKey, "privacy"),
+    lang: locale.lang,
+    ogLocale: locale.ogLocale,
+    title: locale.privacy.title,
+    description: locale.privacy.description,
+    structuredData: {
+      "@type": "WebPage",
+      "@id": `${siteUrl}${routePath(localeKey, "privacy")}#privacy-policy`,
+      name: locale.privacy.title,
+      description: locale.privacy.description,
+      url: `${siteUrl}${routePath(localeKey, "privacy")}`,
+      inLanguage: locale.lang,
+      publisher: { "@id": `${siteUrl}/#organization` },
+    },
+    alternates: buildAlternates("privacy"),
   });
 
   locale.services.forEach(([slug, title, description], index) => {

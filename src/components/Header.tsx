@@ -1,5 +1,6 @@
 import { ChevronDown, Globe2, Menu, X } from "lucide-react";
 import type { MouseEvent } from "react";
+import { trackCtaClick } from "../lib/analytics";
 import type { Locale, LocaleCopy } from "../lib/i18n";
 import type { AppRoute } from "../lib/routing";
 import { getRoutePath } from "../lib/routing";
@@ -38,6 +39,11 @@ export function Header({ availableLocales, homePath, isScrolled, menuOpen, navig
   const goToLocale = (locale: Locale) => navigate(getRoutePath(route, locale));
   const handleInternalLink = (path: string) => (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
+    navigate(path);
+  };
+  const handleHeaderCtaClick = (path: string) => (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+    trackCtaClick("header_cta", path);
     navigate(path);
   };
 
@@ -102,7 +108,7 @@ export function Header({ availableLocales, homePath, isScrolled, menuOpen, navig
               </div>
             </details>
           </div>
-          <a className="header-cta" href={`${homePath}#contact`} onClick={handleInternalLink(`${homePath}#contact`)}>
+          <a className="header-cta" href={`${homePath}#contact`} onClick={handleHeaderCtaClick(`${homePath}#contact`)}>
             {t.hero.cta}
           </a>
           <button className="menu-button" type="button" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle navigation">

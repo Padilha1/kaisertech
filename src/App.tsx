@@ -7,7 +7,9 @@ import { CaseModal, type CaseModalContent } from "./components/CaseModal";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { HomePage } from "./components/HomePage";
+import { PrivacyPolicyPage } from "./components/PrivacyPolicyPage";
 import { ServiceDetailPage } from "./components/ServiceDetailPage";
+import { trackContactFormSubmit, trackPageView } from "./lib/analytics";
 import { dictionary, type Locale } from "./lib/i18n";
 import { getHomePath, getRoutePath, parseRoute, siteUrl, type AppRoute } from "./lib/routing";
 import { syncSeo } from "./lib/seo";
@@ -56,6 +58,10 @@ export function App() {
   useEffect(() => {
     syncSeo({ canonicalUrl, casePage, route, serviceCopy, servicePage, t });
   }, [canonicalUrl, casePage, route, serviceCopy, servicePage, t]);
+
+  useEffect(() => {
+    trackPageView(canonicalPath);
+  }, [canonicalPath]);
 
   useEffect(() => {
     const handlePopState = () => setRoute(parseRoute(window.location.pathname));
@@ -194,6 +200,7 @@ export function App() {
 
       form.reset();
       setFormStatus("success");
+      trackContactFormSubmit();
     } catch {
       setFormStatus("error");
     }
@@ -204,6 +211,8 @@ export function App() {
       <ServiceDetailPage homePath={homePath} locale={locale} navigate={navigate} serviceIndex={route.index} t={t} />
     ) : route.kind === "case" && typeof route.index === "number" ? (
       <CaseDetailPage caseIndex={route.index} homePath={homePath} navigate={navigate} t={t} />
+    ) : route.kind === "privacy" ? (
+      <PrivacyPolicyPage locale={locale} navigate={navigate} />
     ) : (
       <HomePage
         formStatus={formStatus}
@@ -227,7 +236,7 @@ export function App() {
         t={t}
       />
       {mainContent}
-      <Footer currentYear={currentYear} homePath={homePath} navigate={navigate} t={t} />
+      <Footer currentYear={currentYear} homePath={homePath} locale={locale} navigate={navigate} t={t} />
       <CaseModal
         caseItem={selectedCase}
         closeLabel={t.caseModalClose}

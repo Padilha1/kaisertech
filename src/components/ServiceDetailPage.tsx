@@ -1,4 +1,5 @@
 import { ArrowRight, Check } from "lucide-react";
+import { trackCtaClick } from "../lib/analytics";
 import type { Locale, LocaleCopy } from "../lib/i18n";
 import { getServicePath } from "../lib/routing";
 import { FaqSection } from "./FaqSection";
@@ -37,6 +38,7 @@ export function ServiceDetailPage({ homePath, locale, navigate, serviceIndex, t 
             href={`${homePath}#contact`}
             onClick={(event) => {
               event.preventDefault();
+              trackCtaClick("service_detail_primary", `${homePath}#contact`);
               navigate(`${homePath}#contact`);
             }}
           >

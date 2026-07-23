@@ -1,4 +1,5 @@
 import { ArrowRight } from "lucide-react";
+import { trackCtaClick } from "../lib/analytics";
 import type { LocaleCopy } from "../lib/i18n";
 import { HeroRotatingTitle } from "./HeroRotatingTitle";
 import { ShaderAnimation } from "./ui/shader-animation";
@@ -19,7 +20,7 @@ export function HeroSection({ t }: HeroSectionProps) {
         <HeroRotatingTitle lang={t.seo.lang} />
         <p>{t.hero.subtitle}</p>
         <div className="hero-actions">
-          <a className="primary-button" href="#contact">
+          <a className="primary-button" href="#contact" onClick={() => trackCtaClick("hero_primary", "#contact")}>
             {t.hero.cta}
             <ArrowRight size={18} />
           </a>

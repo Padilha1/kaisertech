@@ -1,10 +1,12 @@
 import { Instagram, Linkedin } from "lucide-react";
 import type { MouseEvent } from "react";
-import type { LocaleCopy } from "../lib/i18n";
+import type { Locale, LocaleCopy } from "../lib/i18n";
+import { getPrivacyPath } from "../lib/routing";
 
 type FooterProps = {
   currentYear: number;
   homePath: string;
+  locale: Locale;
   navigate: (path: string) => void;
   t: LocaleCopy;
 };
@@ -17,11 +19,12 @@ const sectionLinks = [
   ["contact", "contact"],
 ] as const;
 
-export function Footer({ currentYear, homePath, navigate, t }: FooterProps) {
+export function Footer({ currentYear, homePath, locale, navigate, t }: FooterProps) {
   const handleInternalLink = (path: string) => (event: MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
     navigate(path);
   };
+  const privacyPath = getPrivacyPath(locale);
 
   return (
     <footer className="site-footer">
@@ -50,6 +53,9 @@ export function Footer({ currentYear, homePath, navigate, t }: FooterProps) {
               </a>
             );
           })}
+          <a href={privacyPath} onClick={handleInternalLink(privacyPath)}>
+            {t.footer.privacyPolicy}
+          </a>
         </nav>
 
         <div className="footer-legal">

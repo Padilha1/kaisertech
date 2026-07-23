@@ -1,6 +1,6 @@
 import type { Locale } from "./i18n";
 
-export type RouteKind = "home" | "service" | "case";
+export type RouteKind = "home" | "service" | "case" | "privacy";
 
 export type AppRoute = {
   kind: RouteKind;
@@ -20,14 +20,17 @@ export const routeSegments = {
   pt: {
     services: "solucoes",
     cases: "cases",
+    privacy: "politica-de-privacidade",
   },
   en: {
     services: "solutions",
     cases: "cases",
+    privacy: "privacy-policy",
   },
   de: {
     services: "loesungen",
     cases: "cases",
+    privacy: "datenschutz",
   },
 } as const;
 
@@ -75,6 +78,10 @@ export const parseRoute = (pathname: string): AppRoute => {
   const section = parts[offset];
   const slug = parts[offset + 1];
 
+  if (section === routeSegments[locale].privacy) {
+    return { kind: "privacy", locale };
+  }
+
   if (section === routeSegments[locale].services && slug) {
     const index = serviceSlugs[locale].indexOf(slug);
     if (index >= 0) return { kind: "service", locale, index };
@@ -96,8 +103,11 @@ export const getServicePath = (locale: Locale, index: number) =>
 export const getCasePath = (locale: Locale, index: number) =>
   `${localePaths[locale]}/${routeSegments[locale].cases}/${caseSlugs[locale][index]}`;
 
+export const getPrivacyPath = (locale: Locale) => `${localePaths[locale]}/${routeSegments[locale].privacy}`;
+
 export const getRoutePath = (route: AppRoute, targetLocale = route.locale) => {
   if (route.kind === "service" && typeof route.index === "number") return getServicePath(targetLocale, route.index);
   if (route.kind === "case" && typeof route.index === "number") return getCasePath(targetLocale, route.index);
+  if (route.kind === "privacy") return getPrivacyPath(targetLocale);
   return getHomePath(targetLocale);
 };
