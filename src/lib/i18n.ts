@@ -441,6 +441,7 @@ export const dictionary = {
       title: "Conte sua dor",
       subtitle:
         "Envie o gargalo técnico ou operacional. A resposta inicial busca identificar oportunidade, causa provável e próximos passos.",
+      whatsappLabel: "WhatsApp",
       name: "Nome",
       email: "Email",
       company: "Empresa",
@@ -916,6 +917,7 @@ export const dictionary = {
       title: "Tell us your pain",
       subtitle:
         "Send the technical or operational bottleneck. The first response aims to identify opportunity, likely cause and next steps.",
+      whatsappLabel: "WhatsApp",
       name: "Name",
       email: "Email",
       company: "Company",
@@ -1391,6 +1393,7 @@ export const dictionary = {
       title: "Beschreiben Sie den Engpass",
       subtitle:
         "Senden Sie den technischen oder operativen Engpass. Die erste Antwort soll Chance, wahrscheinliche Ursache und naechste Schritte identifizieren.",
+      whatsappLabel: "WhatsApp",
       name: "Name",
       email: "Email",
       company: "Unternehmen",

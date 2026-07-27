@@ -731,6 +731,53 @@ main {
   line-height: 1.75;
 }
 
+.contact-whatsapp {
+  display: inline-flex;
+  width: fit-content;
+  max-width: 100%;
+  min-height: 46px;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+  padding: 0 16px;
+  border: 1px solid rgba(252, 65, 3, 0.38);
+  border-radius: 8px;
+  color: var(--paper);
+  background: rgba(252, 65, 3, 0.1);
+  line-height: 1.2;
+  transition:
+    border-color 180ms ease,
+    background-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.contact-whatsapp svg {
+  flex: 0 0 auto;
+  color: var(--orange);
+}
+
+.contact-whatsapp span {
+  color: rgba(247, 245, 242, 0.68);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.contact-whatsapp strong {
+  color: var(--paper);
+  font-size: 0.92rem;
+  font-weight: 900;
+}
+
+.contact-whatsapp:hover {
+  border-color: rgba(252, 65, 3, 0.72);
+  background: rgba(252, 65, 3, 0.16);
+  box-shadow: 0 14px 34px rgba(252, 65, 3, 0.16);
+  transform: translateY(-1px);
+}
+
 .pain-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);

@@ -1,4 +1,4 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, PhoneCall } from "lucide-react";
 import type { FormEvent } from "react";
 import type { LocaleCopy } from "../lib/i18n";
 
@@ -16,6 +16,17 @@ export function ContactSection({ formStatus, handleContactSubmit, t }: ContactSe
       <div className="contact-copy" data-animate>
         <h2>{t.form.title}</h2>
         <p>{t.form.subtitle}</p>
+        <a
+          className="contact-whatsapp"
+          href="https://wa.me/5542998366677"
+          target="_blank"
+          rel="noreferrer"
+          aria-label={`${t.form.whatsappLabel} Matheus Padilha, (42) 9 9836-6677`}
+        >
+          <PhoneCall size={18} />
+          <span>{t.form.whatsappLabel}</span>
+          <strong>(42) 9 9836-6677 - Matheus Padilha</strong>
+        </a>
       </div>
       <form className="contact-form" onSubmit={handleContactSubmit} data-animate>
         <input className="form-honeypot" name="website" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" />
