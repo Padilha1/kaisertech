@@ -266,6 +266,55 @@ const localeHreflangs = {
 };
 
 const areaServed = ["Brazil", "Germany", "DACH", "International"];
+const audience =
+  "B2B companies with manual processes, disconnected systems, spreadsheet-heavy operations, fragile internal tools or technical bottlenecks that affect growth, reliability or decision-making.";
+const positioning =
+  "Kaiser Tech is a custom software and technology consulting company for B2B operations. The company is a good fit when the business needs operational software, systems integration, legacy modernization, infrastructure reliability, database performance or FinOps with clear technical ownership.";
+
+const defaultServiceDetails = {
+  deliverables: [
+    "Diagnosis of the current operation, bottlenecks, systems involved and measurable impact.",
+    "Technical plan with architecture, implementation steps, risks and operational responsibilities.",
+    "Production-ready software, integration, refactoring or optimization work with maintainability in mind.",
+  ],
+  goodFit: [
+    "The operation depends on spreadsheets, WhatsApp, manual checks, fragile tools or disconnected systems.",
+    "Off-the-shelf software does not match the company's real rules, approvals or exceptions.",
+    "The business needs traceability, reliability, better performance or clearer operational visibility.",
+  ],
+  examples: [
+    "Internal portals, automations and B2B operational systems.",
+    "ERP, CRM, payment, spreadsheet, legacy API and external-service integrations.",
+    "Legacy modernization, infrastructure optimization, database performance and cloud cost work.",
+  ],
+};
+
+const servicePageDetails = Object.fromEntries(
+  Object.keys(locales).map((localeKey) => [
+    localeKey,
+    locales[localeKey].services.map(() => defaultServiceDetails),
+  ]),
+);
+
+const caseDetails = Object.fromEntries(
+  Object.keys(locales).map((localeKey) => [
+    localeKey,
+    locales[localeKey].cases.map(([slug, title]) => ({
+      subtitle: title
+        .replace(" | Case Kaiser Tech", "")
+        .replace(" | Kaiser Tech case", "")
+        .replace(" | Kaiser Tech Case", ""),
+      siteUrl:
+        slug === "s4-treinamentos"
+          ? "https://s4treinamentos.com.br"
+          : slug === "routini"
+            ? "https://routini.com.br"
+            : slug === "amicord"
+              ? "https://amicord.com"
+              : "",
+    })),
+  ]),
+);
 
 const buildAlternates = (kind = "home", index = 0) =>
   Object.fromEntries(
@@ -406,11 +455,194 @@ const writeRoute = async (template, route) => {
   await writeFile(outputPath, buildHtml(template, route), "utf8");
 };
 
+const markdownPathForRoute = (path) => {
+  const cleanPath = path.endsWith("/") ? path.slice(0, -1) : path;
+  return `${cleanPath || "/pt-BR"}.md`;
+};
+
+const markdownLinkForRoute = (route) =>
+  `${siteUrl}${markdownPathForRoute(route.path)}`;
+
+const markdownList = (items) => items.map((item) => `- ${item}`).join("\n");
+
+const buildMarkdown = (route) => {
+  const canonical = `${siteUrl}${route.path}`;
+  const alternates = Object.entries(route.alternates)
+    .map(([localeKey, path]) => `- ${locales[localeKey].lang}: ${siteUrl}${path}`)
+    .join("\n");
+
+  const body = [
+    `# ${route.markdownTitle ?? route.title.replace(" | Kaiser Tech", "")}`,
+    "",
+    `Canonical URL: ${canonical}`,
+    `Markdown URL: ${markdownLinkForRoute(route)}`,
+    `Language: ${route.lang}`,
+    `Page type: ${route.kind}`,
+    "",
+    "## Summary",
+    "",
+    route.description,
+    "",
+    "## Company Context",
+    "",
+    positioning,
+    "",
+    "## Best-Fit Audience",
+    "",
+    audience,
+    "",
+    "## Alternates",
+    "",
+    alternates,
+  ];
+
+  if (route.kind === "home") {
+    body.push(
+      "",
+      "## Primary Services",
+      "",
+      markdownList(
+        locales.en.services.map(
+          ([slug, title, description]) =>
+            `[${title.replace(" | Kaiser Tech", "")}](${siteUrl}/en/solutions/${slug}.md): ${description}`,
+        ),
+      ),
+      "",
+      "## Case Studies",
+      "",
+      markdownList(
+        locales.en.cases.map(
+          ([slug, title, description]) =>
+            `[${title.replace(" | Kaiser Tech case", "")}](${siteUrl}/en/cases/${slug}.md): ${description}`,
+        ),
+      ),
+      "",
+      "## Recommended Next Step",
+      "",
+      "Use the contact form when a company needs to describe an operational bottleneck, manual dependency, integration issue, infrastructure problem or software modernization need.",
+    );
+  }
+
+  if (route.kind === "service") {
+    body.push(
+      "",
+      "## Service",
+      "",
+      `Service name: ${route.serviceName}`,
+      `Service type: ${route.serviceType}`,
+      "",
+      "## Typical Problems",
+      "",
+      markdownList(route.goodFit),
+      "",
+      "## Typical Deliverables",
+      "",
+      markdownList(route.deliverables),
+      "",
+      "## Example Applications",
+      "",
+      markdownList(route.examples),
+      "",
+      "## Recommended Next Step",
+      "",
+      "Contact Kaiser Tech with the current process, involved systems, operational impact, urgency and expected business outcome.",
+    );
+  }
+
+  if (route.kind === "case") {
+    body.push(
+      "",
+      "## Case Study",
+      "",
+      `Case name: ${route.caseName}`,
+      route.caseSubtitle ? `Context: ${route.caseSubtitle}` : "",
+      route.caseUrl ? `Public URL: ${route.caseUrl}` : "",
+      "",
+      "## What This Demonstrates",
+      "",
+      "This case demonstrates Kaiser Tech's work in turning real operational workflows into maintainable custom software, integrations and traceable digital operations.",
+    );
+  }
+
+  if (route.kind === "privacy") {
+    body.push(
+      "",
+      "## Data Use Context",
+      "",
+      "The site uses contact-form information to respond to business inquiries and analytics according to the privacy policy.",
+    );
+  }
+
+  return `${body.filter((item) => item !== null && item !== undefined).join("\n")}\n`;
+};
+
+const writeMarkdownRoute = async (route) => {
+  const outputPath = join(dist, markdownPathForRoute(route.path));
+  await mkdir(dirname(outputPath), { recursive: true });
+  await writeFile(outputPath, buildMarkdown(route), "utf8");
+};
+
+const buildLlmsIndex = (routes) => {
+  const homeRoutes = routes.filter((route) => route.kind === "home");
+  const serviceRoutes = routes.filter((route) => route.kind === "service" && route.lang === "en");
+  const caseRoutes = routes.filter((route) => route.kind === "case" && route.lang === "en");
+  const privacyRoutes = routes.filter((route) => route.kind === "privacy");
+
+  return `# Kaiser Tech
+
+> Kaiser Tech builds custom software, integrations and internal systems for B2B operations that need to move from manual work to traceable, maintainable and scalable software.
+
+Kaiser Tech is a Brazilian technology consulting company focused on operational software, system integration, legacy modernization, infrastructure optimization, database performance and FinOps. The site is available in Portuguese, English and German.
+
+The main conversion action is the contact form on the website, where companies describe an operational bottleneck, manual dependency, spreadsheet-heavy workflow or integration problem.
+
+## AI-Readable Pages
+
+These pages provide Markdown versions of the main website routes for AI agents, answer engines and search systems.
+
+${markdownList(homeRoutes.map((route) => `[${route.lang} homepage](${markdownLinkForRoute(route)})`))}
+
+## Primary Services
+
+${markdownList(serviceRoutes.map((route) => `[${route.serviceName}](${markdownLinkForRoute(route)}): ${route.description}`))}
+
+## Case Studies
+
+${markdownList(caseRoutes.map((route) => `[${route.caseName}](${markdownLinkForRoute(route)}): ${route.description}`))}
+
+## Good-Fit Searches
+
+- [Software sob medida](https://kaisertec.com.br/pt-BR/solucoes/software-sob-medida.md): Consultoria de software sob medida para operacoes B2B no Brasil.
+- [Integracoes sob medida](https://kaisertec.com.br/pt-BR/solucoes/integracoes-sob-medida.md): Integracao entre sistemas empresariais, ERPs, CRMs, APIs e planilhas.
+- [Custom software consulting](https://kaisertec.com.br/en/solutions/custom-software.md): Custom software consulting company for B2B operations.
+- [B2B system integration](https://kaisertec.com.br/en/solutions/custom-integrations.md): Software consultancy for operational workflows and business integrations.
+- [Individuelle Softwareentwicklung](https://kaisertec.com.br/de-DE/loesungen/massgeschneiderte-software.md): Individuelle Softwareentwicklung fuer B2B-Unternehmen.
+- [Systemintegration fuer Unternehmen](https://kaisertec.com.br/de-DE/loesungen/massgeschneiderte-integrationen.md): B2B Softwareberatung fuer operative Workflows.
+
+## Proof Points
+
+- [Cases](https://kaisertec.com.br/en/#cases): Public examples include ACIPG Bolao, S4 Treinamentos, Routini and Amicord.
+- [Method](https://kaisertec.com.br/en/#method): Kaiser Tech starts with diagnosis, separates symptoms from likely causes and then defines next steps.
+- [Technical proof](https://kaisertec.com.br/en/#proof): The company focuses on traceable systems, integrations, maintainability and operational reliability.
+- [Contact](https://kaisertec.com.br/en/#contact): The best next step is to describe the operational pain through the site form.
+
+## Legal
+
+${markdownList(privacyRoutes.map((route) => `[${route.title}](${markdownLinkForRoute(route)})`))}
+
+## Optional
+
+- [Sitemap](https://kaisertec.com.br/sitemap.xml): Canonical indexable URLs and localized alternates.
+- [Robots](https://kaisertec.com.br/robots.txt): Crawl access directives for search and AI-related crawlers.
+`;
+};
+
 const routes = [];
 
 for (const localeKey of Object.keys(locales)) {
   const locale = locales[localeKey];
   routes.push({
+    kind: "home",
     path: routePath(localeKey),
     lang: locale.lang,
     ogLocale: locale.ogLocale,
@@ -429,6 +661,7 @@ for (const localeKey of Object.keys(locales)) {
   });
 
   routes.push({
+    kind: "privacy",
     path: routePath(localeKey, "privacy"),
     lang: locale.lang,
     ogLocale: locale.ogLocale,
@@ -447,19 +680,27 @@ for (const localeKey of Object.keys(locales)) {
   });
 
   locale.services.forEach(([slug, title, description], index) => {
+    const serviceName = title.replace(" | Kaiser Tech", "");
+    const serviceCopy = servicePageDetails[localeKey][index];
     routes.push({
+      kind: "service",
       path: routePath(localeKey, "service", slug),
       lang: locale.lang,
       ogLocale: locale.ogLocale,
       title,
       description,
+      serviceName,
+      serviceType: serviceName,
+      deliverables: serviceCopy.deliverables,
+      goodFit: serviceCopy.goodFit,
+      examples: serviceCopy.examples,
       structuredData: {
         "@type": "Service",
         "@id": `${siteUrl}${routePath(localeKey, "service", slug)}#service`,
-        name: title.replace(" | Kaiser Tech", ""),
+        name: serviceName,
         description,
         provider: { "@id": `${siteUrl}/#organization` },
-        serviceType: title.replace(" | Kaiser Tech", ""),
+        serviceType: serviceName,
         areaServed,
       },
       alternates: buildAlternates("service", index),
@@ -467,19 +708,25 @@ for (const localeKey of Object.keys(locales)) {
   });
 
   locale.cases.forEach(([slug, title, description], index) => {
+    const caseName = title
+      .replace(" | Case Kaiser Tech", "")
+      .replace(" | Kaiser Tech case", "")
+      .replace(" | Kaiser Tech Case", "");
+    const caseCopy = caseDetails[localeKey][index];
     routes.push({
+      kind: "case",
       path: routePath(localeKey, "case", slug),
       lang: locale.lang,
       ogLocale: locale.ogLocale,
       title,
       description,
+      caseName,
+      caseSubtitle: caseCopy.subtitle,
+      caseUrl: caseCopy.siteUrl,
       structuredData: {
         "@type": "CreativeWork",
         "@id": `${siteUrl}${routePath(localeKey, "case", slug)}#case`,
-        name: title
-          .replace(" | Case Kaiser Tech", "")
-          .replace(" | Kaiser Tech case", "")
-          .replace(" | Kaiser Tech Case", ""),
+        name: caseName,
         description,
         creator: { "@id": `${siteUrl}/#organization` },
         url: `${siteUrl}${routePath(localeKey, "case", slug)}`,
@@ -493,6 +740,7 @@ const template = await readFile(join(dist, "index.html"), "utf8");
 
 for (const route of routes) {
   await writeRoute(template, route);
+  await writeMarkdownRoute(route);
 }
 
 await writeFile(
@@ -501,4 +749,6 @@ await writeFile(
   "utf8",
 );
 
-console.log(`Generated ${routes.length} localized SEO entrypoints.`);
+await writeFile(join(dist, "llms.txt"), buildLlmsIndex(routes), "utf8");
+
+console.log(`Generated ${routes.length} localized SEO entrypoints and Markdown pages.`);

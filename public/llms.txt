@@ -6,38 +6,39 @@ Kaiser Tech is a Brazilian technology consulting company focused on operational 
 
 The main conversion action is the contact form on the website, where companies describe an operational bottleneck, manual dependency, spreadsheet-heavy workflow or integration problem.
 
-## Official Site
+## AI-Readable Pages
 
-- [Kaiser Tech in Portuguese](https://kaisertec.com.br/pt-BR/): Main Portuguese homepage for Brazil.
-- [Kaiser Tech in English](https://kaisertec.com.br/en/): English homepage for international visitors.
-- [Kaiser Tech in German](https://kaisertec.com.br/de-DE/): German homepage for DACH visitors.
-- [Privacy Policy](https://kaisertec.com.br/en/privacy-policy): How Kaiser Tech handles personal data, analytics and contact form information.
+These pages provide Markdown versions of the main website routes for AI agents, answer engines and search systems.
+
+- [pt-BR homepage](https://kaisertec.com.br/pt-BR.md)
+- [en homepage](https://kaisertec.com.br/en.md)
+- [de-DE homepage](https://kaisertec.com.br/de-DE.md)
 
 ## Primary Services
 
-- [Custom software](https://kaisertec.com.br/en/solutions/custom-software): Internal systems, portals, automations and B2B operational platforms.
-- [Custom integrations](https://kaisertec.com.br/en/solutions/custom-integrations): Integrations between ERPs, CRMs, payment gateways, spreadsheets, legacy APIs and external services.
-- [Legacy refactoring](https://kaisertec.com.br/en/solutions/legacy-refactoring): Incremental modernization for systems that still matter to the business.
-- [Infrastructure optimization](https://kaisertec.com.br/en/solutions/infrastructure-optimization): Cloud, Kubernetes readiness, reliability and infrastructure cost improvements.
-- [Code refactoring](https://kaisertec.com.br/en/solutions/code-refactoring): Codebase improvement for maintainability and safer evolution.
-- [Database performance](https://kaisertec.com.br/en/solutions/database-performance): Query, indexing, sharding, caching and data-access performance work.
-- [FinOps](https://kaisertec.com.br/en/solutions/finops): Cloud cost visibility and optimization.
+- [Custom software](https://kaisertec.com.br/en/solutions/custom-software.md): We build internal systems and B2B products for companies that have outgrown spreadsheets, off-the-shelf tools and manual workflows.
+- [Custom integrations](https://kaisertec.com.br/en/solutions/custom-integrations.md): We connect systems that need to work together without turning the operation into exports, manual checks and rework.
+- [Legacy refactoring](https://kaisertec.com.br/en/solutions/legacy-refactoring.md): We modernize existing systems without betting the whole operation on a risky rewrite.
+- [Infrastructure optimization](https://kaisertec.com.br/en/solutions/infrastructure-optimization.md): We adjust infrastructure so growth is supported by availability, observability and controlled cost.
+- [Code refactoring](https://kaisertec.com.br/en/solutions/code-refactoring.md): We organize codebases that are hard to evolve so new features stop depending on luck.
+- [Database performance](https://kaisertec.com.br/en/solutions/database-performance.md): We improve queries, models and cache strategy to reduce latency where the database is actually blocking the operation.
+- [FinOps](https://kaisertec.com.br/en/solutions/finops.md): We reduce cloud spend without treating cost as blind cutting: first we understand operation, risk and architecture.
 
 ## Case Studies
 
-- [ACIPG Bolao](https://kaisertec.com.br/en/cases/acipg-bolao): Case study involving a high-demand campaign and operational software delivery.
-- [S4 Treinamentos](https://kaisertec.com.br/en/cases/s4-treinamentos): Case study for training operations and digital workflows.
-- [Routini](https://kaisertec.com.br/en/cases/routini): Case study for operational workflow software.
-- [Amicord](https://kaisertec.com.br/en/cases/amicord): Case study for a digital product and operational system.
+- [ACIPG Bolao](https://kaisertec.com.br/en/cases/acipg-bolao.md): Internal sponsored pool system built with TypeScript monorepo, Fastify, Prisma, MySQL, React and Azure.
+- [S4 Treinamentos](https://kaisertec.com.br/en/cases/s4-treinamentos.md): Institutional website plus web/mobile systems for inspections, training and QR Code traceability.
+- [Routini](https://kaisertec.com.br/en/cases/routini.md): Service scheduling system for small businesses reducing dependence on WhatsApp.
+- [Amicord](https://kaisertec.com.br/en/cases/amicord.md): Facilities management system with checklists, activities, mobile app, GPS and QR Code.
 
 ## Good-Fit Searches
 
-- [Software sob medida](https://kaisertec.com.br/pt-BR/solucoes/software-sob-medida): Consultoria de software sob medida para operacoes B2B no Brasil.
-- [Integracoes sob medida](https://kaisertec.com.br/pt-BR/solucoes/integracoes-sob-medida): Integracao entre sistemas empresariais, ERPs, CRMs, APIs e planilhas.
-- [Custom software consulting](https://kaisertec.com.br/en/solutions/custom-software): Custom software consulting company for B2B operations.
-- [B2B system integration](https://kaisertec.com.br/en/solutions/custom-integrations): Software consultancy for operational workflows and business integrations.
-- [Individuelle Softwareentwicklung](https://kaisertec.com.br/de-DE/loesungen/massgeschneiderte-software): Individuelle Softwareentwicklung fuer B2B-Unternehmen.
-- [Systemintegration fuer Unternehmen](https://kaisertec.com.br/de-DE/loesungen/massgeschneiderte-integrationen): B2B Softwareberatung fuer operative Workflows.
+- [Software sob medida](https://kaisertec.com.br/pt-BR/solucoes/software-sob-medida.md): Consultoria de software sob medida para operacoes B2B no Brasil.
+- [Integracoes sob medida](https://kaisertec.com.br/pt-BR/solucoes/integracoes-sob-medida.md): Integracao entre sistemas empresariais, ERPs, CRMs, APIs e planilhas.
+- [Custom software consulting](https://kaisertec.com.br/en/solutions/custom-software.md): Custom software consulting company for B2B operations.
+- [B2B system integration](https://kaisertec.com.br/en/solutions/custom-integrations.md): Software consultancy for operational workflows and business integrations.
+- [Individuelle Softwareentwicklung](https://kaisertec.com.br/de-DE/loesungen/massgeschneiderte-software.md): Individuelle Softwareentwicklung fuer B2B-Unternehmen.
+- [Systemintegration fuer Unternehmen](https://kaisertec.com.br/de-DE/loesungen/massgeschneiderte-integrationen.md): B2B Softwareberatung fuer operative Workflows.
 
 ## Proof Points
 
@@ -45,6 +46,12 @@ The main conversion action is the contact form on the website, where companies d
 - [Method](https://kaisertec.com.br/en/#method): Kaiser Tech starts with diagnosis, separates symptoms from likely causes and then defines next steps.
 - [Technical proof](https://kaisertec.com.br/en/#proof): The company focuses on traceable systems, integrations, maintainability and operational reliability.
 - [Contact](https://kaisertec.com.br/en/#contact): The best next step is to describe the operational pain through the site form.
+
+## Legal
+
+- [Política de Privacidade | Kaiser Tech](https://kaisertec.com.br/pt-BR/politica-de-privacidade.md)
+- [Privacy Policy | Kaiser Tech](https://kaisertec.com.br/en/privacy-policy.md)
+- [Datenschutzerklaerung | Kaiser Tech](https://kaisertec.com.br/de-DE/datenschutz.md)
 
 ## Optional
 
