@@ -15,14 +15,146 @@
   status = 301
 
 [[redirects]]
+  from = "/pt-br"
+  to = "/pt-BR/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pt-br/"
+  to = "/pt-BR/"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/pt"
   to = "/pt-BR/"
   status = 301
 
 [[redirects]]
+  from = "/pt-br/solucoes/integrações-sob-medida"
+  to = "/pt-BR/solucoes/integracoes-sob-medida"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pt-br/solucoes/integrações-sob-medida/"
+  to = "/pt-BR/solucoes/integracoes-sob-medida"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pt-br/solucoes/integra%C3%A7%C3%B5es-sob-medida"
+  to = "/pt-BR/solucoes/integracoes-sob-medida"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pt-br/solucoes/integra%C3%A7%C3%B5es-sob-medida/"
+  to = "/pt-BR/solucoes/integracoes-sob-medida"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pt-BR/solucoes/integrações-sob-medida"
+  to = "/pt-BR/solucoes/integracoes-sob-medida"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pt-BR/solucoes/integrações-sob-medida/"
+  to = "/pt-BR/solucoes/integracoes-sob-medida"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pt-BR/solucoes/integra%C3%A7%C3%B5es-sob-medida"
+  to = "/pt-BR/solucoes/integracoes-sob-medida"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pt-BR/solucoes/integra%C3%A7%C3%B5es-sob-medida/"
+  to = "/pt-BR/solucoes/integracoes-sob-medida"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pt-br/:section/:slug"
+  to = "/pt-BR/:section/:slug"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pt-br/:section/:slug/"
+  to = "/pt-BR/:section/:slug"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pt-BR/:section/:slug/"
+  to = "/pt-BR/:section/:slug"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pt-BR/politica-de-privacidade/"
+  to = "/pt-BR/politica-de-privacidade"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/de"
   to = "/de-DE/"
   status = 301
+
+[[redirects]]
+  from = "/de-de"
+  to = "/de-DE/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/de-de/"
+  to = "/de-DE/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/de-de/:section/:slug"
+  to = "/de-DE/:section/:slug"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/de-de/:section/:slug/"
+  to = "/de-DE/:section/:slug"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/de-DE/:section/:slug/"
+  to = "/de-DE/:section/:slug"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/de-DE/datenschutz/"
+  to = "/de-DE/datenschutz"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/en/:section/:slug/"
+  to = "/en/:section/:slug"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/en/privacy-policy/"
+  to = "/en/privacy-policy"
+  status = 301
+  force = true
 
 [[redirects]]
   from = "/*"

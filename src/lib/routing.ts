@@ -70,25 +70,54 @@ export const caseSlugs: Record<Locale, string[]> = {
   de: ["acipg-bolao", "s4-treinamentos", "routini", "amicord"],
 };
 
+const localeAliases: Record<string, Locale> = {
+  "pt-br": "pt",
+  pt: "pt",
+  en: "en",
+  "de-de": "de",
+  de: "de",
+};
+
+const validLocaleParts = new Set(Object.keys(localeAliases));
+
+const normalizeSlug = (slug = "") => slug.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+
+const findSlugIndex = (slugs: string[], slug: string) => {
+  const exactIndex = slugs.indexOf(slug);
+  if (exactIndex >= 0) return exactIndex;
+
+  const normalizedSlug = normalizeSlug(slug);
+  return slugs.findIndex((candidate) => normalizeSlug(candidate) === normalizedSlug);
+};
+
+const decodePathPart = (part: string) => {
+  try {
+    return decodeURIComponent(part);
+  } catch {
+    return part;
+  }
+};
+
 export const parseRoute = (pathname: string): AppRoute => {
-  const parts = pathname.split("/").filter(Boolean);
+  const parts = pathname.split("/").filter(Boolean).map(decodePathPart);
   const localePart = parts[0]?.toLowerCase();
-  const locale: Locale = localePart === "en" ? "en" : localePart === "de-de" ? "de" : "pt";
-  const offset = localePart === "en" || localePart === "pt-br" || localePart === "de-de" ? 1 : 0;
+  const locale: Locale = localeAliases[localePart] ?? "pt";
+  const offset = localePart && validLocaleParts.has(localePart) ? 1 : 0;
   const section = parts[offset];
   const slug = parts[offset + 1];
+  const normalizedSection = normalizeSlug(section);
 
-  if (section === routeSegments[locale].privacy) {
+  if (normalizedSection === routeSegments[locale].privacy) {
     return { kind: "privacy", locale };
   }
 
-  if (section === routeSegments[locale].services && slug) {
-    const index = serviceSlugs[locale].indexOf(slug);
+  if (normalizedSection === routeSegments[locale].services && slug) {
+    const index = findSlugIndex(serviceSlugs[locale], slug);
     if (index >= 0) return { kind: "service", locale, index };
   }
 
-  if (section === routeSegments[locale].cases && slug) {
-    const index = caseSlugs[locale].indexOf(slug);
+  if (normalizedSection === routeSegments[locale].cases && slug) {
+    const index = findSlugIndex(caseSlugs[locale], slug);
     if (index >= 0) return { kind: "case", locale, index };
   }
 
@@ -111,3 +140,5 @@ export const getRoutePath = (route: AppRoute, targetLocale = route.locale) => {
   if (route.kind === "privacy") return getPrivacyPath(targetLocale);
   return getHomePath(targetLocale);
 };
+
+export const getCanonicalPathForPathname = (pathname: string) => getRoutePath(parseRoute(pathname));

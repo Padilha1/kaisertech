@@ -7,7 +7,15 @@ import { Header } from "./components/Header";
 import { HomePage } from "./components/HomePage";
 import { trackContactFormSubmit, trackPageView } from "./lib/analytics";
 import { dictionary, type Locale } from "./lib/i18n";
-import { getHomePath, getPrivacyPath, getRoutePath, parseRoute, siteUrl, type AppRoute } from "./lib/routing";
+import {
+  getCanonicalPathForPathname,
+  getHomePath,
+  getPrivacyPath,
+  getRoutePath,
+  parseRoute,
+  siteUrl,
+  type AppRoute,
+} from "./lib/routing";
 import { syncSeo } from "./lib/seo";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
@@ -63,6 +71,13 @@ export function App() {
   useEffect(() => {
     syncSeo({ canonicalUrl, casePage, route, serviceCopy, servicePage, t });
   }, [canonicalUrl, casePage, route, serviceCopy, servicePage, t]);
+
+  useEffect(() => {
+    const canonicalPathname = getCanonicalPathForPathname(window.location.pathname);
+    if (window.location.pathname === canonicalPathname) return;
+
+    window.history.replaceState(null, "", `${canonicalPathname}${window.location.hash}`);
+  }, [canonicalPath]);
 
   useEffect(() => {
     trackPageView(canonicalPath);
