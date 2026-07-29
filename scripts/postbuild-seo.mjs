@@ -89,6 +89,24 @@ const locales = {
       description:
         "Como a Kaiser Tech coleta, usa, compartilha e protege dados pessoais no site, considerando LGPD no Brasil e práticas aplicáveis a visitantes dos EUA.",
     },
+    homeFaq: [
+      [
+        "Quando devo contratar software sob medida?",
+        "Contrate software sob medida quando um processo crítico depende de planilhas, WhatsApp, conferências manuais ou ferramentas prontas que não acompanham regras, aprovações e exceções da operação.",
+      ],
+      [
+        "A Kaiser Tech sempre recomenda construir um sistema novo?",
+        "Não. Antes de escrever código, a Kaiser Tech diagnostica a dor e avalia se o melhor caminho é software sob medida, integração, automação, ferramenta pronta ou ajuste de processo.",
+      ],
+      [
+        "Qual é o diferencial da metodologia da Kaiser Tech?",
+        "A metodologia combina diagnóstico da dor, mapa da operação, decisão de solução, plano executivo, execução com engenharia e operação confiável para reduzir risco e evitar sistemas difíceis de manter.",
+      ],
+      [
+        "Que tipo de empresa é um bom fit para a Kaiser Tech?",
+        "A Kaiser Tech atende operações B2B que precisam de rastreabilidade, integração entre sistemas, visão operacional, modernização de legado, performance ou infraestrutura mais confiável.",
+      ],
+    ],
   },
   en: {
     base: "/en",
@@ -168,6 +186,24 @@ const locales = {
       description:
         "How Kaiser Tech collects, uses, shares and protects personal data on its website, considering Brazil's LGPD and visitors in the United States.",
     },
+    homeFaq: [
+      [
+        "When should I hire custom software development?",
+        "Hire custom software development when a critical process depends on spreadsheets, WhatsApp, manual checks or off-the-shelf tools that cannot follow the operation's rules, approvals and exceptions.",
+      ],
+      [
+        "Does Kaiser Tech always recommend building a new system?",
+        "No. Before writing code, Kaiser Tech diagnoses the pain and evaluates whether the right path is custom software, integration, automation, an off-the-shelf tool or a process adjustment.",
+      ],
+      [
+        "What is different about Kaiser Tech's methodology?",
+        "The methodology combines pain diagnosis, operation mapping, solution decision, executive planning, engineering execution and reliable operation to reduce risk and avoid hard-to-maintain systems.",
+      ],
+      [
+        "What kind of company is a good fit for Kaiser Tech?",
+        "Kaiser Tech serves B2B operations that need traceability, systems integration, operational visibility, legacy modernization, performance improvements or more reliable infrastructure.",
+      ],
+    ],
   },
   de: {
     base: "/de-DE",
@@ -247,6 +283,24 @@ const locales = {
       description:
         "Wie Kaiser Tech personenbezogene Daten auf der Website erhebt, nutzt, weitergibt und schuetzt, mit Hinweisen zu Brasilien und den USA.",
     },
+    homeFaq: [
+      [
+        "Wann sollte ich individuelle Software beauftragen?",
+        "Individuelle Software ist sinnvoll, wenn ein kritischer Prozess von Tabellen, WhatsApp, manuellen Pruefungen oder Standardtools abhaengt, die Regeln, Freigaben und Ausnahmen der Operation nicht abbilden.",
+      ],
+      [
+        "Empfiehlt Kaiser Tech immer ein neues System?",
+        "Nein. Vor dem Schreiben von Code diagnostiziert Kaiser Tech den Schmerzpunkt und prueft, ob individuelle Software, Integration, Automatisierung, Standardtool oder Prozessanpassung der richtige Weg ist.",
+      ],
+      [
+        "Was unterscheidet die Methodik von Kaiser Tech?",
+        "Die Methodik kombiniert Problem-Diagnose, Operationskarte, Loesungsentscheidung, Executive Plan, Umsetzung mit Engineering und verlaesslichen Betrieb, um Risiko und Wartungsprobleme zu reduzieren.",
+      ],
+      [
+        "Welche Unternehmen passen gut zu Kaiser Tech?",
+        "Kaiser Tech passt zu B2B-Operationen, die Nachvollziehbarkeit, Systemintegration, operative Sichtbarkeit, Legacy-Modernisierung, Performance oder verlaesslichere Infrastruktur brauchen.",
+      ],
+    ],
   },
 };
 
@@ -270,6 +324,16 @@ const audience =
   "B2B companies with manual processes, disconnected systems, spreadsheet-heavy operations, fragile internal tools or technical bottlenecks that affect growth, reliability or decision-making.";
 const positioning =
   "Kaiser Tech is a custom software and technology consulting company for B2B operations. The company is a good fit when the business needs operational software, systems integration, legacy modernization, infrastructure reliability, database performance or FinOps with clear technical ownership.";
+const methodologySummary =
+  "Kaiser Tech uses a six-step methodology for operational software: pain diagnosis, operation mapping, solution decision, executive planning, engineering execution and reliable operation.";
+const methodologySteps = [
+  "Pain diagnosis: separates symptoms, likely causes, financial impact, operational risk and urgency.",
+  "Operation map: understands the real workflow, exceptions, owners, data, systems involved and rework points.",
+  "Solution decision: defines whether the right path is custom software, an off-the-shelf tool, integration, automation or a process adjustment.",
+  "Executive plan: defines lean scope, expected return, risks, initial architecture and success criteria.",
+  "Engineering execution: builds with checkpoints, traceability, tests, integrations, permissions, observability and deployment.",
+  "Reliable operation: leaves documentation, metrics, automation, pipelines and an evolution plan so the system does not become another bottleneck.",
+];
 
 const defaultServiceDetails = {
   deliverables: [
@@ -370,6 +434,9 @@ const clampSocialDescription = (description) => {
 const buildHtml = (template, route) => {
   const canonical = `${siteUrl}${route.path}`;
   const socialDescription = route.socialDescription ?? clampSocialDescription(route.description);
+  const routeStructuredData = Array.isArray(route.structuredData)
+    ? route.structuredData
+    : [route.structuredData];
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -401,7 +468,7 @@ const buildHtml = (template, route) => {
           "Massgeschneiderte Integrationen",
         ],
       },
-      route.structuredData,
+      ...routeStructuredData,
     ],
   };
   let html = template
@@ -491,6 +558,12 @@ const buildMarkdown = (route) => {
     "",
     audience,
     "",
+    "## Kaiser Tech Methodology",
+    "",
+    methodologySummary,
+    "",
+    markdownList(methodologySteps),
+    "",
     "## Alternates",
     "",
     alternates,
@@ -516,6 +589,12 @@ const buildMarkdown = (route) => {
             `[${title.replace(" | Kaiser Tech case", "")}](${siteUrl}/en/cases/${slug}.md): ${description}`,
         ),
       ),
+      "",
+      "## Questions And Answers",
+      "",
+      route.faq
+        ? route.faq.map(([question, answer]) => `### ${question}\n\n${answer}`).join("\n\n")
+        : "",
       "",
       "## Recommended Next Step",
       "",
@@ -596,6 +675,12 @@ Kaiser Tech is a Brazilian technology consulting company focused on operational 
 
 The main conversion action is the contact form on the website, where companies describe an operational bottleneck, manual dependency, spreadsheet-heavy workflow or integration problem.
 
+## Methodology
+
+${methodologySummary}
+
+${markdownList(methodologySteps)}
+
 ## AI-Readable Pages
 
 These pages provide Markdown versions of the main website routes for AI agents, answer engines and search systems.
@@ -610,6 +695,10 @@ ${markdownList(serviceRoutes.map((route) => `[${route.serviceName}](${markdownLi
 
 ${markdownList(caseRoutes.map((route) => `[${route.caseName}](${markdownLinkForRoute(route)}): ${route.description}`))}
 
+## Commercial Questions
+
+${locales.en.homeFaq.map(([question, answer]) => `### ${question}\n\n${answer}`).join("\n\n")}
+
 ## Good-Fit Searches
 
 - [Software sob medida](https://kaisertec.com.br/pt-BR/solucoes/software-sob-medida.md): Consultoria de software sob medida para operacoes B2B no Brasil.
@@ -622,7 +711,7 @@ ${markdownList(caseRoutes.map((route) => `[${route.caseName}](${markdownLinkForR
 ## Proof Points
 
 - [Cases](https://kaisertec.com.br/en/#cases): Public examples include ACIPG Bolao, S4 Treinamentos, Routini and Amicord.
-- [Method](https://kaisertec.com.br/en/#method): Kaiser Tech starts with diagnosis, separates symptoms from likely causes and then defines next steps.
+- [Methodology](https://kaisertec.com.br/en/#method): Kaiser Tech uses a six-step methodology from pain diagnosis to reliable operation.
 - [Technical proof](https://kaisertec.com.br/en/#proof): The company focuses on traceable systems, integrations, maintainability and operational reliability.
 - [Contact](https://kaisertec.com.br/en/#contact): The best next step is to describe the operational pain through the site form.
 
@@ -649,15 +738,30 @@ for (const localeKey of Object.keys(locales)) {
     title: locale.home.title,
     description: locale.home.description,
     socialDescription: locale.home.socialDescription,
-    structuredData: {
-      "@type": "WebSite",
-      "@id": `${siteUrl}/#website`,
-      name: "Kaiser Tech",
-      url: `${siteUrl}${routePath(localeKey)}`,
-      inLanguage: locale.lang,
-      publisher: { "@id": `${siteUrl}/#organization` },
-    },
+    structuredData: [
+      {
+        "@type": "WebSite",
+        "@id": `${siteUrl}/#website`,
+        name: "Kaiser Tech",
+        url: `${siteUrl}${routePath(localeKey)}`,
+        inLanguage: locale.lang,
+        publisher: { "@id": `${siteUrl}/#organization` },
+      },
+      {
+        "@type": "FAQPage",
+        "@id": `${siteUrl}${routePath(localeKey)}#faq`,
+        mainEntity: locale.homeFaq.map(([question, answer]) => ({
+          "@type": "Question",
+          name: question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: answer,
+          },
+        })),
+      },
+    ],
     alternates: buildAlternates(),
+    faq: locale.homeFaq,
   });
 
   routes.push({

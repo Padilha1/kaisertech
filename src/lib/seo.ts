@@ -131,6 +131,22 @@ export const syncSeo = ({ canonicalUrl, route, t, servicePage, serviceCopy, case
     serviceType: t.services.map((service) => service.title),
   };
 
+  const faqPage =
+    route.kind === "home"
+      ? {
+          "@type": "FAQPage",
+          "@id": `${canonicalUrl}#faq`,
+          mainEntity: t.homeFaq.items.map(([question, answer]) => ({
+            "@type": "Question",
+            name: question,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: answer,
+            },
+          })),
+        }
+      : null;
+
   const routeEntity = servicePage
     ? {
         "@type": "Service",
@@ -207,6 +223,6 @@ export const syncSeo = ({ canonicalUrl, route, t, servicePage, serviceCopy, case
   });
   setStructuredData({
     "@context": "https://schema.org",
-    "@graph": [organization, professionalService, routeEntity],
+    "@graph": [organization, professionalService, routeEntity, faqPage].filter(Boolean),
   });
 };

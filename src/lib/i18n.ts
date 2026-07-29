@@ -15,7 +15,7 @@ export const dictionary = {
     nav: {
       services: "Soluções",
       cases: "Cases",
-      method: "Método",
+      method: "Metodologia",
       proof: "Prova técnica",
       contact: "Contato",
     },
@@ -38,7 +38,7 @@ export const dictionary = {
       ],
     },
     pain: {
-      title: "Quando a operação cresce, o improviso cobra juros",
+      title: "Quais sinais mostram que a operação saiu do improviso?",
       items: [
         {
           title: "Processos manuais",
@@ -55,8 +55,8 @@ export const dictionary = {
       ],
     },
     servicesTitle: [
-      "Software sob medida no centro.",
-      "Engenharia forte ao redor.",
+      "Que tipo de software",
+      "a Kaiser Tech constrói?",
     ],
     servicesIntro:
       "A solução principal é construir o sistema certo para o processo. As demais frentes entram para integrar, estabilizar e escalar esse software com segurança.",
@@ -302,7 +302,7 @@ export const dictionary = {
         ],
       },
     ],
-    casesTitle: "Cases de software que viram operação",
+    casesTitle: "Quais cases mostram software virando operação?",
     casesIntro:
       "Projetos criados do zero para transformar processos reais em sistemas internos, produtos digitais e operação rastreável.",
     caseModalClose: "Fechar case",
@@ -403,33 +403,43 @@ export const dictionary = {
       },
     ],
     method: {
-      title: "Como a Kaiser Tech trabalha",
+      title: "Qual a metodologia da Kaiser Tech?",
       steps: [
         [
           "01",
-          "Diagnóstico",
-          "Mapeamos a dor, o impacto financeiro e os pontos técnicos que sustentam o problema.",
+          "Diagnóstico da dor",
+          "Separamos sintoma, causa provável, impacto financeiro, risco operacional e urgência.",
         ],
         [
           "02",
-          "Plano executivo",
-          "Priorizamos iniciativas com retorno claro, risco controlado e entregas verificáveis.",
+          "Mapa da operação",
+          "Entendemos o fluxo real, exceções, responsáveis, dados, sistemas envolvidos e pontos de retrabalho.",
         ],
         [
           "03",
-          "Execução técnica",
-          "Construímos, refatoramos ou migramos com checkpoints curtos e visibilidade constante.",
+          "Decisão de solução",
+          "Definimos se o melhor caminho é software sob medida, ferramenta pronta, integração, automação ou ajuste de processo.",
         ],
         [
           "04",
+          "Plano executivo",
+          "Desenhamos escopo enxuto, retorno esperado, riscos, arquitetura inicial e critérios de sucesso.",
+        ],
+        [
+          "05",
+          "Execução com engenharia",
+          "Construímos com checkpoints, rastreabilidade, testes, integrações, permissões, observabilidade e deploy.",
+        ],
+        [
+          "06",
           "Operação confiável",
-          "Deixamos métricas, documentação, automações e pipelines para sustentar evolução.",
+          "Deixamos documentação, métricas, automações, pipelines e plano de evolução para o sistema não virar outro gargalo.",
         ],
       ],
     },
     proof: {
-      title: "Nem toda dor precisa virar software",
-      copy: "Quando processo, ferramenta pronta ou ajuste operacional resolver melhor, falamos isso com clareza. Quando software fizer sentido, construímos com domínio técnico, visão de negócio e responsabilidade sobre manutenção.",
+      title: "Por que confiar na Kaiser Tech?",
+      copy: "A Kaiser Tech une experiência prática em software operacional, transparência para dizer quando não construir e responsabilidade técnica sobre manutenção. A empresa atua como Kaiser Labs Tecnologia LTDA, com cases públicos e projetos sob sigilo quando necessário.",
       bullets: [
         "Mais de 6 anos de mercado",
         "Experiência com govtechs, indústrias e empresas privadas",
@@ -437,8 +447,29 @@ export const dictionary = {
         "Transparência para dizer o que não fazemos",
       ],
     },
+    homeFaq: {
+      title: "O que empresas perguntam antes de contratar a Kaiser Tech?",
+      items: [
+        [
+          "Quando devo contratar software sob medida?",
+          "Contrate software sob medida quando um processo crítico depende de planilhas, WhatsApp, conferências manuais ou ferramentas prontas que não acompanham regras, aprovações e exceções da operação.",
+        ],
+        [
+          "A Kaiser Tech sempre recomenda construir um sistema novo?",
+          "Não. Antes de escrever código, a Kaiser Tech diagnostica a dor e avalia se o melhor caminho é software sob medida, integração, automação, ferramenta pronta ou ajuste de processo.",
+        ],
+        [
+          "Qual é o diferencial da metodologia da Kaiser Tech?",
+          "A metodologia combina diagnóstico da dor, mapa da operação, decisão de solução, plano executivo, execução com engenharia e operação confiável para reduzir risco e evitar sistemas difíceis de manter.",
+        ],
+        [
+          "Que tipo de empresa é um bom fit para a Kaiser Tech?",
+          "A Kaiser Tech atende operações B2B que precisam de rastreabilidade, integração entre sistemas, visão operacional, modernização de legado, performance ou infraestrutura mais confiável.",
+        ],
+      ],
+    },
     form: {
-      title: "Conte sua dor",
+      title: "Qual dor operacional você quer resolver?",
       subtitle:
         "Envie o gargalo técnico ou operacional. A resposta inicial busca identificar oportunidade, causa provável e próximos passos.",
       whatsappLabel: "WhatsApp",
@@ -491,7 +522,7 @@ export const dictionary = {
     nav: {
       services: "Solutions",
       cases: "Cases",
-      method: "Method",
+      method: "Methodology",
       proof: "Technical proof",
       contact: "Contact",
     },
@@ -514,7 +545,7 @@ export const dictionary = {
       ],
     },
     pain: {
-      title: "When operations grow, improvisation gets expensive",
+      title: "What signs show that an operation has outgrown improvisation?",
       items: [
         {
           title: "Manual processes",
@@ -531,8 +562,8 @@ export const dictionary = {
       ],
     },
     servicesTitle: [
-      "Custom software at the center.",
-      "Strong engineering around it.",
+      "What kind of software",
+      "does Kaiser Tech build?",
     ],
     servicesIntro:
       "The main solution is building the right system for the process. The other fronts support it with integration, stability and scale.",
@@ -778,7 +809,7 @@ export const dictionary = {
         ],
       },
     ],
-    casesTitle: "Software cases that become operations",
+    casesTitle: "Which cases show software becoming operation?",
     casesIntro:
       "Projects built from scratch to turn real processes into internal systems, digital products and traceable operations.",
     caseModalClose: "Close case",
@@ -879,33 +910,43 @@ export const dictionary = {
       },
     ],
     method: {
-      title: "How Kaiser Tech works",
+      title: "What is Kaiser Tech's methodology?",
       steps: [
         [
           "01",
-          "Diagnosis",
-          "We map the pain, financial impact and technical causes behind the problem.",
+          "Pain diagnosis",
+          "We separate symptoms, likely causes, financial impact, operational risk and urgency.",
         ],
         [
           "02",
-          "Executive plan",
-          "We prioritize initiatives with clear ROI, controlled risk and verifiable delivery.",
+          "Operation map",
+          "We understand the real workflow, exceptions, owners, data, systems involved and rework points.",
         ],
         [
           "03",
-          "Technical execution",
-          "We build, refactor or migrate with short checkpoints and constant visibility.",
+          "Solution decision",
+          "We define whether the right path is custom software, an off-the-shelf tool, integration, automation or a process adjustment.",
         ],
         [
           "04",
+          "Executive plan",
+          "We define lean scope, expected return, risks, initial architecture and success criteria.",
+        ],
+        [
+          "05",
+          "Engineering execution",
+          "We build with checkpoints, traceability, tests, integrations, permissions, observability and deployment.",
+        ],
+        [
+          "06",
           "Reliable operation",
-          "We leave metrics, documentation, automation and pipelines to support evolution.",
+          "We leave documentation, metrics, automation, pipelines and an evolution plan so the system does not become another bottleneck.",
         ],
       ],
     },
     proof: {
-      title: "Not every pain needs to become software",
-      copy: "When process, an off-the-shelf tool or an operational adjustment solves the problem better, we say it clearly. When software makes sense, we build it with technical depth, business context and responsibility for maintainability.",
+      title: "Why trust Kaiser Tech?",
+      copy: "Kaiser Tech combines practical experience in operational software, transparency to say when not to build and technical responsibility for maintainability. The company operates as Kaiser Labs Tecnologia LTDA, with public cases and confidential projects when required.",
       bullets: [
         "More than 6 years in the market",
         "Experience with govtechs, industries and private companies",
@@ -913,8 +954,29 @@ export const dictionary = {
         "Transparency to say what we do not do",
       ],
     },
+    homeFaq: {
+      title: "What do companies ask before hiring Kaiser Tech?",
+      items: [
+        [
+          "When should I hire custom software development?",
+          "Hire custom software development when a critical process depends on spreadsheets, WhatsApp, manual checks or off-the-shelf tools that cannot follow the operation's rules, approvals and exceptions.",
+        ],
+        [
+          "Does Kaiser Tech always recommend building a new system?",
+          "No. Before writing code, Kaiser Tech diagnoses the pain and evaluates whether the right path is custom software, integration, automation, an off-the-shelf tool or a process adjustment.",
+        ],
+        [
+          "What is different about Kaiser Tech's methodology?",
+          "The methodology combines pain diagnosis, operation mapping, solution decision, executive planning, engineering execution and reliable operation to reduce risk and avoid hard-to-maintain systems.",
+        ],
+        [
+          "What kind of company is a good fit for Kaiser Tech?",
+          "Kaiser Tech serves B2B operations that need traceability, systems integration, operational visibility, legacy modernization, performance improvements or more reliable infrastructure.",
+        ],
+      ],
+    },
     form: {
-      title: "Tell us your pain",
+      title: "What operational pain do you want to solve?",
       subtitle:
         "Send the technical or operational bottleneck. The first response aims to identify opportunity, likely cause and next steps.",
       whatsappLabel: "WhatsApp",
@@ -967,7 +1029,7 @@ export const dictionary = {
     nav: {
       services: "Loesungen",
       cases: "Cases",
-      method: "Methode",
+      method: "Methodik",
       proof: "Technischer Nachweis",
       contact: "Kontakt",
     },
@@ -990,7 +1052,7 @@ export const dictionary = {
       ],
     },
     pain: {
-      title: "Wenn Operationen wachsen, wird Improvisation teuer",
+      title: "Welche Signale zeigen, dass eine Operation ueber Improvisation hinausgewachsen ist?",
       items: [
         {
           title: "Manuelle Prozesse",
@@ -1007,8 +1069,8 @@ export const dictionary = {
       ],
     },
     servicesTitle: [
-      "Individuelle Software im Zentrum.",
-      "Starke Softwaretechnik drumherum.",
+      "Welche Software",
+      "entwickelt Kaiser Tech?",
     ],
     servicesIntro:
       "Die Hauptloesung ist das richtige System fuer den Prozess. Weitere Schwerpunkte integrieren, stabilisieren und skalieren diese Software verlaesslich.",
@@ -1254,7 +1316,7 @@ export const dictionary = {
         ],
       },
     ],
-    casesTitle: "Software-Cases, die Operationen werden",
+    casesTitle: "Welche Cases zeigen Software als echte Operation?",
     casesIntro:
       "Projekte, die reale Prozesse in interne Systeme, digitale Produkte und nachvollziehbare Operationen verwandeln.",
     caseModalClose: "Case schliessen",
@@ -1355,33 +1417,43 @@ export const dictionary = {
       },
     ],
     method: {
-      title: "Wie Kaiser Tech arbeitet",
+      title: "Welche Methodik nutzt Kaiser Tech?",
       steps: [
         [
           "01",
-          "Diagnose",
-          "Wir erfassen den Schmerzpunkt, die finanzielle Auswirkung und die technischen Ursachen hinter dem Problem.",
+          "Problem-Diagnose",
+          "Wir trennen Symptome, wahrscheinliche Ursachen, finanzielle Auswirkung, operatives Risiko und Dringlichkeit.",
         ],
         [
           "02",
-          "Executive Plan",
-          "Wir priorisieren Initiativen mit klarem ROI, kontrolliertem Risiko und pruefbarer Lieferung.",
+          "Operationskarte",
+          "Wir verstehen reale Ablaeufe, Ausnahmen, Verantwortliche, Daten, beteiligte Systeme und Nacharbeitsstellen.",
         ],
         [
           "03",
-          "Technische Umsetzung",
-          "Wir bauen, refaktorisieren oder migrieren mit kurzen Checkpoints und konstanter Sichtbarkeit.",
+          "Loesungsentscheidung",
+          "Wir klaeren, ob individuelle Software, Standardtool, Integration, Automatisierung oder Prozessanpassung der beste Weg ist.",
         ],
         [
           "04",
+          "Executive Plan",
+          "Wir definieren schlanken Scope, erwarteten Return, Risiken, erste Architektur und Erfolgskriterien.",
+        ],
+        [
+          "05",
+          "Umsetzung mit Engineering",
+          "Wir bauen mit Checkpoints, Nachvollziehbarkeit, Tests, Integrationen, Berechtigungen, Observability und Deployment.",
+        ],
+        [
+          "06",
           "Verlaesslicher Betrieb",
-          "Wir hinterlassen Metriken, Dokumentation, Automatisierung und Pipelines, die Weiterentwicklung tragen.",
+          "Wir hinterlassen Dokumentation, Metriken, Automatisierung, Pipelines und einen Evolutionsplan, damit das System kein neuer Engpass wird.",
         ],
       ],
     },
     proof: {
-      title: "Nicht jeder Schmerzpunkt muss Software werden",
-      copy: "Wenn Prozess, Standardtool oder operative Anpassung besser loesen, sagen wir das klar. Wenn Software sinnvoll ist, bauen wir mit technischer Tiefe, Geschaeftskontext und Verantwortung fuer Wartbarkeit.",
+      title: "Warum Kaiser Tech vertrauen?",
+      copy: "Kaiser Tech verbindet praktische Erfahrung mit operativer Software, Transparenz darueber, wann nicht gebaut werden sollte, und technische Verantwortung fuer Wartbarkeit. Das Unternehmen arbeitet als Kaiser Labs Tecnologia LTDA, mit oeffentlichen Cases und vertraulichen Projekten bei Bedarf.",
       bullets: [
         "Mehr als 6 Jahre Markterfahrung",
         "Erfahrung mit Govtechs, Industrie und privaten Unternehmen",
@@ -1389,8 +1461,29 @@ export const dictionary = {
         "Transparenz darueber, was wir nicht tun",
       ],
     },
+    homeFaq: {
+      title: "Was fragen Unternehmen vor der Beauftragung von Kaiser Tech?",
+      items: [
+        [
+          "Wann sollte ich individuelle Software beauftragen?",
+          "Individuelle Software ist sinnvoll, wenn ein kritischer Prozess von Tabellen, WhatsApp, manuellen Pruefungen oder Standardtools abhaengt, die Regeln, Freigaben und Ausnahmen der Operation nicht abbilden.",
+        ],
+        [
+          "Empfiehlt Kaiser Tech immer ein neues System?",
+          "Nein. Vor dem Schreiben von Code diagnostiziert Kaiser Tech den Schmerzpunkt und prueft, ob individuelle Software, Integration, Automatisierung, Standardtool oder Prozessanpassung der richtige Weg ist.",
+        ],
+        [
+          "Was unterscheidet die Methodik von Kaiser Tech?",
+          "Die Methodik kombiniert Problem-Diagnose, Operationskarte, Loesungsentscheidung, Executive Plan, Umsetzung mit Engineering und verlaesslichen Betrieb, um Risiko und Wartungsprobleme zu reduzieren.",
+        ],
+        [
+          "Welche Unternehmen passen gut zu Kaiser Tech?",
+          "Kaiser Tech passt zu B2B-Operationen, die Nachvollziehbarkeit, Systemintegration, operative Sichtbarkeit, Legacy-Modernisierung, Performance oder verlaesslichere Infrastruktur brauchen.",
+        ],
+      ],
+    },
     form: {
-      title: "Beschreiben Sie den Engpass",
+      title: "Welchen operativen Engpass moechten Sie loesen?",
       subtitle:
         "Senden Sie den technischen oder operativen Engpass. Die erste Antwort soll Chance, wahrscheinliche Ursache und naechste Schritte identifizieren.",
       whatsappLabel: "WhatsApp",

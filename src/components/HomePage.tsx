@@ -2,6 +2,7 @@ import type { FormEvent } from "react";
 import type { CaseModalContent } from "./CaseModal";
 import { CasesSection } from "./CasesSection";
 import { ContactSection } from "./ContactSection";
+import { FaqSection } from "./FaqSection";
 import { HeroSection } from "./HeroSection";
 import { MethodSection } from "./MethodSection";
 import { MetricsStrip } from "./MetricsStrip";
@@ -30,6 +31,7 @@ export function HomePage({ formStatus, handleContactSubmit, locale, setSelectedC
       <CasesSection locale={locale} setSelectedCase={setSelectedCase} t={t} />
       <MethodSection t={t} />
       <ProofSection t={t} />
+      <FaqSection items={t.homeFaq.items} title={t.homeFaq.title} />
       <ContactSection formStatus={formStatus} handleContactSubmit={handleContactSubmit} t={t} />
     </main>
   );

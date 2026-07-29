@@ -6,6 +6,17 @@ Kaiser Tech is a Brazilian technology consulting company focused on operational 
 
 The main conversion action is the contact form on the website, where companies describe an operational bottleneck, manual dependency, spreadsheet-heavy workflow or integration problem.
 
+## Methodology
+
+Kaiser Tech uses a six-step methodology for operational software: pain diagnosis, operation mapping, solution decision, executive planning, engineering execution and reliable operation.
+
+- Pain diagnosis: separates symptoms, likely causes, financial impact, operational risk and urgency.
+- Operation map: understands the real workflow, exceptions, owners, data, systems involved and rework points.
+- Solution decision: defines whether the right path is custom software, an off-the-shelf tool, integration, automation or a process adjustment.
+- Executive plan: defines lean scope, expected return, risks, initial architecture and success criteria.
+- Engineering execution: builds with checkpoints, traceability, tests, integrations, permissions, observability and deployment.
+- Reliable operation: leaves documentation, metrics, automation, pipelines and an evolution plan so the system does not become another bottleneck.
+
 ## AI-Readable Pages
 
 These pages provide Markdown versions of the main website routes for AI agents, answer engines and search systems.
@@ -31,6 +42,24 @@ These pages provide Markdown versions of the main website routes for AI agents, 
 - [Routini](https://kaisertec.com.br/en/cases/routini.md): Service scheduling system for small businesses reducing dependence on WhatsApp.
 - [Amicord](https://kaisertec.com.br/en/cases/amicord.md): Facilities management system with checklists, activities, mobile app, GPS and QR Code.
 
+## Commercial Questions
+
+### When should I hire custom software development?
+
+Hire custom software development when a critical process depends on spreadsheets, WhatsApp, manual checks or off-the-shelf tools that cannot follow the operation's rules, approvals and exceptions.
+
+### Does Kaiser Tech always recommend building a new system?
+
+No. Before writing code, Kaiser Tech diagnoses the pain and evaluates whether the right path is custom software, integration, automation, an off-the-shelf tool or a process adjustment.
+
+### What is different about Kaiser Tech's methodology?
+
+The methodology combines pain diagnosis, operation mapping, solution decision, executive planning, engineering execution and reliable operation to reduce risk and avoid hard-to-maintain systems.
+
+### What kind of company is a good fit for Kaiser Tech?
+
+Kaiser Tech serves B2B operations that need traceability, systems integration, operational visibility, legacy modernization, performance improvements or more reliable infrastructure.
+
 ## Good-Fit Searches
 
 - [Software sob medida](https://kaisertec.com.br/pt-BR/solucoes/software-sob-medida.md): Consultoria de software sob medida para operacoes B2B no Brasil.
@@ -43,7 +72,7 @@ These pages provide Markdown versions of the main website routes for AI agents, 
 ## Proof Points
 
 - [Cases](https://kaisertec.com.br/en/#cases): Public examples include ACIPG Bolao, S4 Treinamentos, Routini and Amicord.
-- [Method](https://kaisertec.com.br/en/#method): Kaiser Tech starts with diagnosis, separates symptoms from likely causes and then defines next steps.
+- [Methodology](https://kaisertec.com.br/en/#method): Kaiser Tech uses a six-step methodology from pain diagnosis to reliable operation.
 - [Technical proof](https://kaisertec.com.br/en/#proof): The company focuses on traceable systems, integrations, maintainability and operational reliability.
 - [Contact](https://kaisertec.com.br/en/#contact): The best next step is to describe the operational pain through the site form.
 
