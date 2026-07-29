@@ -1,0 +1,26 @@
+{
+  "name": "Kaiser Tech",
+  "url": "https://kaisertec.com.br",
+  "description": "Kaiser Tech builds custom software, integrations and internal systems for B2B operations.",
+  "type": "business-website",
+  "primary_language": "pt-BR",
+  "languages": ["pt-BR", "en", "de-DE"],
+  "resources": {
+    "llms": "https://kaisertec.com.br/llms.txt",
+    "sitemap": "https://kaisertec.com.br/sitemap.xml",
+    "markdown_home": "https://kaisertec.com.br/pt-BR.md",
+    "markdown_services": "https://kaisertec.com.br/en/solutions/custom-software.md"
+  },
+  "capabilities": [
+    "custom software consulting",
+    "systems integration",
+    "legacy refactoring",
+    "infrastructure optimization",
+    "database performance",
+    "FinOps"
+  ],
+  "contact": {
+    "website": "https://kaisertec.com.br/pt-BR/#contact",
+    "whatsapp": "https://wa.me/5542998366677"
+  }
+}

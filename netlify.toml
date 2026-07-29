@@ -9,6 +9,18 @@
   directory = "netlify/functions"
   node_bundler = "esbuild"
 
+[[headers]]
+  for = "/"
+  [headers.values]
+    Link = "</.well-known/agent-discovery.json>; rel=\"service-desc\"; type=\"application/json\", </llms.txt>; rel=\"service-doc\"; type=\"text/plain\", </sitemap.xml>; rel=\"sitemap\"; type=\"application/xml\", </pt-BR.md>; rel=\"alternate\"; type=\"text/markdown\""
+    Vary = "Accept"
+
+[[headers]]
+  for = "/pt-BR/"
+  [headers.values]
+    Link = "</.well-known/agent-discovery.json>; rel=\"service-desc\"; type=\"application/json\", </llms.txt>; rel=\"service-doc\"; type=\"text/plain\", </sitemap.xml>; rel=\"sitemap\"; type=\"application/xml\", </pt-BR.md>; rel=\"alternate\"; type=\"text/markdown\""
+    Vary = "Accept"
+
 [[redirects]]
   from = "/"
   to = "/pt-BR/"
