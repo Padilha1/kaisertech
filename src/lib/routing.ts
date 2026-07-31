@@ -11,9 +11,9 @@ export type AppRoute = {
 export const siteUrl = "https://kaisertec.com.br";
 
 export const localePaths: Record<Locale, string> = {
-  pt: "/pt-BR",
+  pt: "/pt-br",
   en: "/en",
-  de: "/de-DE",
+  de: "/de-de",
 };
 
 export const routeSegments = {

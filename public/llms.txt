@@ -21,9 +21,9 @@ Kaiser Tech uses a six-step methodology for operational software: pain diagnosis
 
 These pages provide Markdown versions of the main website routes for AI agents, answer engines and search systems.
 
-- [pt-BR homepage](https://kaisertec.com.br/pt-BR.md)
+- [pt-BR homepage](https://kaisertec.com.br/pt-br.md)
 - [en homepage](https://kaisertec.com.br/en.md)
-- [de-DE homepage](https://kaisertec.com.br/de-DE.md)
+- [de-DE homepage](https://kaisertec.com.br/de-de.md)
 
 ## Primary Services
 
@@ -62,12 +62,12 @@ Kaiser Tech serves B2B operations that need traceability, systems integration, o
 
 ## Good-Fit Searches
 
-- [Software sob medida](https://kaisertec.com.br/pt-BR/solucoes/software-sob-medida.md): Consultoria de software sob medida para operacoes B2B no Brasil.
-- [Integracoes sob medida](https://kaisertec.com.br/pt-BR/solucoes/integracoes-sob-medida.md): Integracao entre sistemas empresariais, ERPs, CRMs, APIs e planilhas.
+- [Software sob medida](https://kaisertec.com.br/pt-br/solucoes/software-sob-medida.md): Consultoria de software sob medida para operacoes B2B no Brasil.
+- [Integracoes sob medida](https://kaisertec.com.br/pt-br/solucoes/integracoes-sob-medida.md): Integracao entre sistemas empresariais, ERPs, CRMs, APIs e planilhas.
 - [Custom software consulting](https://kaisertec.com.br/en/solutions/custom-software.md): Custom software consulting company for B2B operations.
 - [B2B system integration](https://kaisertec.com.br/en/solutions/custom-integrations.md): Software consultancy for operational workflows and business integrations.
-- [Individuelle Softwareentwicklung](https://kaisertec.com.br/de-DE/loesungen/massgeschneiderte-software.md): Individuelle Softwareentwicklung fuer B2B-Unternehmen.
-- [Systemintegration fuer Unternehmen](https://kaisertec.com.br/de-DE/loesungen/massgeschneiderte-integrationen.md): B2B Softwareberatung fuer operative Workflows.
+- [Individuelle Softwareentwicklung](https://kaisertec.com.br/de-de/loesungen/massgeschneiderte-software.md): Individuelle Softwareentwicklung fuer B2B-Unternehmen.
+- [Systemintegration fuer Unternehmen](https://kaisertec.com.br/de-de/loesungen/massgeschneiderte-integrationen.md): B2B Softwareberatung fuer operative Workflows.
 
 ## Proof Points
 
@@ -78,9 +78,9 @@ Kaiser Tech serves B2B operations that need traceability, systems integration, o
 
 ## Legal
 
-- [Política de Privacidade | Kaiser Tech](https://kaisertec.com.br/pt-BR/politica-de-privacidade.md)
+- [Política de Privacidade | Kaiser Tech](https://kaisertec.com.br/pt-br/politica-de-privacidade.md)
 - [Privacy Policy | Kaiser Tech](https://kaisertec.com.br/en/privacy-policy.md)
-- [Datenschutzerklaerung | Kaiser Tech](https://kaisertec.com.br/de-DE/datenschutz.md)
+- [Datenschutzerklaerung | Kaiser Tech](https://kaisertec.com.br/de-de/datenschutz.md)
 
 ## Optional
 

@@ -12,7 +12,7 @@ const maxSocialDescriptionLength = 125;
 
 const locales = {
   pt: {
-    base: "/pt-BR",
+    base: "/pt-br",
     lang: "pt-BR",
     ogLocale: "pt_BR",
     servicesSegment: "solucoes",
@@ -206,7 +206,7 @@ const locales = {
     ],
   },
   de: {
-    base: "/de-DE",
+    base: "/de-de",
     lang: "de-DE",
     ogLocale: "de_DE",
     servicesSegment: "loesungen",
@@ -524,7 +524,7 @@ const writeRoute = async (template, route) => {
 
 const markdownPathForRoute = (path) => {
   const cleanPath = path.endsWith("/") ? path.slice(0, -1) : path;
-  return `${cleanPath || "/pt-BR"}.md`;
+  return `${cleanPath || "/pt-br"}.md`;
 };
 
 const markdownLinkForRoute = (route) =>
@@ -701,12 +701,12 @@ ${locales.en.homeFaq.map(([question, answer]) => `### ${question}\n\n${answer}`)
 
 ## Good-Fit Searches
 
-- [Software sob medida](https://kaisertec.com.br/pt-BR/solucoes/software-sob-medida.md): Consultoria de software sob medida para operacoes B2B no Brasil.
-- [Integracoes sob medida](https://kaisertec.com.br/pt-BR/solucoes/integracoes-sob-medida.md): Integracao entre sistemas empresariais, ERPs, CRMs, APIs e planilhas.
+- [Software sob medida](https://kaisertec.com.br/pt-br/solucoes/software-sob-medida.md): Consultoria de software sob medida para operacoes B2B no Brasil.
+- [Integracoes sob medida](https://kaisertec.com.br/pt-br/solucoes/integracoes-sob-medida.md): Integracao entre sistemas empresariais, ERPs, CRMs, APIs e planilhas.
 - [Custom software consulting](https://kaisertec.com.br/en/solutions/custom-software.md): Custom software consulting company for B2B operations.
 - [B2B system integration](https://kaisertec.com.br/en/solutions/custom-integrations.md): Software consultancy for operational workflows and business integrations.
-- [Individuelle Softwareentwicklung](https://kaisertec.com.br/de-DE/loesungen/massgeschneiderte-software.md): Individuelle Softwareentwicklung fuer B2B-Unternehmen.
-- [Systemintegration fuer Unternehmen](https://kaisertec.com.br/de-DE/loesungen/massgeschneiderte-integrationen.md): B2B Softwareberatung fuer operative Workflows.
+- [Individuelle Softwareentwicklung](https://kaisertec.com.br/de-de/loesungen/massgeschneiderte-software.md): Individuelle Softwareentwicklung fuer B2B-Unternehmen.
+- [Systemintegration fuer Unternehmen](https://kaisertec.com.br/de-de/loesungen/massgeschneiderte-integrationen.md): B2B Softwareberatung fuer operative Workflows.
 
 ## Proof Points
 
