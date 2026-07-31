@@ -11,9 +11,9 @@ const discoveryLinks = (markdownPath) =>
 
 const markdownPathForRequest = (url) => {
   const pathname = url.pathname;
-  const normalizedPathname = pathname === "/" ? "/pt-BR/" : pathname;
+  const normalizedPathname = pathname === "/" ? "/pt-br/" : pathname;
   const cleanPathname = normalizedPathname.endsWith("/") ? normalizedPathname.slice(0, -1) : normalizedPathname;
-  const markdownPath = cleanPathname || "/pt-BR";
+  const markdownPath = cleanPathname || "/pt-br";
   const lastSegment = markdownPath.split("/").at(-1) ?? "";
 
   if (fileExtensionPattern.test(lastSegment)) return null;
