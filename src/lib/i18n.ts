@@ -38,7 +38,7 @@ export const dictionary = {
       ],
     },
     pain: {
-      title: "Quais sinais mostram que a operação saiu do improviso?",
+      title: "Onde o improviso começa a custar caro?",
       items: [
         {
           title: "Processos manuais",
