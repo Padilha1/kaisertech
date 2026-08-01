@@ -2297,6 +2297,10 @@ main {
     white-space: normal;
   }
 
+  .solutions-title span + span::before {
+    content: " ";
+  }
+
   .hero-section {
     width: 100vw;
     margin: 0;
