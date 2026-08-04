@@ -11,6 +11,12 @@ export type CaseModalContent = {
   siteUrl?: string;
   detailUrl?: string;
   accent: string;
+  discovery?: {
+    problem: string;
+    solution: string;
+    stack: string;
+    outcome: string;
+  };
 };
 
 type CaseModalProps = {
@@ -116,6 +122,12 @@ export function CaseModal({ caseItem, closeLabel, detailLabel, siteLabel, onClos
           <p>{caseItem.subtitle}</p>
           <h2 id="case-modal-title">{caseItem.title}</h2>
           <div>{caseItem.description}</div>
+          {caseItem.discovery ? (
+            <div className="case-modal__summary">
+              <strong>{caseItem.discovery.problem}</strong>
+              <span>{caseItem.discovery.outcome}</span>
+            </div>
+          ) : null}
           <div className="case-modal__actions">
             {caseItem.detailUrl ? (
               <a className="case-modal__link" href={caseItem.detailUrl}>

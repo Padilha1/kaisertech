@@ -79,6 +79,60 @@ const privacySeo: Record<Locale, { title: string; description: string }> = {
   },
 };
 
+const methodologySeo: Record<Locale, { title: string; description: string }> = {
+  pt: {
+    title: "Metodologia para software sob medida | Kaiser Tech",
+    description:
+      "Como a Kaiser Tech diagnostica dores operacionais, mapeia processos, decide solução, executa engenharia e mantém sistemas confiáveis.",
+  },
+  en: {
+    title: "Custom software methodology | Kaiser Tech",
+    description:
+      "How Kaiser Tech diagnoses operational pain, maps workflows, decides solutions, executes engineering and keeps systems reliable.",
+  },
+  de: {
+    title: "Methodik fuer individuelle Software | Kaiser Tech",
+    description:
+      "Wie Kaiser Tech operative Probleme diagnostiziert, Prozesse abbildet, Loesungen entscheidet und verlaessliche Systeme baut.",
+  },
+};
+
+const glossarySeo: Record<Locale, { title: string; description: string }> = {
+  pt: {
+    title: "Glossário de software operacional | Kaiser Tech",
+    description:
+      "Definições curtas sobre software sob medida, integrações, rastreabilidade, legado, FinOps e performance de banco.",
+  },
+  en: {
+    title: "Operational software glossary | Kaiser Tech",
+    description:
+      "Short definitions for custom software, integrations, traceability, legacy systems, FinOps and database performance.",
+  },
+  de: {
+    title: "Glossar fuer operative Software | Kaiser Tech",
+    description:
+      "Kurze Definitionen zu individueller Software, Systemintegration, Nachvollziehbarkeit, Legacy, FinOps und Datenbank-Performance.",
+  },
+};
+
+const diagnosticSeo: Record<Locale, { title: string; description: string }> = {
+  pt: {
+    title: "Diagnóstico operacional para software sob medida | Kaiser Tech",
+    description:
+      "Checklist e matriz para decidir entre ferramenta pronta, automação, integração ou software sob medida em operações B2B.",
+  },
+  en: {
+    title: "Operational diagnosis for custom software | Kaiser Tech",
+    description:
+      "Checklist and matrix to decide between off-the-shelf tools, automation, integration or custom software for B2B operations.",
+  },
+  de: {
+    title: "Operations-Diagnose fuer individuelle Software | Kaiser Tech",
+    description:
+      "Checkliste und Matrix fuer Standardtool, Automatisierung, Integration oder individuelle Software in B2B-Operationen.",
+  },
+};
+
 const clampSocialDescription = (description: string) => {
   if (description.length <= maxSocialDescriptionLength) return description;
 
@@ -110,6 +164,24 @@ export const syncSeo = ({ canonicalUrl, route, t, servicePage, serviceCopy, case
     pageTitle = privacySeo[route.locale].title;
     pageDescription = privacySeo[route.locale].description;
     socialDescription = clampSocialDescription(pageDescription);
+  }
+
+  if (route.kind === "methodology") {
+    pageTitle = methodologySeo[route.locale].title;
+    pageDescription = methodologySeo[route.locale].description;
+    socialDescription = clampSocialDescription(t.method.lead);
+  }
+
+  if (route.kind === "glossary") {
+    pageTitle = glossarySeo[route.locale].title;
+    pageDescription = glossarySeo[route.locale].description;
+    socialDescription = clampSocialDescription(t.glossary.lead);
+  }
+
+  if (route.kind === "diagnostic") {
+    pageTitle = diagnosticSeo[route.locale].title;
+    pageDescription = diagnosticSeo[route.locale].description;
+    socialDescription = clampSocialDescription(t.diagnostic.lead);
   }
 
   const organization = {
@@ -177,7 +249,62 @@ export const syncSeo = ({ canonicalUrl, route, t, servicePage, serviceCopy, case
               inLanguage: t.seo.lang,
               publisher: { "@id": `${siteUrl}/#organization` },
             }
-        : {
+          : route.kind === "methodology"
+            ? {
+                "@type": "WebPage",
+                "@id": `${canonicalUrl}#methodology`,
+                name: pageTitle,
+                description: pageDescription,
+                url: canonicalUrl,
+                inLanguage: t.seo.lang,
+                publisher: { "@id": `${siteUrl}/#organization` },
+                about: {
+                  "@type": "Thing",
+                  name: t.method.title,
+                  description: t.method.summary,
+                },
+              }
+            : route.kind === "glossary"
+              ? {
+                  "@type": "DefinedTermSet",
+                  "@id": `${canonicalUrl}#glossary`,
+                  name: pageTitle,
+                  description: pageDescription,
+                  url: canonicalUrl,
+                  inLanguage: t.seo.lang,
+                  publisher: { "@id": `${siteUrl}/#organization` },
+                  hasDefinedTerm: t.glossary.terms.map((term) => ({
+                    "@type": "DefinedTerm",
+                    name: term.name,
+                    description: term.definition,
+                    inDefinedTermSet: `${canonicalUrl}#glossary`,
+                  })),
+                }
+              : route.kind === "diagnostic"
+                ? {
+                    "@type": "WebPage",
+                    "@id": `${canonicalUrl}#diagnostic-framework`,
+                    name: pageTitle,
+                    description: pageDescription,
+                    url: canonicalUrl,
+                    inLanguage: t.seo.lang,
+                    publisher: { "@id": `${siteUrl}/#organization` },
+                    about: {
+                      "@type": "Thing",
+                      name: t.diagnostic.summaryTitle,
+                      description: t.diagnostic.summary,
+                    },
+                    mainEntity: {
+                      "@type": "ItemList",
+                      name: t.diagnostic.checklistTitle,
+                      itemListElement: t.diagnostic.checklist.map((item, index) => ({
+                        "@type": "ListItem",
+                        position: index + 1,
+                        name: item,
+                      })),
+                    },
+                  }
+                : {
             "@type": "WebSite",
           "@id": `${siteUrl}/#website`,
           name: "Kaiser Tech",

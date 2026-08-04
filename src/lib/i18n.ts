@@ -16,6 +16,8 @@ export const dictionary = {
       services: "Soluções",
       cases: "Cases",
       method: "Metodologia",
+      glossary: "Glossário",
+      diagnostic: "Diagnóstico",
       proof: "Prova técnica",
       contact: "Contato",
     },
@@ -39,18 +41,20 @@ export const dictionary = {
     },
     pain: {
       title: "Onde o improviso começa a custar caro?",
+      intro:
+        "Software sob medida começa a fazer sentido quando planilhas, WhatsApp, sistemas desconectados ou processos manuais passam a gerar retrabalho, perda de visibilidade e decisões lentas.",
       items: [
         {
-          title: "Processos manuais",
-          body: "Planilhas, retrabalho e aprovações espalhadas atrasam decisões que deveriam ser simples.",
+          title: "Sistema para sair das planilhas",
+          body: "Quando a operação depende de planilhas, WhatsApp e conferência manual, o risco não é só lentidão: é perda de histórico, erro de dado e falta de dono claro.",
         },
         {
-          title: "Sistemas que não conversam",
-          body: "Informações duplicadas, integrações frágeis e times dependendo de conferência manual.",
+          title: "Integração entre sistemas empresariais",
+          body: "ERP, CRM, gateway, planilhas e sistemas legados precisam trocar dados com contrato, log, auditoria e tratamento de falhas.",
         },
         {
-          title: "Falta de visibilidade",
-          body: "Gestores operam sem dados confiáveis, sem rastreabilidade e sem clareza sobre gargalos.",
+          title: "Rastreabilidade operacional",
+          body: "Gestores precisam enxergar status, gargalos, responsáveis e histórico sem depender de relatórios manuais ou informação espalhada.",
         },
       ],
     },
@@ -322,6 +326,10 @@ export const dictionary = {
       relatedSolutions: "Soluções relacionadas",
       relatedCases: "Cases relacionados",
       caseImpact: "Contexto do projeto",
+      caseProblem: "Problema",
+      caseSolution: "Solução",
+      caseStack: "Stack",
+      caseOutcome: "Impacto",
       futureGerman: "Versão de-DE ativa para o mercado alemão.",
     },
     cases: [
@@ -333,6 +341,12 @@ export const dictionary = {
         accent: "#FC4103",
         description:
           "Produto interno para gestão de bolão com participação patrocinada, criado em monorepo TypeScript com API Fastify, Prisma, MySQL, frontend React, Vite e Tailwind. O projeto usa Zod compartilhado entre API e web para manter contrato consistente e API hospedada na Azure.",
+        discovery: {
+          problem: "A ACIPG precisava organizar um bolão interno com participação patrocinada sem depender de controles soltos e conferência manual.",
+          solution: "Foi criado um produto interno com API, frontend e contratos compartilhados para gerir participantes, regras e operação do bolão.",
+          stack: "TypeScript, Fastify, Prisma, MySQL, React, Vite, Tailwind e Azure.",
+          outcome: "A operação ganhou um fluxo digital mais rastreável para participação, gestão interna e manutenção do produto.",
+        },
       },
       {
         title: "S4 Treinamentos",
@@ -343,6 +357,12 @@ export const dictionary = {
         accent: "#7C5CFF",
         description:
           "Site institucional e sistemas web/mobile para inspeções e gestão de treinamentos, com rastreamento por QR Code para ativos e colaboradores. A solução foi desenhada para prevenção operacional, usando React, Vite, Node.js, AWS e React Native.",
+        discovery: {
+          problem: "Treinamentos, inspeções e ativos precisavam de rastreabilidade para reduzir controles manuais e melhorar a qualidade das informações em auditorias.",
+          solution: "A solução combinou site institucional, sistemas web/mobile, rastreamento por QR Code e fluxos digitais para prevenção operacional.",
+          stack: "React, Vite, Node.js, AWS, React Native e QR Code.",
+          outcome: "A S4 melhorou o mapeamento de ativos e colaboradores, aumentou a qualidade das informações para auditorias e reduziu dependência de processos manuais.",
+        },
         deliverables: [
           "Software sob medida",
           "Integrações sob medida",
@@ -360,6 +380,12 @@ export const dictionary = {
         accent: "#F7F5F2",
         description:
           "Sistema para agendamento de serviços que ajuda pequenos empreendedores a reduzirem dependência do WhatsApp para marcações. Pensado para rotinas como pedicure, salão de beleza, barbearia e massoterapia, com frontend React/Vite, backend Node.js e infraestrutura AWS.",
+        discovery: {
+          problem: "Pequenos negócios de serviço dependiam do WhatsApp para agendar horários, confirmar clientes e organizar a rotina.",
+          solution: "Foi criado um sistema de agendamento para centralizar disponibilidade, marcações e fluxo de serviços em uma experiência digital.",
+          stack: "React, Vite, Node.js e AWS.",
+          outcome: "O negócio ganha mais previsibilidade de agenda e reduz a dependência de conversas soltas no WhatsApp para organizar atendimentos.",
+        },
       },
       {
         title: "Amicord",
@@ -370,6 +396,12 @@ export const dictionary = {
         accent: "#36255C",
         description:
           "Plataforma sob medida para empresas terceirizadas de facilities gerenciarem equipes, clientes, unidades, atividades operacionais e checklists de campo em tempo real. A solução une painel web, operação mobile, dashboards, API própria e infraestrutura cloud escalável com React, React Native, Go, PostgreSQL/PostGIS, AWS Lambda, Terraform e Cloudflare.",
+        discovery: {
+          problem: "Empresas de facilities precisam controlar equipes, unidades, atividades, checklists e ocorrências em campo sem perder rastreabilidade.",
+          solution: "Foi criada uma plataforma sob medida com painel web, app mobile, validação por localização, QR Code, checklists, dashboards e API própria.",
+          stack: "React, React Native, Go, PostgreSQL/PostGIS, AWS Lambda, Terraform e Cloudflare.",
+          outcome: "A operação passou a ter execução de campo mais rastreável, indicadores por região e melhor visibilidade sobre atividades críticas.",
+        },
         deliverables: [
           {
             title: "Plataforma web de gestão",
@@ -404,6 +436,16 @@ export const dictionary = {
     ],
     method: {
       title: "Qual a metodologia da Kaiser Tech?",
+      lead:
+        "A metodologia da Kaiser Tech transforma uma dor operacional em uma decisão técnica clara antes de construir software. Primeiro entendemos impacto, processo real e risco; depois escolhemos entre sistema sob medida, integração, automação, ferramenta pronta ou ajuste de processo.",
+      summaryTitle: "Da dor operacional ao sistema confiável",
+      summary:
+        "O processo evita começar por tela ou tecnologia. A Kaiser Tech diagnostica o gargalo, mapeia a operação, decide o tipo de solução, define escopo e executa com engenharia, documentação e plano de evolução.",
+      outcomes: [
+        "Menos risco de construir um sistema que não resolve a causa real.",
+        "Mais clareza sobre retorno, urgência, responsáveis e critérios de sucesso.",
+        "Base técnica preparada para manutenção, integrações e crescimento.",
+      ],
       steps: [
         [
           "01",
@@ -435,6 +477,101 @@ export const dictionary = {
           "Operação confiável",
           "Deixamos documentação, métricas, automações, pipelines e plano de evolução para o sistema não virar outro gargalo.",
         ],
+      ],
+    },
+    glossary: {
+      eyebrow: "Definições para operações B2B",
+      title: "Glossário de software operacional",
+      lead:
+        "Este glossário define termos que aparecem quando uma empresa tenta trocar planilhas, retrabalho e sistemas desconectados por software operacional confiável.",
+      summaryLabel: "Answer-first",
+      summaryTitle: "Definições curtas para decisões técnicas",
+      summary:
+        "Cada definição começa com a resposta direta e depois explica quando o conceito importa na prática. Isso ajuda compradores, buscadores e IAs a entenderem exatamente onde a Kaiser Tech atua.",
+      terms: [
+        {
+          category: "Software sob medida",
+          name: "Software sob medida",
+          definition:
+            "Software sob medida é um sistema criado para acompanhar regras, fluxos e exceções específicas de uma operação, em vez de forçar a empresa a se adaptar a uma ferramenta pronta.",
+          context:
+            "Ele faz sentido quando o processo é crítico, gera receita, reduz risco ou exige rastreabilidade que planilhas e ferramentas genéricas não entregam.",
+        },
+        {
+          category: "Integrações",
+          name: "Integração entre sistemas",
+          definition:
+            "Integração entre sistemas é a conexão controlada entre ERPs, CRMs, APIs, planilhas, gateways e sistemas legados para que dados circulem sem conferência manual.",
+          context:
+            "Uma boa integração define contrato, autenticação, logs, retentativas, tratamento de erro e auditoria para a operação confiar no fluxo.",
+        },
+        {
+          category: "Operação",
+          name: "Rastreabilidade operacional",
+          definition:
+            "Rastreabilidade operacional é a capacidade de saber quem fez o quê, quando, em qual etapa, com qual dado e qual impacto aquilo teve no processo.",
+          context:
+            "Ela reduz perda de histórico, melhora auditoria e permite que gestores encontrem gargalos sem depender da memória do time.",
+        },
+        {
+          category: "Legado",
+          name: "Sistema legado",
+          definition:
+            "Sistema legado é um software existente que ainda sustenta a operação, mas ficou difícil de manter, integrar, testar ou evoluir com segurança.",
+          context:
+            "Nem todo legado deve ser reescrito. Muitas vezes o caminho mais seguro é modularizar, testar e modernizar por partes.",
+        },
+        {
+          category: "Infraestrutura",
+          name: "FinOps",
+          definition:
+            "FinOps é a prática de controlar custo de cloud com responsabilidade técnica, conectando gasto, arquitetura, uso real e risco operacional.",
+          context:
+            "O objetivo não é cortar custo cegamente, mas reduzir desperdício sem comprometer disponibilidade, performance ou evolução do produto.",
+        },
+        {
+          category: "Banco de dados",
+          name: "Performance de banco de dados",
+          definition:
+            "Performance de banco de dados é o trabalho de reduzir latência e travamentos analisando queries, índices, modelo, locks, cache e volume real de acesso.",
+          context:
+            "Criar índice pode ajudar, mas também pode piorar escrita e custo. A decisão precisa vir de medição antes e depois.",
+        },
+      ],
+    },
+    diagnostic: {
+      eyebrow: "Framework Kaiser Tech",
+      title: "Diagnóstico operacional para decidir software sob medida",
+      lead:
+        "Uma empresa tende a precisar de software próprio quando o processo é crítico, tem regras específicas, envolve muitos sistemas e perde rastreabilidade com planilhas ou ferramentas prontas.",
+      summaryLabel: "Dado próprio",
+      summaryTitle: "Checklist de decisão para operações B2B",
+      summary:
+        "Este framework organiza sinais práticos antes de construir: gravidade da dor, custo do improviso, dependência de planilhas, risco operacional, necessidade de integração e retorno esperado.",
+      signalsTitle: "Sinais de que a empresa precisa de sistema próprio",
+      signals: [
+        "A operação depende de planilhas, WhatsApp ou conferências manuais para tarefas críticas.",
+        "Ferramentas prontas não acompanham regras internas, aprovações, exceções ou permissões.",
+        "Gestores não conseguem ver status, histórico, responsáveis e gargalos sem pedir relatórios.",
+        "Dados precisam circular entre ERP, CRM, gateway, APIs, sistemas legados ou equipes de campo.",
+        "O erro operacional gera perda financeira, retrabalho, risco de auditoria ou atraso para o cliente.",
+        "O processo diferencia a empresa e não deveria ficar preso ao limite de uma ferramenta genérica.",
+      ],
+      matrixTitle: "Ferramenta pronta vs software sob medida",
+      matrix: [
+        ["Ferramenta pronta", "Boa quando o processo é padrão, o custo de adaptação é baixo e a empresa aceita trabalhar do jeito da ferramenta."],
+        ["Automação leve", "Boa quando o gargalo é repetitivo, simples e pode ser resolvido conectando ferramentas existentes sem criar produto novo."],
+        ["Integração sob medida", "Boa quando os sistemas existem, mas dados, erros e responsabilidades precisam circular com rastreabilidade."],
+        ["Software sob medida", "Bom quando a operação é crítica, específica, recorrente e precisa de regras, permissões, telas e dados próprios."],
+      ],
+      checklistTitle: "Perguntas para o diagnóstico inicial",
+      checklist: [
+        "Qual processo trava crescimento, qualidade ou entrega hoje?",
+        "Quanto tempo ou dinheiro o improviso consome por semana?",
+        "Quais sistemas, planilhas e pessoas participam do fluxo?",
+        "Que dado precisa ser confiável para a decisão acontecer?",
+        "O que acontece quando esse processo falha?",
+        "Qual seria o primeiro resultado mensurável de uma solução melhor?",
       ],
     },
     proof: {
@@ -474,8 +611,15 @@ export const dictionary = {
         "Envie o gargalo técnico ou operacional. A resposta inicial busca identificar oportunidade, causa provável e próximos passos.",
       whatsappLabel: "WhatsApp",
       name: "Nome",
+      namePlaceholder: "Seu nome",
       email: "Email",
+      emailPlaceholder: "voce@empresa.com",
+      phone: "Telefone",
+      phonePlaceholder: "(42) 9 9999-9999",
       company: "Empresa",
+      companyPlaceholder: "Nome da empresa",
+      role: "Cargo",
+      rolePlaceholder: "Ex: CEO, Diretor de Operações",
       painType: "Tipo de dor",
       painTypePlaceholder: "Selecione uma opção",
       painTypes: [
@@ -488,6 +632,7 @@ export const dictionary = {
         "Outro",
       ],
       pain: "Qual dor você quer resolver?",
+      painPlaceholder: "Conte o que está travando a operação, quais sistemas estão envolvidos e qual impacto isso gera hoje.",
       submit: "Enviar diagnóstico",
       submitting: "Enviando...",
       success: "Recebemos sua dor. Vamos responder com um diagnóstico inicial em breve.",
@@ -523,6 +668,8 @@ export const dictionary = {
       services: "Solutions",
       cases: "Cases",
       method: "Methodology",
+      glossary: "Glossary",
+      diagnostic: "Diagnosis",
       proof: "Technical proof",
       contact: "Contact",
     },
@@ -546,18 +693,20 @@ export const dictionary = {
     },
     pain: {
       title: "What signs show that an operation has outgrown improvisation?",
+      intro:
+        "Custom software starts to make sense when spreadsheets, WhatsApp, disconnected systems or manual workflows create rework, poor visibility and slow decisions.",
       items: [
         {
-          title: "Manual processes",
-          body: "Spreadsheets, rework and scattered approvals slow down decisions that should be simple.",
+          title: "Software to replace spreadsheets",
+          body: "When operations depend on spreadsheets, WhatsApp and manual checks, the risk is not only speed: it is lost history, data errors and unclear ownership.",
         },
         {
-          title: "Disconnected systems",
-          body: "Duplicated information, fragile integrations and teams depending on manual checks.",
+          title: "Business system integration",
+          body: "ERP, CRM, payment gateways, spreadsheets and legacy systems need data flow with contracts, logs, auditability and failure handling.",
         },
         {
-          title: "Poor visibility",
-          body: "Managers operate without reliable data, traceability or clarity around bottlenecks.",
+          title: "Operational traceability",
+          body: "Managers need to see status, bottlenecks, owners and history without depending on manual reports or scattered information.",
         },
       ],
     },
@@ -829,6 +978,10 @@ export const dictionary = {
       relatedSolutions: "Related solutions",
       relatedCases: "Related cases",
       caseImpact: "Project context",
+      caseProblem: "Problem",
+      caseSolution: "Solution",
+      caseStack: "Stack",
+      caseOutcome: "Impact",
       futureGerman: "de-DE version active for the German market.",
     },
     cases: [
@@ -840,6 +993,12 @@ export const dictionary = {
         accent: "#FC4103",
         description:
           "Internal product for managing a sponsored pool, built as a TypeScript monorepo with Fastify API, Prisma, MySQL, React, Vite and Tailwind. The project uses shared Zod schemas between API and web to keep contracts consistent, with the API hosted on Azure.",
+        discovery: {
+          problem: "ACIPG needed to organize an internal sponsored pool without scattered controls and manual checking.",
+          solution: "Kaiser Tech built an internal product with API, frontend and shared contracts to manage participants, rules and pool operations.",
+          stack: "TypeScript, Fastify, Prisma, MySQL, React, Vite, Tailwind and Azure.",
+          outcome: "The operation gained a more traceable digital flow for participation, internal management and product maintenance.",
+        },
       },
       {
         title: "S4 Treinamentos",
@@ -850,6 +1009,12 @@ export const dictionary = {
         accent: "#7C5CFF",
         description:
           "Institutional website plus web/mobile systems for inspections and training management, with QR Code tracking for assets, equipment and employees. The solution was designed for prevention-focused operations using React, Vite, Node.js, AWS and React Native.",
+        discovery: {
+          problem: "Training, inspections and assets needed traceability to reduce manual controls and improve information quality for audits.",
+          solution: "The solution combined an institutional site, web/mobile systems, QR Code tracking and digital workflows for prevention-focused operations.",
+          stack: "React, Vite, Node.js, AWS, React Native and QR Code.",
+          outcome: "S4 improved asset and employee mapping, raised audit information quality and reduced dependency on manual processes.",
+        },
         deliverables: [
           "Custom software",
           "Custom integrations",
@@ -867,6 +1032,12 @@ export const dictionary = {
         accent: "#F7F5F2",
         description:
           "Scheduling system that helps small entrepreneurs reduce dependence on WhatsApp to book services. Designed for routines such as pedicure, beauty salons, barbershops and massage therapy, with React/Vite frontend, Node.js backend and AWS infrastructure.",
+        discovery: {
+          problem: "Small service businesses relied on WhatsApp to schedule appointments, confirm clients and organize daily routines.",
+          solution: "Kaiser Tech built a scheduling system to centralize availability, bookings and service flow in a digital experience.",
+          stack: "React, Vite, Node.js and AWS.",
+          outcome: "The business gains clearer scheduling and reduces dependence on scattered WhatsApp conversations to organize appointments.",
+        },
       },
       {
         title: "Amicord",
@@ -877,6 +1048,12 @@ export const dictionary = {
         accent: "#36255C",
         description:
           "Custom platform for outsourced facilities companies to manage teams, clients, units, operational activities and field checklists in real time. The solution combines a web dashboard, mobile operation, dashboards, a dedicated API and scalable cloud infrastructure with React, React Native, Go, PostgreSQL/PostGIS, AWS Lambda, Terraform and Cloudflare.",
+        discovery: {
+          problem: "Facilities companies need to control teams, units, activities, checklists and field incidents without losing traceability.",
+          solution: "Kaiser Tech built a custom platform with web dashboard, mobile app, location validation, QR Code, checklists, dashboards and a dedicated API.",
+          stack: "React, React Native, Go, PostgreSQL/PostGIS, AWS Lambda, Terraform and Cloudflare.",
+          outcome: "The operation gained more traceable field execution, regional indicators and better visibility over critical activities.",
+        },
         deliverables: [
           {
             title: "Web management platform",
@@ -911,6 +1088,16 @@ export const dictionary = {
     ],
     method: {
       title: "What is Kaiser Tech's methodology?",
+      lead:
+        "Kaiser Tech's methodology turns operational pain into a clear technical decision before software is built. First we understand impact, real workflow and risk; then we choose between custom software, integration, automation, an off-the-shelf tool or a process adjustment.",
+      summaryTitle: "From operational pain to reliable software",
+      summary:
+        "The process avoids starting with screens or technology. Kaiser Tech diagnoses the bottleneck, maps the operation, decides the type of solution, defines scope and executes with engineering, documentation and an evolution plan.",
+      outcomes: [
+        "Lower risk of building a system that does not solve the real cause.",
+        "Clearer return, urgency, owners and success criteria.",
+        "A technical foundation prepared for maintenance, integrations and growth.",
+      ],
       steps: [
         [
           "01",
@@ -942,6 +1129,101 @@ export const dictionary = {
           "Reliable operation",
           "We leave documentation, metrics, automation, pipelines and an evolution plan so the system does not become another bottleneck.",
         ],
+      ],
+    },
+    glossary: {
+      eyebrow: "Definitions for B2B operations",
+      title: "Operational software glossary",
+      lead:
+        "This glossary defines terms that appear when a company moves from spreadsheets, rework and disconnected systems to reliable operational software.",
+      summaryLabel: "Answer-first",
+      summaryTitle: "Short definitions for technical decisions",
+      summary:
+        "Each definition starts with the direct answer and then explains when the concept matters in practice. This helps buyers, search engines and AI systems understand where Kaiser Tech works.",
+      terms: [
+        {
+          category: "Custom software",
+          name: "Custom software",
+          definition:
+            "Custom software is a system built around the specific rules, workflows and exceptions of an operation instead of forcing the company to adapt to an off-the-shelf tool.",
+          context:
+            "It makes sense when the process is critical, generates revenue, reduces risk or requires traceability that spreadsheets and generic tools cannot provide.",
+        },
+        {
+          category: "Integrations",
+          name: "System integration",
+          definition:
+            "System integration is the controlled connection between ERPs, CRMs, APIs, spreadsheets, payment gateways and legacy systems so data can move without manual checks.",
+          context:
+            "A strong integration defines contracts, authentication, logs, retries, error handling and auditability so the operation can trust the flow.",
+        },
+        {
+          category: "Operations",
+          name: "Operational traceability",
+          definition:
+            "Operational traceability is the ability to know who did what, when, at which step, with which data and what impact it had on the process.",
+          context:
+            "It reduces lost history, improves audits and helps managers find bottlenecks without depending on team memory.",
+        },
+        {
+          category: "Legacy",
+          name: "Legacy system",
+          definition:
+            "A legacy system is existing software that still supports the operation but has become hard to maintain, integrate, test or evolve safely.",
+          context:
+            "Not every legacy system should be rewritten. Often the safer path is modularizing, testing and modernizing it incrementally.",
+        },
+        {
+          category: "Infrastructure",
+          name: "FinOps",
+          definition:
+            "FinOps is the practice of controlling cloud cost with technical responsibility by connecting spend, architecture, real usage and operational risk.",
+          context:
+            "The goal is not blind cost cutting, but reducing waste without hurting availability, performance or product evolution.",
+        },
+        {
+          category: "Database",
+          name: "Database performance",
+          definition:
+            "Database performance is the work of reducing latency and bottlenecks by analyzing queries, indexes, models, locks, cache and real access volume.",
+          context:
+            "Adding indexes can help, but it can also hurt writes and cost. The decision needs measurement before and after.",
+        },
+      ],
+    },
+    diagnostic: {
+      eyebrow: "Kaiser Tech framework",
+      title: "Operational diagnosis for deciding custom software",
+      lead:
+        "A company tends to need custom software when the process is critical, has specific rules, involves many systems and loses traceability with spreadsheets or off-the-shelf tools.",
+      summaryLabel: "Proprietary data",
+      summaryTitle: "Decision checklist for B2B operations",
+      summary:
+        "This framework organizes practical signals before building: severity of the pain, cost of improvisation, spreadsheet dependency, operational risk, integration need and expected return.",
+      signalsTitle: "Signs that the company needs its own system",
+      signals: [
+        "The operation depends on spreadsheets, WhatsApp or manual checks for critical tasks.",
+        "Off-the-shelf tools cannot follow internal rules, approvals, exceptions or permissions.",
+        "Managers cannot see status, history, owners and bottlenecks without asking for reports.",
+        "Data needs to move between ERP, CRM, payment gateways, APIs, legacy systems or field teams.",
+        "Operational error creates financial loss, rework, audit risk or customer delays.",
+        "The process differentiates the company and should not be trapped inside a generic tool's limits.",
+      ],
+      matrixTitle: "Off-the-shelf tool vs custom software",
+      matrix: [
+        ["Off-the-shelf tool", "Good when the process is standard, adaptation cost is low and the company accepts working the tool's way."],
+        ["Light automation", "Good when the bottleneck is repetitive, simple and can be solved by connecting existing tools without creating a new product."],
+        ["Custom integration", "Good when systems already exist, but data, errors and ownership need to move with traceability."],
+        ["Custom software", "Good when the operation is critical, specific, recurring and needs its own rules, permissions, screens and data."],
+      ],
+      checklistTitle: "Questions for the initial diagnosis",
+      checklist: [
+        "Which process blocks growth, quality or delivery today?",
+        "How much time or money does improvisation consume each week?",
+        "Which systems, spreadsheets and people participate in the flow?",
+        "Which data needs to be reliable for the decision to happen?",
+        "What happens when this process fails?",
+        "What would be the first measurable result of a better solution?",
       ],
     },
     proof: {
@@ -981,8 +1263,15 @@ export const dictionary = {
         "Send the technical or operational bottleneck. The first response aims to identify opportunity, likely cause and next steps.",
       whatsappLabel: "WhatsApp",
       name: "Name",
+      namePlaceholder: "Your name",
       email: "Email",
+      emailPlaceholder: "you@company.com",
+      phone: "Phone",
+      phonePlaceholder: "+1 555 000 0000",
       company: "Company",
+      companyPlaceholder: "Company name",
+      role: "Role",
+      rolePlaceholder: "E.g. CEO, Operations Director",
       painType: "Pain type",
       painTypePlaceholder: "Select an option",
       painTypes: [
@@ -995,6 +1284,7 @@ export const dictionary = {
         "Other",
       ],
       pain: "Which pain do you want to solve?",
+      painPlaceholder: "Describe what is blocking the operation, which systems are involved and the impact it creates today.",
       submit: "Send diagnosis",
       submitting: "Sending...",
       success: "We received your pain. We will reply with an initial diagnosis soon.",
@@ -1030,6 +1320,8 @@ export const dictionary = {
       services: "Loesungen",
       cases: "Cases",
       method: "Methodik",
+      glossary: "Glossar",
+      diagnostic: "Diagnose",
       proof: "Technischer Nachweis",
       contact: "Kontakt",
     },
@@ -1053,18 +1345,20 @@ export const dictionary = {
     },
     pain: {
       title: "Welche Signale zeigen, dass eine Operation ueber Improvisation hinausgewachsen ist?",
+      intro:
+        "Individuelle Software wird sinnvoll, wenn Tabellen, WhatsApp, getrennte Systeme oder manuelle Workflows Nacharbeit, fehlende Transparenz und langsame Entscheidungen erzeugen.",
       items: [
         {
-          title: "Manuelle Prozesse",
-          body: "Tabellen, Nacharbeit und verteilte Freigaben verlangsamen Entscheidungen, die einfach sein sollten.",
+          title: "Software statt Tabellen",
+          body: "Wenn die Operation von Tabellen, WhatsApp und manuellen Pruefungen abhaengt, entstehen verlorene Historie, Datenfehler und unklare Verantwortung.",
         },
         {
-          title: "Systeme ohne Verbindung",
-          body: "Doppelte Daten, fragile Integrationen und Teams, die weiter manuell pruefen muessen.",
+          title: "Systemintegration fuer Unternehmen",
+          body: "ERP, CRM, Payment-Gateways, Tabellen und Legacy-Systeme brauchen Datenfluss mit Vertrag, Logs, Auditierbarkeit und Fehlerbehandlung.",
         },
         {
-          title: "Fehlende Transparenz",
-          body: "Fuehrungskraefte arbeiten ohne verlaessliche Daten, ohne Nachvollziehbarkeit und ohne klare Sicht auf Engpaesse.",
+          title: "Operative Nachvollziehbarkeit",
+          body: "Management braucht Status, Engpaesse, Verantwortliche und Historie, ohne von manuellen Reports oder verstreuten Informationen abzuhaengen.",
         },
       ],
     },
@@ -1336,6 +1630,10 @@ export const dictionary = {
       relatedSolutions: "Verwandte Loesungen",
       relatedCases: "Verwandte Cases",
       caseImpact: "Projektkontext",
+      caseProblem: "Problem",
+      caseSolution: "Loesung",
+      caseStack: "Stack",
+      caseOutcome: "Auswirkung",
       futureGerman: "de-DE ist als aktive Sprachversion verfuegbar.",
     },
     cases: [
@@ -1347,6 +1645,12 @@ export const dictionary = {
         accent: "#FC4103",
         description:
           "Internes Produkt zur Verwaltung eines gesponserten Tippspiels, entwickelt als TypeScript-Monorepo mit Fastify API, Prisma, MySQL, React, Vite und Tailwind. Gemeinsame Zod-Schemas halten API- und Web-Vertraege konsistent, die API laeuft auf Azure.",
+        discovery: {
+          problem: "ACIPG musste ein internes Tippspiel mit Sponsoring organisieren, ohne verteilte Kontrollen und manuelle Pruefung.",
+          solution: "Kaiser Tech entwickelte ein internes Produkt mit API, Frontend und gemeinsamen Vertraegen fuer Teilnehmende, Regeln und Betrieb.",
+          stack: "TypeScript, Fastify, Prisma, MySQL, React, Vite, Tailwind und Azure.",
+          outcome: "Die Operation erhielt einen nachvollziehbareren digitalen Ablauf fuer Teilnahme, interne Verwaltung und Wartung.",
+        },
       },
       {
         title: "S4 Treinamentos",
@@ -1357,6 +1661,12 @@ export const dictionary = {
         accent: "#7C5CFF",
         description:
           "Institutionelle Website sowie Web- und Mobile-Systeme fuer Inspektionen und Schulungsmanagement, mit QR-Code-Tracking fuer Assets, Ausruestung und Mitarbeitende. Die Loesung wurde fuer praeventionsorientierte Operationen mit React, Vite, Node.js, AWS und React Native entwickelt.",
+        discovery: {
+          problem: "Schulungen, Inspektionen und Assets brauchten Nachvollziehbarkeit, um manuelle Kontrollen zu reduzieren und Audit-Informationen zu verbessern.",
+          solution: "Die Loesung kombinierte Website, Web-/Mobile-Systeme, QR-Code-Tracking und digitale Workflows fuer praeventionsorientierte Operationen.",
+          stack: "React, Vite, Node.js, AWS, React Native und QR Code.",
+          outcome: "S4 verbesserte Mapping von Assets und Mitarbeitenden, erhoehte Informationsqualitaet fuer Audits und reduzierte manuelle Prozesse.",
+        },
         deliverables: [
           "Massgeschneiderte Software",
           "Massgeschneiderte Integrationen",
@@ -1374,6 +1684,12 @@ export const dictionary = {
         accent: "#F7F5F2",
         description:
           "Terminplanungssystem, das kleinen Unternehmern hilft, die Abhaengigkeit von WhatsApp fuer Buchungen zu reduzieren. Entwickelt fuer Routinen wie Pedikuere, Beauty-Salons, Barbershops und Massagetherapie, mit React/Vite-Frontend, Node.js-Backend und AWS-Infrastruktur.",
+        discovery: {
+          problem: "Kleine Dienstleistungsunternehmen nutzten WhatsApp fuer Termine, Kundenbestaetigungen und Tagesorganisation.",
+          solution: "Kaiser Tech entwickelte ein Terminplanungssystem, das Verfuegbarkeit, Buchungen und Servicefluss digital zentralisiert.",
+          stack: "React, Vite, Node.js und AWS.",
+          outcome: "Das Unternehmen gewinnt planbarere Termine und reduziert die Abhaengigkeit von verstreuten WhatsApp-Gespraechen.",
+        },
       },
       {
         title: "Amicord",
@@ -1384,6 +1700,12 @@ export const dictionary = {
         accent: "#36255C",
         description:
           "Massgeschneiderte Plattform fuer ausgelagerte Facilities-Unternehmen zur Verwaltung von Teams, Kunden, Einheiten, operativen Aktivitaeten und Feld-Checklisten in Echtzeit. Die Loesung kombiniert Web-Dashboard, mobile Operation, Dashboards, eigene API und skalierbare Cloud-Infrastruktur mit React, React Native, Go, PostgreSQL/PostGIS, AWS Lambda, Terraform und Cloudflare.",
+        discovery: {
+          problem: "Facilities-Unternehmen muessen Teams, Einheiten, Aktivitaeten, Checklisten und Vorfaelle im Feld kontrollieren, ohne Nachvollziehbarkeit zu verlieren.",
+          solution: "Kaiser Tech entwickelte eine Plattform mit Web-Dashboard, mobiler App, Standortvalidierung, QR Code, Checklisten, Dashboards und eigener API.",
+          stack: "React, React Native, Go, PostgreSQL/PostGIS, AWS Lambda, Terraform und Cloudflare.",
+          outcome: "Die Operation erhielt nachvollziehbarere Feldausfuehrung, regionale Kennzahlen und bessere Sicht auf kritische Aktivitaeten.",
+        },
         deliverables: [
           {
             title: "Web-Plattform fuer Management",
@@ -1418,6 +1740,16 @@ export const dictionary = {
     ],
     method: {
       title: "Welche Methodik nutzt Kaiser Tech?",
+      lead:
+        "Die Methodik von Kaiser Tech verwandelt operative Probleme in eine klare technische Entscheidung, bevor Software gebaut wird. Zuerst verstehen wir Auswirkung, realen Ablauf und Risiko; dann entscheiden wir zwischen individueller Software, Integration, Automatisierung, Standardtool oder Prozessanpassung.",
+      summaryTitle: "Vom operativen Problem zum verlaesslichen System",
+      summary:
+        "Der Prozess beginnt nicht mit Oberflaechen oder Technologie. Kaiser Tech diagnostiziert den Engpass, bildet die Operation ab, entscheidet die Loesungsart, definiert Scope und setzt mit Engineering, Dokumentation und Evolutionsplan um.",
+      outcomes: [
+        "Weniger Risiko, ein System zu bauen, das die echte Ursache nicht loest.",
+        "Mehr Klarheit ueber Return, Dringlichkeit, Verantwortliche und Erfolgskriterien.",
+        "Technische Basis fuer Wartung, Integrationen und Wachstum.",
+      ],
       steps: [
         [
           "01",
@@ -1449,6 +1781,101 @@ export const dictionary = {
           "Verlaesslicher Betrieb",
           "Wir hinterlassen Dokumentation, Metriken, Automatisierung, Pipelines und einen Evolutionsplan, damit das System kein neuer Engpass wird.",
         ],
+      ],
+    },
+    glossary: {
+      eyebrow: "Definitionen fuer B2B-Operationen",
+      title: "Glossar fuer operative Software",
+      lead:
+        "Dieses Glossar definiert Begriffe, die relevant werden, wenn ein Unternehmen Tabellen, Nacharbeit und getrennte Systeme durch verlaessliche operative Software ersetzt.",
+      summaryLabel: "Answer-first",
+      summaryTitle: "Kurze Definitionen fuer technische Entscheidungen",
+      summary:
+        "Jede Definition beginnt mit der direkten Antwort und erklaert danach, wann der Begriff praktisch relevant ist. So verstehen Kaeufer, Suchmaschinen und KI-Systeme genauer, wo Kaiser Tech arbeitet.",
+      terms: [
+        {
+          category: "Individuelle Software",
+          name: "Individuelle Software",
+          definition:
+            "Individuelle Software ist ein System, das fuer spezifische Regeln, Ablaeufe und Ausnahmen einer Operation entwickelt wird, statt das Unternehmen an ein Standardtool anzupassen.",
+          context:
+            "Sie ist sinnvoll, wenn der Prozess kritisch ist, Umsatz erzeugt, Risiko reduziert oder Nachvollziehbarkeit braucht, die Tabellen und generische Tools nicht liefern.",
+        },
+        {
+          category: "Integrationen",
+          name: "Systemintegration",
+          definition:
+            "Systemintegration ist die kontrollierte Verbindung von ERPs, CRMs, APIs, Tabellen, Payment-Gateways und Legacy-Systemen, damit Daten ohne manuelle Pruefung fliessen.",
+          context:
+            "Eine gute Integration definiert Vertraege, Authentifizierung, Logs, Wiederholungen, Fehlerbehandlung und Auditierbarkeit.",
+        },
+        {
+          category: "Operation",
+          name: "Operative Nachvollziehbarkeit",
+          definition:
+            "Operative Nachvollziehbarkeit bedeutet zu wissen, wer was wann in welchem Schritt mit welchen Daten getan hat und welche Auswirkung das hatte.",
+          context:
+            "Sie reduziert verlorene Historie, verbessert Audits und hilft Management, Engpaesse ohne manuelle Reports zu finden.",
+        },
+        {
+          category: "Legacy",
+          name: "Legacy-System",
+          definition:
+            "Ein Legacy-System ist bestehende Software, die die Operation weiter traegt, aber schwer wartbar, integrierbar, testbar oder sicher erweiterbar geworden ist.",
+          context:
+            "Nicht jedes Legacy-System sollte neu geschrieben werden. Oft ist inkrementelle Modernisierung der sicherere Weg.",
+        },
+        {
+          category: "Infrastruktur",
+          name: "FinOps",
+          definition:
+            "FinOps ist die Praxis, Cloud-Kosten mit technischer Verantwortung zu steuern, indem Kosten, Architektur, reale Nutzung und operatives Risiko verbunden werden.",
+          context:
+            "Ziel ist nicht blindes Sparen, sondern weniger Verschwendung ohne Schaden fuer Verfuegbarkeit, Performance oder Produktentwicklung.",
+        },
+        {
+          category: "Datenbank",
+          name: "Datenbank-Performance",
+          definition:
+            "Datenbank-Performance reduziert Latenz und Engpaesse durch Analyse von Queries, Indizes, Modell, Locks, Cache und realem Zugriffsvolumen.",
+          context:
+            "Indizes koennen helfen, aber auch Schreiblast und Kosten erhoehen. Die Entscheidung braucht Messung vorher und nachher.",
+        },
+      ],
+    },
+    diagnostic: {
+      eyebrow: "Kaiser Tech Framework",
+      title: "Operations-Diagnose fuer individuelle Software",
+      lead:
+        "Ein Unternehmen braucht eher individuelle Software, wenn der Prozess kritisch ist, spezifische Regeln hat, viele Systeme einbindet und mit Tabellen oder Standardtools Nachvollziehbarkeit verliert.",
+      summaryLabel: "Eigene Methodik",
+      summaryTitle: "Entscheidungscheckliste fuer B2B-Operationen",
+      summary:
+        "Dieses Framework ordnet praktische Signale vor dem Bau: Schwere des Problems, Kosten der Improvisation, Tabellenabhaengigkeit, operatives Risiko, Integrationsbedarf und erwarteter Return.",
+      signalsTitle: "Signale, dass ein eigenes System sinnvoll ist",
+      signals: [
+        "Die Operation haengt bei kritischen Aufgaben von Tabellen, WhatsApp oder manuellen Pruefungen ab.",
+        "Standardtools bilden interne Regeln, Freigaben, Ausnahmen oder Berechtigungen nicht sauber ab.",
+        "Management sieht Status, Historie, Verantwortliche und Engpaesse nur ueber manuelle Reports.",
+        "Daten muessen zwischen ERP, CRM, Payment, APIs, Legacy-Systemen oder Feldteams fliessen.",
+        "Operative Fehler verursachen finanziellen Verlust, Nacharbeit, Audit-Risiko oder Kundenverzoegerung.",
+        "Der Prozess differenziert das Unternehmen und sollte nicht in den Grenzen eines generischen Tools stecken.",
+      ],
+      matrixTitle: "Standardtool vs individuelle Software",
+      matrix: [
+        ["Standardtool", "Gut, wenn der Prozess standardisiert ist, Anpassung wenig kostet und das Unternehmen nach Logik des Tools arbeiten kann."],
+        ["Leichte Automatisierung", "Gut, wenn der Engpass repetitiv und einfach ist und bestehende Tools verbunden werden koennen."],
+        ["Individuelle Integration", "Gut, wenn Systeme existieren, aber Daten, Fehler und Verantwortung nachvollziehbar fliessen muessen."],
+        ["Individuelle Software", "Gut, wenn die Operation kritisch, spezifisch und wiederkehrend ist und eigene Regeln, Berechtigungen, Oberflaechen und Daten braucht."],
+      ],
+      checklistTitle: "Fragen fuer die erste Diagnose",
+      checklist: [
+        "Welcher Prozess blockiert heute Wachstum, Qualitaet oder Lieferung?",
+        "Wie viel Zeit oder Geld kostet Improvisation pro Woche?",
+        "Welche Systeme, Tabellen und Personen sind beteiligt?",
+        "Welche Daten muessen verlaesslich sein, damit Entscheidungen passieren?",
+        "Was passiert, wenn dieser Prozess fehlschlaegt?",
+        "Was waere das erste messbare Ergebnis einer besseren Loesung?",
       ],
     },
     proof: {
@@ -1488,8 +1915,15 @@ export const dictionary = {
         "Senden Sie den technischen oder operativen Engpass. Die erste Antwort soll Chance, wahrscheinliche Ursache und naechste Schritte identifizieren.",
       whatsappLabel: "WhatsApp",
       name: "Name",
+      namePlaceholder: "Ihr Name",
       email: "Email",
+      emailPlaceholder: "sie@unternehmen.de",
+      phone: "Telefon",
+      phonePlaceholder: "+49 170 0000000",
       company: "Unternehmen",
+      companyPlaceholder: "Unternehmensname",
+      role: "Rolle",
+      rolePlaceholder: "Z. B. CEO, Operations Director",
       painType: "Art des Problems",
       painTypePlaceholder: "Option auswaehlen",
       painTypes: [
@@ -1502,6 +1936,7 @@ export const dictionary = {
         "Andere",
       ],
       pain: "Welches Problem moechten Sie loesen?",
+      painPlaceholder: "Beschreiben Sie, was die Operation blockiert, welche Systeme beteiligt sind und welche Auswirkung das heute hat.",
       submit: "Diagnose senden",
       submitting: "Wird gesendet...",
       success: "Wir haben Ihre Anfrage erhalten und antworten bald mit einer ersten Diagnose.",

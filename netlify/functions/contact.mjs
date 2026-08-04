@@ -43,11 +43,13 @@ export async function handler(event) {
 
   const name = String(payload.name || "").trim();
   const email = String(payload.email || "").trim();
+  const phone = String(payload.phone || "").trim();
   const company = String(payload.company || "").trim();
+  const role = String(payload.role || "").trim();
   const painType = String(payload.painType || "").trim();
   const pain = String(payload.pain || "").trim();
 
-  if (!name || !emailRegex.test(email) || !pain) {
+  if (!name || !emailRegex.test(email) || !phone || !pain) {
     return json(400, { error: "Missing required fields" });
   }
 
@@ -59,7 +61,9 @@ export async function handler(event) {
     "",
     `Nome: ${name}`,
     `Email: ${email}`,
+    `Telefone: ${phone}`,
     `Empresa: ${company || "Nao informado"}`,
+    `Cargo: ${role || "Nao informado"}`,
     `Tipo de dor: ${painType || "Nao informado"}`,
     "",
     "Dor:",
@@ -68,7 +72,10 @@ export async function handler(event) {
 
   const safeName = escapeHtml(name);
   const safeEmail = escapeHtml(email);
+  const safePhone = escapeHtml(phone);
+  const phoneHref = escapeHtml(phone.replace(/[^\d+]/g, ""));
   const safeCompany = escapeHtml(company || "Nao informado");
+  const safeRole = escapeHtml(role || "Nao informado");
   const safePainType = escapeHtml(painType || "Nao informado");
   const safePain = escapeHtml(pain).replaceAll("\n", "<br />");
   const replySubject = encodeURIComponent(`Re: ${subject}`);
@@ -112,8 +119,26 @@ export async function handler(event) {
               <tr>
                 <td style="padding: 0 0 12px;">
                   <div style="padding: 16px; border: 1px solid rgba(35, 33, 44, 0.1); border-radius: 16px; background: #fbfaf8;">
+                    <p style="margin: 0 0 5px; color: rgba(35, 33, 44, 0.52); font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;">Telefone</p>
+                    <p style="margin: 0; color: #23212c; font-size: 16px; line-height: 1.4; font-weight: 700;">
+                      <a href="tel:${phoneHref}" style="color: #fc4103; text-decoration: none;">${safePhone}</a>
+                    </p>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding: 0 0 12px;">
+                  <div style="padding: 16px; border: 1px solid rgba(35, 33, 44, 0.1); border-radius: 16px; background: #fbfaf8;">
                     <p style="margin: 0 0 5px; color: rgba(35, 33, 44, 0.52); font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;">Empresa</p>
                     <p style="margin: 0; color: #23212c; font-size: 16px; line-height: 1.4; font-weight: 700;">${safeCompany}</p>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding: 0 0 12px;">
+                  <div style="padding: 16px; border: 1px solid rgba(35, 33, 44, 0.1); border-radius: 16px; background: #fbfaf8;">
+                    <p style="margin: 0 0 5px; color: rgba(35, 33, 44, 0.52); font-size: 11px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;">Cargo</p>
+                    <p style="margin: 0; color: #23212c; font-size: 16px; line-height: 1.4; font-weight: 700;">${safeRole}</p>
                   </div>
                 </td>
               </tr>

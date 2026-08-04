@@ -12,6 +12,7 @@ type CaseDetailPageProps = {
 
 export function CaseDetailPage({ caseIndex, homePath, navigate, t }: CaseDetailPageProps) {
   const casePage = t.cases[caseIndex];
+  const discovery = "discovery" in casePage ? casePage.discovery : null;
   const deliverables =
     "deliverables" in casePage && casePage.deliverables
       ? casePage.deliverables
@@ -65,6 +66,26 @@ export function CaseDetailPage({ caseIndex, homePath, navigate, t }: CaseDetailP
           <h2>{casePage.subtitle}</h2>
           <p>{casePage.description}</p>
         </article>
+        {discovery ? (
+          <>
+            <article className="detail-panel" data-animate>
+              <span>{t.detail.caseProblem}</span>
+              <p>{discovery.problem}</p>
+            </article>
+            <article className="detail-panel" data-animate>
+              <span>{t.detail.caseSolution}</span>
+              <p>{discovery.solution}</p>
+            </article>
+            <article className="detail-panel" data-animate>
+              <span>{t.detail.caseStack}</span>
+              <p>{discovery.stack}</p>
+            </article>
+            <article className="detail-panel" data-animate>
+              <span>{t.detail.caseOutcome}</span>
+              <p>{discovery.outcome}</p>
+            </article>
+          </>
+        ) : null}
         <article className="detail-panel" data-animate>
           <span>{t.detail.whatWeDeliver}</span>
           <ul>

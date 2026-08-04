@@ -45,7 +45,7 @@ const policyCopy: Record<Locale, PolicyCopy> = {
     dataRows: [
       [
         "Formulário de contato",
-        "Nome, email, empresa, tipo de dor operacional e mensagem enviada.",
+        "Nome, email, telefone, empresa, cargo, tipo de dor operacional e mensagem enviada.",
         "Responder solicitações, preparar diagnóstico inicial, administrar relacionamento comercial e proteger o site contra abuso.",
       ],
       [
@@ -146,7 +146,7 @@ const policyCopy: Record<Locale, PolicyCopy> = {
     dataRows: [
       [
         "Contact form",
-        "Name, email, company, operational pain type and message submitted.",
+        "Name, email, phone, company, role, operational pain type and message submitted.",
         "Respond to requests, prepare an initial diagnosis, manage commercial relationships and protect the site from abuse.",
       ],
       [
@@ -247,7 +247,7 @@ const policyCopy: Record<Locale, PolicyCopy> = {
     dataRows: [
       [
         "Kontaktformular",
-        "Name, E-Mail, Unternehmen, Art des operativen Problems und Nachricht.",
+        "Name, E-Mail, Telefon, Unternehmen, Rolle, Art des operativen Problems und Nachricht.",
         "Anfragen beantworten, eine erste Diagnose vorbereiten, Geschaeftsbeziehungen verwalten und die Website vor Missbrauch schuetzen.",
       ],
       [

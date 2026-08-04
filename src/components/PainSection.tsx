@@ -12,6 +12,7 @@ export function PainSection({ t }: PainSectionProps) {
     <section className="pain-section">
       <div className="section-heading compact" data-animate>
         <h2>{t.pain.title}</h2>
+        <p>{t.pain.intro}</p>
       </div>
       <div className="pain-grid">
         {t.pain.items.map((item, index) => {

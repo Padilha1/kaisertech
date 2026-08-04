@@ -32,15 +32,23 @@ export function ContactSection({ formStatus, handleContactSubmit, t }: ContactSe
         <input className="form-honeypot" name="website" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" />
         <label>
           {t.form.name}
-          <input name="name" type="text" autoComplete="name" required />
+          <input name="name" type="text" autoComplete="name" placeholder={t.form.namePlaceholder} required />
         </label>
         <label>
           {t.form.email}
-          <input name="email" type="email" autoComplete="email" required />
+          <input name="email" type="email" autoComplete="email" placeholder={t.form.emailPlaceholder} required />
+        </label>
+        <label>
+          {t.form.phone}
+          <input name="phone" type="tel" autoComplete="tel" placeholder={t.form.phonePlaceholder} required />
         </label>
         <label>
           {t.form.company}
-          <input name="company" type="text" autoComplete="organization" />
+          <input name="company" type="text" autoComplete="organization" placeholder={t.form.companyPlaceholder} />
+        </label>
+        <label>
+          {t.form.role}
+          <input name="role" type="text" autoComplete="organization-title" placeholder={t.form.rolePlaceholder} />
         </label>
         <label>
           {t.form.painType}
@@ -57,7 +65,7 @@ export function ContactSection({ formStatus, handleContactSubmit, t }: ContactSe
         </label>
         <label className="full">
           {t.form.pain}
-          <textarea name="pain" rows={6} required />
+          <textarea name="pain" rows={6} placeholder={t.form.painPlaceholder} required />
         </label>
         <button className="primary-button" type="submit" disabled={formStatus === "submitting"}>
           {formStatus === "submitting" ? t.form.submitting : t.form.submit}

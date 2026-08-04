@@ -24,6 +24,15 @@ const CaseDetailPage = lazy(() =>
   import("./components/CaseDetailPage").then((module) => ({ default: module.CaseDetailPage })),
 );
 const CaseModal = lazy(() => import("./components/CaseModal").then((module) => ({ default: module.CaseModal })));
+const DiagnosticPage = lazy(() =>
+  import("./components/DiagnosticPage").then((module) => ({ default: module.DiagnosticPage })),
+);
+const GlossaryPage = lazy(() =>
+  import("./components/GlossaryPage").then((module) => ({ default: module.GlossaryPage })),
+);
+const MethodologyPage = lazy(() =>
+  import("./components/MethodologyPage").then((module) => ({ default: module.MethodologyPage })),
+);
 const PrivacyPolicyPage = lazy(() =>
   import("./components/PrivacyPolicyPage").then((module) => ({ default: module.PrivacyPolicyPage })),
 );
@@ -260,6 +269,12 @@ export function App() {
       <ServiceDetailPage homePath={homePath} locale={locale} navigate={navigate} serviceIndex={route.index} t={t} />
     ) : route.kind === "case" && typeof route.index === "number" ? (
       <CaseDetailPage caseIndex={route.index} homePath={homePath} navigate={navigate} t={t} />
+    ) : route.kind === "methodology" ? (
+      <MethodologyPage homePath={homePath} navigate={navigate} t={t} />
+    ) : route.kind === "glossary" ? (
+      <GlossaryPage homePath={homePath} navigate={navigate} t={t} />
+    ) : route.kind === "diagnostic" ? (
+      <DiagnosticPage homePath={homePath} navigate={navigate} t={t} />
     ) : route.kind === "privacy" ? (
       <PrivacyPolicyPage locale={locale} navigate={navigate} />
     ) : (

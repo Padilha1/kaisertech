@@ -1,7 +1,7 @@
 import { Instagram, Linkedin } from "lucide-react";
 import type { MouseEvent } from "react";
 import type { Locale, LocaleCopy } from "../lib/i18n";
-import { getPrivacyPath } from "../lib/routing";
+import { getDiagnosticPath, getGlossaryPath, getMethodologyPath, getPrivacyPath } from "../lib/routing";
 
 type FooterProps = {
   currentYear: number;
@@ -12,11 +12,13 @@ type FooterProps = {
 };
 
 const sectionLinks = [
-  ["solutions", "services"],
-  ["cases", "cases"],
-  ["method", "method"],
-  ["proof", "proof"],
-  ["contact", "contact"],
+  ["anchor", "solutions", "services"],
+  ["anchor", "cases", "cases"],
+  ["route", "methodology", "method"],
+  ["route", "diagnostic", "diagnostic"],
+  ["route", "glossary", "glossary"],
+  ["anchor", "proof", "proof"],
+  ["anchor", "contact", "contact"],
 ] as const;
 
 export function Footer({ currentYear, homePath, locale, navigate, t }: FooterProps) {
@@ -25,6 +27,11 @@ export function Footer({ currentYear, homePath, locale, navigate, t }: FooterPro
     navigate(path);
   };
   const privacyPath = getPrivacyPath(locale);
+  const routePaths = {
+    diagnostic: getDiagnosticPath(locale),
+    glossary: getGlossaryPath(locale),
+    methodology: getMethodologyPath(locale),
+  };
 
   return (
     <footer className="site-footer">
@@ -50,11 +57,11 @@ export function Footer({ currentYear, homePath, locale, navigate, t }: FooterPro
 
         <nav className="footer-nav" aria-label={t.footer.navLabel}>
           <strong>{t.footer.navTitle}</strong>
-          {sectionLinks.map(([sectionId, label]) => {
-            const path = `${homePath}#${sectionId}`;
+          {sectionLinks.map(([type, target, label]) => {
+            const path = type === "route" ? routePaths[target] : `${homePath}#${target}`;
 
             return (
-              <a href={path} key={sectionId} onClick={handleInternalLink(path)}>
+              <a href={path} key={target} onClick={handleInternalLink(path)}>
                 {t.nav[label]}
               </a>
             );

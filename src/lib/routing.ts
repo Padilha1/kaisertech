@@ -1,6 +1,6 @@
 import type { Locale } from "./i18n";
 
-export type RouteKind = "home" | "service" | "case" | "privacy";
+export type RouteKind = "home" | "service" | "case" | "methodology" | "glossary" | "diagnostic" | "privacy";
 
 export type AppRoute = {
   kind: RouteKind;
@@ -20,16 +20,25 @@ export const routeSegments = {
   pt: {
     services: "solucoes",
     cases: "cases",
+    methodology: "metodologia",
+    glossary: "glossario",
+    diagnostic: "diagnostico-operacional",
     privacy: "politica-de-privacidade",
   },
   en: {
     services: "solutions",
     cases: "cases",
+    methodology: "methodology",
+    glossary: "glossary",
+    diagnostic: "operational-diagnosis",
     privacy: "privacy-policy",
   },
   de: {
     services: "loesungen",
     cases: "cases",
+    methodology: "methodik",
+    glossary: "glossar",
+    diagnostic: "operations-diagnose",
     privacy: "datenschutz",
   },
 } as const;
@@ -111,6 +120,18 @@ export const parseRoute = (pathname: string): AppRoute => {
     return { kind: "privacy", locale };
   }
 
+  if (normalizedSection === routeSegments[locale].methodology) {
+    return { kind: "methodology", locale };
+  }
+
+  if (normalizedSection === routeSegments[locale].glossary) {
+    return { kind: "glossary", locale };
+  }
+
+  if (normalizedSection === routeSegments[locale].diagnostic) {
+    return { kind: "diagnostic", locale };
+  }
+
   if (normalizedSection === routeSegments[locale].services && slug) {
     const index = findSlugIndex(serviceSlugs[locale], slug);
     if (index >= 0) return { kind: "service", locale, index };
@@ -132,11 +153,20 @@ export const getServicePath = (locale: Locale, index: number) =>
 export const getCasePath = (locale: Locale, index: number) =>
   `${localePaths[locale]}/${routeSegments[locale].cases}/${caseSlugs[locale][index]}`;
 
+export const getMethodologyPath = (locale: Locale) => `${localePaths[locale]}/${routeSegments[locale].methodology}`;
+
+export const getGlossaryPath = (locale: Locale) => `${localePaths[locale]}/${routeSegments[locale].glossary}`;
+
+export const getDiagnosticPath = (locale: Locale) => `${localePaths[locale]}/${routeSegments[locale].diagnostic}`;
+
 export const getPrivacyPath = (locale: Locale) => `${localePaths[locale]}/${routeSegments[locale].privacy}`;
 
 export const getRoutePath = (route: AppRoute, targetLocale = route.locale) => {
   if (route.kind === "service" && typeof route.index === "number") return getServicePath(targetLocale, route.index);
   if (route.kind === "case" && typeof route.index === "number") return getCasePath(targetLocale, route.index);
+  if (route.kind === "methodology") return getMethodologyPath(targetLocale);
+  if (route.kind === "glossary") return getGlossaryPath(targetLocale);
+  if (route.kind === "diagnostic") return getDiagnosticPath(targetLocale);
   if (route.kind === "privacy") return getPrivacyPath(targetLocale);
   return getHomePath(targetLocale);
 };

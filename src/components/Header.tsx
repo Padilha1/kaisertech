@@ -3,7 +3,7 @@ import type { MouseEvent } from "react";
 import { trackCtaClick } from "../lib/analytics";
 import type { Locale, LocaleCopy } from "../lib/i18n";
 import type { AppRoute } from "../lib/routing";
-import { getRoutePath } from "../lib/routing";
+import { getMethodologyPath, getRoutePath } from "../lib/routing";
 
 type HeaderProps = {
   availableLocales: Locale[];
@@ -23,11 +23,11 @@ const localeLabels: Record<Locale, string> = {
 };
 
 const sectionLinks = [
-  ["solutions", "services"],
-  ["cases", "cases"],
-  ["method", "method"],
-  ["proof", "proof"],
-  ["contact", "contact"],
+  ["services", "solutions", "services"],
+  ["cases", "cases", "cases"],
+  ["route", "methodology", "method"],
+  ["proof", "proof", "proof"],
+  ["contact", "contact", "contact"],
 ] as const;
 
 export function Header({ availableLocales, homePath, isScrolled, menuOpen, navigate, route, setMenuOpen, t }: HeaderProps) {
@@ -64,11 +64,11 @@ export function Header({ availableLocales, homePath, isScrolled, menuOpen, navig
         </a>
 
         <nav className="desktop-nav" aria-label="Primary navigation">
-          {sectionLinks.map(([sectionId, label]) => {
-            const path = `${homePath}#${sectionId}`;
+          {sectionLinks.map(([type, target, label]) => {
+            const path = type === "route" ? getMethodologyPath(route.locale) : `${homePath}#${target}`;
 
             return (
-              <a href={path} key={sectionId} onClick={handleInternalLink(path)}>
+              <a href={path} key={target} onClick={handleInternalLink(path)}>
                 {t.nav[label]}
               </a>
             );
@@ -125,11 +125,11 @@ export function Header({ availableLocales, homePath, isScrolled, menuOpen, navig
 
       {menuOpen ? (
         <nav className="mobile-nav" aria-label="Mobile navigation">
-          {sectionLinks.map(([sectionId, label]) => {
-            const path = `${homePath}#${sectionId}`;
+          {sectionLinks.map(([type, target, label]) => {
+            const path = type === "route" ? getMethodologyPath(route.locale) : `${homePath}#${target}`;
 
             return (
-              <a href={path} key={sectionId} onClick={handleInternalLink(path)}>
+              <a href={path} key={target} onClick={handleInternalLink(path)}>
                 {t.nav[label]}
               </a>
             );

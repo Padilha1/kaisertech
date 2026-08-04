@@ -1135,6 +1135,27 @@ main {
   line-height: 1.5;
 }
 
+.decision-matrix {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.decision-matrix div {
+  min-height: 132px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(247, 245, 242, 0.045);
+}
+
+.decision-matrix strong {
+  display: block;
+  color: var(--paper);
+  font-size: 1rem;
+}
+
 .privacy-page {
   width: min(1180px, calc(100% - 48px));
   margin: 0 auto;
@@ -1637,6 +1658,22 @@ main {
   color: var(--muted);
   font-size: 1rem;
   line-height: 1.8;
+}
+
+.case-modal__summary {
+  display: grid;
+  gap: 8px;
+  margin-top: 18px;
+  padding: 14px;
+  border: 1px solid rgba(252, 65, 3, 0.24);
+  border-radius: 8px;
+  background: rgba(252, 65, 3, 0.08);
+}
+
+.case-modal__summary strong,
+.case-modal__summary span {
+  color: rgba(247, 245, 242, 0.78);
+  line-height: 1.5;
 }
 
 .case-modal__actions {
@@ -2158,6 +2195,10 @@ main {
 
   .detail-panel--wide {
     grid-row: auto;
+  }
+
+  .decision-matrix {
+    grid-template-columns: 1fr;
   }
 
   .related-card {

@@ -42,6 +42,24 @@ These pages provide Markdown versions of the main website routes for AI agents, 
 - [Routini](https://kaisertec.com.br/en/cases/routini.md): Service scheduling system for small businesses reducing dependence on WhatsApp.
 - [Amicord](https://kaisertec.com.br/en/cases/amicord.md): Facilities management system with checklists, activities, mobile app, GPS and QR Code.
 
+## Methodology Pages
+
+- [pt-BR methodology](https://kaisertec.com.br/pt-br/metodologia.md): Como a Kaiser Tech diagnostica dores operacionais, mapeia processos, decide solução, executa engenharia e mantém sistemas confiáveis.
+- [en methodology](https://kaisertec.com.br/en/methodology.md): How Kaiser Tech diagnoses operational pain, maps workflows, decides solutions, executes engineering and keeps systems reliable.
+- [de-DE methodology](https://kaisertec.com.br/de-de/methodik.md): Wie Kaiser Tech operative Probleme diagnostiziert, Prozesse abbildet, Loesungen entscheidet und verlaessliche Systeme baut.
+
+## Glossary Pages
+
+- [pt-BR glossary](https://kaisertec.com.br/pt-br/glossario.md): Definições curtas sobre software sob medida, integrações, rastreabilidade, legado, FinOps e performance de banco.
+- [en glossary](https://kaisertec.com.br/en/glossary.md): Short definitions for custom software, integrations, traceability, legacy systems, FinOps and database performance.
+- [de-DE glossary](https://kaisertec.com.br/de-de/glossar.md): Kurze Definitionen zu individueller Software, Systemintegration, Nachvollziehbarkeit, Legacy, FinOps und Datenbank-Performance.
+
+## Diagnostic Framework Pages
+
+- [pt-BR diagnostic framework](https://kaisertec.com.br/pt-br/diagnostico-operacional.md): Checklist e matriz para decidir entre ferramenta pronta, automação, integração ou software sob medida em operações B2B.
+- [en diagnostic framework](https://kaisertec.com.br/en/operational-diagnosis.md): Checklist and matrix to decide between off-the-shelf tools, automation, integration or custom software for B2B operations.
+- [de-DE diagnostic framework](https://kaisertec.com.br/de-de/operations-diagnose.md): Checkliste und Matrix fuer Standardtool, Automatisierung, Integration oder individuelle Software in B2B-Operationen.
+
 ## Commercial Questions
 
 ### When should I hire custom software development?
@@ -72,7 +90,9 @@ Kaiser Tech serves B2B operations that need traceability, systems integration, o
 ## Proof Points
 
 - [Cases](https://kaisertec.com.br/en/#cases): Public examples include ACIPG Bolao, S4 Treinamentos, Routini and Amicord.
-- [Methodology](https://kaisertec.com.br/en/#method): Kaiser Tech uses a six-step methodology from pain diagnosis to reliable operation.
+- [Methodology](https://kaisertec.com.br/en/methodology.md): Kaiser Tech uses a six-step methodology from pain diagnosis to reliable operation.
+- [Operational diagnosis](https://kaisertec.com.br/en/operational-diagnosis.md): Decision framework for off-the-shelf tools, automation, integrations and custom software.
+- [Glossary](https://kaisertec.com.br/en/glossary.md): Short definitions for the operational software terms used across the site.
 - [Technical proof](https://kaisertec.com.br/en/#proof): The company focuses on traceable systems, integrations, maintainability and operational reliability.
 - [Contact](https://kaisertec.com.br/en/#contact): The best next step is to describe the operational pain through the site form.
 
