@@ -459,12 +459,12 @@ const locales = {
 const routePath = (localeKey, kind = "home", slug = "") => {
   const locale = locales[localeKey];
   if (kind === "service")
-    return `${locale.base}/${locale.servicesSegment}/${slug}`;
-  if (kind === "case") return `${locale.base}/${locale.casesSegment}/${slug}`;
-  if (kind === "methodology") return `${locale.base}/${locale.methodologySegment}`;
-  if (kind === "glossary") return `${locale.base}/${locale.glossarySegment}`;
-  if (kind === "diagnostic") return `${locale.base}/${locale.diagnosticSegment}`;
-  if (kind === "privacy") return `${locale.base}/${locale.privacySegment}`;
+    return `${locale.base}/${locale.servicesSegment}/${slug}/`;
+  if (kind === "case") return `${locale.base}/${locale.casesSegment}/${slug}/`;
+  if (kind === "methodology") return `${locale.base}/${locale.methodologySegment}/`;
+  if (kind === "glossary") return `${locale.base}/${locale.glossarySegment}/`;
+  if (kind === "diagnostic") return `${locale.base}/${locale.diagnosticSegment}/`;
+  if (kind === "privacy") return `${locale.base}/${locale.privacySegment}/`;
   return `${locale.base}/`;
 };
 

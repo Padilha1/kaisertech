@@ -44,74 +44,110 @@
   force = true
 
 [[redirects]]
+  from = "/pt-BR/politica-de-privacidade"
+  to = "/pt-br/politica-de-privacidade/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pt-BR/politica-de-privacidade/"
+  to = "/pt-br/politica-de-privacidade/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pt-BR/metodologia"
+  to = "/pt-br/metodologia/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pt-BR/metodologia/"
+  to = "/pt-br/metodologia/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pt-BR/glossario"
+  to = "/pt-br/glossario/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pt-BR/glossario/"
+  to = "/pt-br/glossario/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pt-BR/diagnostico-operacional"
+  to = "/pt-br/diagnostico-operacional/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/pt-BR/diagnostico-operacional/"
+  to = "/pt-br/diagnostico-operacional/"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/pt-br/solucoes/integrações-sob-medida"
-  to = "/pt-br/solucoes/integracoes-sob-medida"
+  to = "/pt-br/solucoes/integracoes-sob-medida/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/pt-br/solucoes/integrações-sob-medida/"
-  to = "/pt-br/solucoes/integracoes-sob-medida"
+  to = "/pt-br/solucoes/integracoes-sob-medida/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/pt-br/solucoes/integra%C3%A7%C3%B5es-sob-medida"
-  to = "/pt-br/solucoes/integracoes-sob-medida"
+  to = "/pt-br/solucoes/integracoes-sob-medida/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/pt-br/solucoes/integra%C3%A7%C3%B5es-sob-medida/"
-  to = "/pt-br/solucoes/integracoes-sob-medida"
+  to = "/pt-br/solucoes/integracoes-sob-medida/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/pt-BR/solucoes/integrações-sob-medida"
-  to = "/pt-br/solucoes/integracoes-sob-medida"
+  to = "/pt-br/solucoes/integracoes-sob-medida/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/pt-BR/solucoes/integrações-sob-medida/"
-  to = "/pt-br/solucoes/integracoes-sob-medida"
+  to = "/pt-br/solucoes/integracoes-sob-medida/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/pt-BR/solucoes/integra%C3%A7%C3%B5es-sob-medida"
-  to = "/pt-br/solucoes/integracoes-sob-medida"
+  to = "/pt-br/solucoes/integracoes-sob-medida/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/pt-BR/solucoes/integra%C3%A7%C3%B5es-sob-medida/"
-  to = "/pt-br/solucoes/integracoes-sob-medida"
+  to = "/pt-br/solucoes/integracoes-sob-medida/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/pt-BR/:section/:slug"
-  to = "/pt-br/:section/:slug"
+  to = "/pt-br/:section/:slug/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/pt-BR/:section/:slug/"
-  to = "/pt-br/:section/:slug"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/pt-br/:section/:slug/"
-  to = "/pt-br/:section/:slug"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/pt-br/politica-de-privacidade/"
-  to = "/pt-br/politica-de-privacidade"
+  to = "/pt-br/:section/:slug/"
   status = 301
   force = true
 
@@ -133,38 +169,62 @@
   force = true
 
 [[redirects]]
+  from = "/de-DE/datenschutz"
+  to = "/de-de/datenschutz/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/de-DE/datenschutz/"
+  to = "/de-de/datenschutz/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/de-DE/methodik"
+  to = "/de-de/methodik/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/de-DE/methodik/"
+  to = "/de-de/methodik/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/de-DE/glossar"
+  to = "/de-de/glossar/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/de-DE/glossar/"
+  to = "/de-de/glossar/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/de-DE/operations-diagnose"
+  to = "/de-de/operations-diagnose/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/de-DE/operations-diagnose/"
+  to = "/de-de/operations-diagnose/"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/de-DE/:section/:slug"
-  to = "/de-de/:section/:slug"
+  to = "/de-de/:section/:slug/"
   status = 301
   force = true
 
 [[redirects]]
   from = "/de-DE/:section/:slug/"
-  to = "/de-de/:section/:slug"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/de-de/:section/:slug/"
-  to = "/de-de/:section/:slug"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/de-de/datenschutz/"
-  to = "/de-de/datenschutz"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/en/:section/:slug/"
-  to = "/en/:section/:slug"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "/en/privacy-policy/"
-  to = "/en/privacy-policy"
+  to = "/de-de/:section/:slug/"
   status = 301
   force = true
 
